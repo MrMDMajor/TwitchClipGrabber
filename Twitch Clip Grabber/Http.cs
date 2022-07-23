@@ -3,6 +3,9 @@ using System.Text;
 using System.Net;
 using System.Net.Http;
 using System.IO;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using System.Diagnostics;
 
 namespace Twitch_Clip_Grabber
 {
@@ -11,7 +14,7 @@ namespace Twitch_Clip_Grabber
         public static HttpClient client = new HttpClient();
         private HttpListener Listener = null;
 
-        public Http(string token, string clientId)
+        public Http()
         {
             Listener = new HttpListener();
             Listener.Prefixes.Add("http://localhost:3000/");
@@ -19,9 +22,6 @@ namespace Twitch_Clip_Grabber
             Listener.BeginGetContext(GetContextCallback, null);
 
             client.BaseAddress = new Uri("https://api.twitch.tv/helix/");
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-            client.DefaultRequestHeaders.Add("Client-Id", clientId);
-
         }
 
         private void GetContextCallback(IAsyncResult ar)
@@ -38,6 +38,18 @@ namespace Twitch_Clip_Grabber
             response.StatusCode = 200;
             response.OutputStream.Write(buffer, 0, buffer.Length);
             response.OutputStream.Close();
+        }
+
+        public static async Task<HttpResponseMessage> GetResponse(string url, bool attachHeaders)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            if (attachHeaders)
+            {
+                request.Headers.Add("Authorization", "Bearer " + Program.Token);
+                request.Headers.Add("Client-Id", Program.ClientId);
+            }
+            var response = await client.SendAsync(request);
+            return response;
         }
     }
 }
