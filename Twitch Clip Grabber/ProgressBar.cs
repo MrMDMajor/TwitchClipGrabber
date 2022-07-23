@@ -16,5 +16,11 @@ namespace Twitch_Clip_Grabber
         {
             InitializeComponent();
         }
+
+        public void UpdateProgressBar(int value = 0)
+        {
+            this.loadingProgressBar.Value = value;
+            this.progressBarPercent.Text = value.ToString() + "%";
+        }
     }
 }

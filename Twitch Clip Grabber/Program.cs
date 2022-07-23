@@ -31,10 +31,12 @@ namespace Twitch_Clip_Grabber
         {
             if (url != "")
             {
+                //VOD thumbnails do not have size specified, clip thumbnails are 480x272
                 url = url.Replace("%{width}", size.Width.ToString()).Replace("%{height}", size.Height.ToString());
                 var response = await Http.GetResponse(url, false);
                 if (!response.IsSuccessStatusCode)
                 {
+                    //If thumbnail URL is broken/does not exist, things won't break
                     return Image.FromFile(@"resources\no_img.jpg");
                 }
                 using (Stream responseStream = await response.Content.ReadAsStreamAsync())
@@ -44,7 +46,7 @@ namespace Twitch_Clip_Grabber
             }
             else return Image.FromFile(@"resources\no_img.jpg");
         }
-        public static async void DownloadFile(string url, string path)
+        public static async Task DownloadFile(string url, string path)
         {
             var response = await Http.GetResponse(url, false);
             if (response.IsSuccessStatusCode)

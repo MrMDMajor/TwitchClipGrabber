@@ -44,6 +44,7 @@ namespace Twitch_Clip_Grabber
         public int view_count { get; set; }
         public Image thumbnail { get; set; }
         public double vod_offset { get; set; }
-        public bool isChecked { get; set; }
+        public DateTime vodDate { get; set; }
+        public Dictionary<string, string> clipDict { get; set; }
     }
 }

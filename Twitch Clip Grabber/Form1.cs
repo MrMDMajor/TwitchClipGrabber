@@ -11,7 +11,6 @@ namespace Twitch_Clip_Grabber
     public partial class Form1 : Form
     {
         string id;
-        string clipStartDate;
 
         VODCollection vodCol;
         ClipCollection clipCol;
@@ -20,14 +19,14 @@ namespace Twitch_Clip_Grabber
         ClipManager clipManager = new();
         List<int> selectedIndices = new List<int>();
 
-        ProgressBar pb = new();
+        public static ProgressBar pb = new();
         public Form1()
         {
             InitializeComponent();
             if (Program.Token == "" || Program.Token == null)
             {
                 Form2 form2 = new Form2();
-                form2.Show();
+                form2.Show(this);
             }
         }
 
@@ -39,6 +38,7 @@ namespace Twitch_Clip_Grabber
             GetListViewVOD(vodCol, listView1);
         }
 
+        //Takes user input username, and gets User ID, necessary for subsequent API calls
         private async Task<string> GetUserID(string username)
         {
             if (username != "")
@@ -56,6 +56,7 @@ namespace Twitch_Clip_Grabber
             else return null;
         }
 
+        //Updates left panel with list of VODs
         private void GetListViewVOD(VODCollection collection, ListView view)
         {
             ImageList largeImgList = new();
@@ -81,6 +82,7 @@ namespace Twitch_Clip_Grabber
             view.Items.AddRange(items.ToArray());
         }
 
+        //Updates right panel with clips from selected VOD
         private void GetListViewClip(ClipCollection collection, ListView view)
         {
             ImageList largeImgList = new();
@@ -108,6 +110,8 @@ namespace Twitch_Clip_Grabber
             view.LargeImageList = largeImgList;
             view.Items.AddRange(items.ToArray());
         }
+
+        //Change the view type of the VOD list, may remove later
         private void viewDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (viewDropDown.SelectedItem)
@@ -130,51 +134,58 @@ namespace Twitch_Clip_Grabber
             }
         }
 
+        //A lot of this stuff probably shouldn't be on the button, might fix later
         private async void getClipsButton_Click(object sender, EventArgs e)
         {
             pb.Text = "Getting clips...";
-            pb.Show();
+            pb.Show(this);
             clipCol = new ClipCollection();
             DateTime start = new DateTime();
             VOD vod = vodCol.data[listView1.SelectedIndices[0]];
             start = vod.created_at;
-            clipStartDate = start.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'");
             int progress = 0;
 
-            ClipCollection newClipCol = await clipManager.UpdateClipCollection(id, clipStartDate);
+            ClipCollection newClipCol = await clipManager.UpdateClipCollection(id, start);
             foreach (Clip clip in newClipCol.data)
             {
+                //Takes list of all clips created after specified date, removes the ones that don't match selected VOD
                 if (clip.video_id == vod.id)
                 {
                     clipCol.data.Add(clip);
                 }
-                pb.loadingProgressBar.Value = ++progress * 25 / newClipCol.data.Count;
+                pb.UpdateProgressBar(++progress * 25 / newClipCol.data.Count);
             }
             progress = 0;
             foreach (Clip clip in clipCol.data)
             {
                 clip.thumbnail = await Program.LoadImage(clip.thumbnail_url, new Size(128, 72));
-                pb.loadingProgressBar.Value = 25 + (++progress * 75 / clipCol.data.Count);
+                pb.UpdateProgressBar(25 + (++progress * 75 / clipCol.data.Count));
             }
             await Task.Delay(500);
-            pb.loadingProgressBar.Value = 0;
             pb.Hide();
+            pb.UpdateProgressBar();
             GetListViewClip(clipCol, listView2);
         }
 
+        //This is only for testing at the moment
         private void listView2_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
+            UserSettings.FormatFilename(clipCol.data[e.Item.Index]);
         }
 
-        private void downloadButton_Click(object sender, EventArgs e)
+        private async void downloadButton_Click(object sender, EventArgs e)
         {
             downloadTarget.ShowDialog();
+            pb.Show(this);
+            int progress = 0;
             foreach (ListViewItem item in listView2.CheckedItems)
-            {
+            { 
                 string newUrl = clipCol.data[item.Index].thumbnail_url.Replace("-preview-480x272.jpg", ".mp4");
-                Console.WriteLine(newUrl);
-                Program.DownloadFile(newUrl, Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index])));
+                await Program.DownloadFile(newUrl, Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index])));
+                pb.UpdateProgressBar(++progress * 100 / listView2.CheckedItems.Count);
             }
+            pb.Hide();
+            pb.UpdateProgressBar();
         }
 
         private void selectAllButton_Click(object sender, EventArgs e)

@@ -29,7 +29,6 @@ namespace Twitch_Clip_Grabber
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -37,6 +36,7 @@ namespace Twitch_Clip_Grabber
             this.clipTitle = new System.Windows.Forms.ColumnHeader();
             this.creator = new System.Windows.Forms.ColumnHeader();
             this.clipDate = new System.Windows.Forms.ColumnHeader();
+            this.offset = new System.Windows.Forms.ColumnHeader();
             this.submit = new System.Windows.Forms.Button();
             this.username = new System.Windows.Forms.TextBox();
             this.username_label = new System.Windows.Forms.Label();
@@ -51,7 +51,6 @@ namespace Twitch_Clip_Grabber
             this.downloadButton = new System.Windows.Forms.Button();
             this.getClipsButton = new System.Windows.Forms.Button();
             this.downloadTarget = new System.Windows.Forms.FolderBrowserDialog();
-            this.offset = new System.Windows.Forms.ColumnHeader();
             this.tableLayoutPanel1.SuspendLayout();
             this.mainLayout.SuspendLayout();
             this.clipButtons.SuspendLayout();
@@ -108,7 +107,7 @@ namespace Twitch_Clip_Grabber
             this.listView2.TabIndex = 9;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(listView2_ItemChecked);
+            this.listView2.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView2_ItemChecked);
             // 
             // clipTitle
             // 
@@ -124,6 +123,11 @@ namespace Twitch_Clip_Grabber
             // 
             this.clipDate.Text = "Date";
             this.clipDate.Width = 100;
+            // 
+            // offset
+            // 
+            this.offset.Text = "Timestamp";
+            this.offset.Width = 100;
             // 
             // submit
             // 
@@ -163,10 +167,6 @@ namespace Twitch_Clip_Grabber
             this.mainLayout.SetColumnSpan(this.listView1, 3);
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 37);
             this.listView1.MultiSelect = false;
@@ -289,11 +289,6 @@ namespace Twitch_Clip_Grabber
             this.getClipsButton.Text = "Get Clips>>>";
             this.getClipsButton.UseVisualStyleBackColor = true;
             this.getClipsButton.Click += new System.EventHandler(this.getClipsButton_Click);
-            // 
-            // offset
-            // 
-            this.offset.Text = "Timestamp";
-            this.offset.Width = 100;
             // 
             // Form1
             // 

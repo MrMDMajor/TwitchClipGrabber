@@ -12,14 +12,14 @@ namespace Twitch_Clip_Grabber
 {
     class VODManager
     {
-        ProgressBar pb = new ProgressBar();
-
         public async Task<VODCollection> UpdateVODCollection(string id)
         {
             VODCollection outputCol = new VODCollection();
             int iterations = 0;
-            pb.Text = "Loading VODs...";
-            pb.Show();
+            Form1.pb.Text = "Loading VODs...";
+            Form1.pb.Show(Form.ActiveForm);
+
+            //Goes through all possible pages of VODs and combines them into a single list
             do
             {
                 VODCollection tempCol = await GetVODCollection(id, cursor: outputCol.pagination.cursor);
@@ -27,8 +27,8 @@ namespace Twitch_Clip_Grabber
                 outputCol.pagination.cursor = tempCol.pagination.cursor;
                 iterations++;
             } while (outputCol.pagination.cursor != "");
-            pb.Hide();
-
+            Form1.pb.Hide();
+            Form1.pb.UpdateProgressBar();
             return outputCol;
         }
 
@@ -42,7 +42,7 @@ namespace Twitch_Clip_Grabber
             foreach (VOD v in vodCol.data)
             {
                 v.thumbnail = await Program.LoadImage(v.thumbnail_url, new Size(256, 144));
-                pb.loadingProgressBar.Value = ++progress * 100 / vodCol.data.Count;      
+                Form1.pb.UpdateProgressBar(++progress * 100 / vodCol.data.Count);      
             }
             await Task.Delay(350);
             return vodCol;

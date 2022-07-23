@@ -25,13 +25,37 @@ namespace Twitch_Clip_Grabber.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{date} {offset} {creator}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{vod_date} {vod_offset} {creator_name}")]
         public string FilenameFormat {
             get {
                 return ((string)(this["FilenameFormat"]));
             }
             set {
                 this["FilenameFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("hh\\hmm\\mss\\s")]
+        public string TimeSpanFormat {
+            get {
+                return ((string)(this["TimeSpanFormat"]));
+            }
+            set {
+                this["TimeSpanFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("yyyy-MM-dd")]
+        public string DateTimeFormat {
+            get {
+                return ((string)(this["DateTimeFormat"]));
+            }
+            set {
+                this["DateTimeFormat"] = value;
             }
         }
     }
