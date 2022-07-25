@@ -3,13 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="FilenameFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{vod_date} {vod_offset} {creator_name}</Value>
+      <Value Profile="(Default)">{vod_date:yyyy-MM-dd} {vod_offset:hh\hmm\mss\s} {creator_name}</Value>
     </Setting>
-    <Setting Name="TimeSpanFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)">hh\hmm\mss\s</Value>
-    </Setting>
-    <Setting Name="DateTimeFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)">yyyy-MM-dd</Value>
+    <Setting Name="Token" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

@@ -8,35 +8,57 @@ namespace Twitch_Clip_Grabber
 {
     static class UserSettings
     {
-        public static string FormatFilename(Clip clip)
+        public static string FormatFilename(Clip clip, string filenameFormat)
         {
-            GetClipDict(clip, Properties.Settings.Default.TimeSpanFormat, Properties.Settings.Default.DateTimeFormat);
+            GetClipDict(clip);
             Regex regex = new Regex(@"\{.*?\}");
-            MatchCollection matches = regex.Matches(Properties.Settings.Default.FilenameFormat);
-            string output = Properties.Settings.Default.FilenameFormat;
+            string output = filenameFormat;
+            MatchCollection matches = regex.Matches(output);
             foreach (Match match in matches)
             {
-                if (clip.clipDict.ContainsKey(match.Value))
+                string key = match.Value;
+                string format = "";
+                if (match.Value.Contains(":"))
                 {
-                    output = output.Replace(match.Value, clip.clipDict[match.Value]);
+                    regex = new Regex(@"(\{.*?):(.*?)(\})");
+                    Match newMatch = regex.Match(match.Value);
+                    key = newMatch.Groups[1].Value + newMatch.Groups[3].Value;
+                    format = newMatch.Groups[2].Value;
+                    if (clip.clipDict.ContainsKey(key))
+                    {
+                        if (key == "{vod_offset}")
+                        {
+                            var timeSpan = (TimeSpan)clip.clipDict[key];
+                            try { output = output.Replace(match.Value, timeSpan.ToString(format)); }
+                            catch { output = output.Replace(match.Value, timeSpan.ToString()); }
+                        }
+                        else
+                        {
+                            var dateTime = (DateTime)clip.clipDict[key];
+                            output = output.Replace(match.Value, dateTime.ToString(format));
+                        }
+                    }
+                }
+                else if (clip.clipDict.ContainsKey(key))
+                {
+                    output = output.Replace(match.Value, clip.clipDict[key].ToString());
                 }
             }
-            Console.WriteLine(output);
             return output + ".mp4";
         }
-        private static void GetClipDict(Clip clip, string timeSpanFormat, string dateTimeFormat)
+        private static void GetClipDict(Clip clip)
         {
-            clip.clipDict = new Dictionary<string, string>()
+            clip.clipDict = new Dictionary<string, object>()
             {
                 {"{broadcaster_name}", clip.broadcaster_name },
-                {"{created_at}", clip.created_at.ToString(dateTimeFormat) },
+                {"{created_at}", clip.created_at },
                 {"{creator_name}", clip.creator_name },
                 {"{duration}", clip.duration.ToString() + "s" },
                 {"{title}", clip.title },
                 {"{url}", clip.url },
-                {"{vod_offset}", TimeSpan.FromSeconds(clip.vod_offset).ToString(timeSpanFormat) },
-                {"{today}", DateTime.Today.ToString(dateTimeFormat) },
-                {"{vod_date}", clip.vodDate.ToString(dateTimeFormat) }
+                {"{vod_offset}", TimeSpan.FromSeconds(clip.vod_offset) },
+                {"{today}", DateTime.Today },
+                {"{vod_date}", clip.vodDate }
             };
         }
     }

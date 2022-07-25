@@ -45,6 +45,6 @@ namespace Twitch_Clip_Grabber
         public Image thumbnail { get; set; }
         public double vod_offset { get; set; }
         public DateTime vodDate { get; set; }
-        public Dictionary<string, string> clipDict { get; set; }
+        public Dictionary<string, object> clipDict { get; set; }
     }
 }
