@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace Twitch_Clip_Grabber
 {
@@ -12,13 +13,14 @@ namespace Twitch_Clip_Grabber
     {
         public static string Token { get; set; }
         public static string ClientId { get; set; }
+        private static System.Timers.Timer timer = new();
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            Token = "agxsjiuosmnivrn8nl18ljp1gfapzi";
+            //Token = "agxsjiuosmnivrn8nl18ljp1gfapzi";
             ClientId = "gbt9qto8lnwyj7h1n70ixb7hivdba3";
             _ = new Http();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
@@ -56,6 +58,18 @@ namespace Twitch_Clip_Grabber
                     await response.Content.CopyToAsync(fs);
                 }
             }
+        }
+
+        public static void SetTimer(int length)
+        {
+            timer = new System.Timers.Timer(length);
+            timer.AutoReset = false;
+            timer.Elapsed += OnTimedEvent;
+            timer.Start();
+        }
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            Http.ValidateToken();
         }
     }
 }

@@ -43,17 +43,20 @@ namespace Twitch_Clip_Grabber
             this.listView1 = new System.Windows.Forms.ListView();
             this.title = new System.Windows.Forms.ColumnHeader();
             this.date = new System.Windows.Forms.ColumnHeader();
-            this.viewDropDown = new System.Windows.Forms.ComboBox();
             this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.clipButtons = new System.Windows.Forms.TableLayoutPanel();
             this.deselectAllButton = new System.Windows.Forms.Button();
             this.selectAllButton = new System.Windows.Forms.Button();
             this.downloadButton = new System.Windows.Forms.Button();
             this.getClipsButton = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.settingsButton = new System.Windows.Forms.Button();
+            this.authorizeButton = new System.Windows.Forms.Button();
             this.downloadTarget = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.mainLayout.SuspendLayout();
             this.clipButtons.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -186,24 +189,6 @@ namespace Twitch_Clip_Grabber
             this.date.Text = "Date";
             this.date.Width = 100;
             // 
-            // viewDropDown
-            // 
-            this.viewDropDown.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.viewDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.viewDropDown.DropDownWidth = 100;
-            this.viewDropDown.FormattingEnabled = true;
-            this.viewDropDown.Items.AddRange(new object[] {
-            "Large Icon",
-            "Small Icon",
-            "Details",
-            "List",
-            "Tile"});
-            this.viewDropDown.Location = new System.Drawing.Point(1008, 5);
-            this.viewDropDown.Name = "viewDropDown";
-            this.viewDropDown.Size = new System.Drawing.Size(18, 23);
-            this.viewDropDown.TabIndex = 9;
-            this.viewDropDown.SelectedIndexChanged += new System.EventHandler(this.viewDropDown_SelectedIndexChanged);
-            // 
             // mainLayout
             // 
             this.mainLayout.ColumnCount = 4;
@@ -216,9 +201,9 @@ namespace Twitch_Clip_Grabber
             this.mainLayout.Controls.Add(this.listView2, 3, 1);
             this.mainLayout.Controls.Add(this.username, 1, 0);
             this.mainLayout.Controls.Add(this.submit, 2, 0);
-            this.mainLayout.Controls.Add(this.viewDropDown, 3, 0);
             this.mainLayout.Controls.Add(this.listView1, 0, 1);
             this.mainLayout.Controls.Add(this.getClipsButton, 2, 2);
+            this.mainLayout.Controls.Add(this.flowLayoutPanel1, 3, 0);
             this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainLayout.Location = new System.Drawing.Point(0, 0);
             this.mainLayout.Name = "mainLayout";
@@ -290,6 +275,40 @@ namespace Twitch_Clip_Grabber
             this.getClipsButton.UseVisualStyleBackColor = true;
             this.getClipsButton.Click += new System.EventHandler(this.getClipsButton_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.settingsButton);
+            this.flowLayoutPanel1.Controls.Add(this.authorizeButton);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(513, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(516, 34);
+            this.flowLayoutPanel1.TabIndex = 15;
+            // 
+            // settingsButton
+            // 
+            this.settingsButton.Location = new System.Drawing.Point(438, 3);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(75, 23);
+            this.settingsButton.TabIndex = 1;
+            this.settingsButton.Text = "Settings";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
+            // authorizeButton
+            // 
+            this.authorizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.authorizeButton.Location = new System.Drawing.Point(357, 3);
+            this.authorizeButton.Name = "authorizeButton";
+            this.authorizeButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.authorizeButton.Size = new System.Drawing.Size(75, 23);
+            this.authorizeButton.TabIndex = 0;
+            this.authorizeButton.Text = "Authorize";
+            this.authorizeButton.UseVisualStyleBackColor = true;
+            this.authorizeButton.Click += new System.EventHandler(this.authorizeButton_Click);
+            // 
             // Form1
             // 
             this.AcceptButton = this.submit;
@@ -298,11 +317,12 @@ namespace Twitch_Clip_Grabber
             this.ClientSize = new System.Drawing.Size(1029, 570);
             this.Controls.Add(this.mainLayout);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Twitch Clip Grabber";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.mainLayout.ResumeLayout(false);
             this.mainLayout.PerformLayout();
             this.clipButtons.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -336,7 +356,6 @@ namespace Twitch_Clip_Grabber
         private System.Windows.Forms.ColumnHeader title;
         private System.Windows.Forms.ColumnHeader date;
         private System.Windows.Forms.TableLayoutPanel mainLayout;
-        private System.Windows.Forms.ComboBox viewDropDown;
         private System.Windows.Forms.Button getClipsButton;
         private System.Windows.Forms.ColumnHeader clipDate;
         private System.Windows.Forms.TableLayoutPanel clipButtons;
@@ -345,6 +364,9 @@ namespace Twitch_Clip_Grabber
         private System.Windows.Forms.FolderBrowserDialog downloadTarget;
         private System.Windows.Forms.Button deselectAllButton;
         private System.Windows.Forms.ColumnHeader offset;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button settingsButton;
+        private System.Windows.Forms.Button authorizeButton;
     }
 }
 

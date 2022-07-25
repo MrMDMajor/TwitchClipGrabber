@@ -18,24 +18,29 @@ namespace Twitch_Clip_Grabber
         VODManager vodManager = new();
         ClipManager clipManager = new();
         List<int> selectedIndices = new List<int>();
+        Form2 form2;
 
         public static ProgressBar pb = new();
         public Form1()
         {
             InitializeComponent();
-            if (Program.Token == "" || Program.Token == null)
+            Http.ValidateToken();
+            if (Properties.Settings.Default.Token == "" || Properties.Settings.Default.Token == null)
             {
-                Form2 form2 = new Form2();
-                form2.Show(this);
+                form2 = new();
+                form2.Show();
             }
         }
 
         private async void submit_Click(object sender, EventArgs e)
         {
             id = await GetUserID(username.Text);
-            vodCol = new VODCollection();
-            vodCol = await vodManager.UpdateVODCollection(id);
-            GetListViewVOD(vodCol, listView1);
+            if (id != null)
+            {
+                vodCol = new VODCollection();
+                vodCol = await vodManager.UpdateVODCollection(id);
+                GetListViewVOD(vodCol, listView1);
+            }
         }
 
         //Takes user input username, and gets User ID, necessary for subsequent API calls
@@ -111,30 +116,31 @@ namespace Twitch_Clip_Grabber
             view.Items.AddRange(items.ToArray());
         }
 
-        //Change the view type of the VOD list, may remove later
-        private void viewDropDown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (viewDropDown.SelectedItem)
-            {
-                case "Details":
-                    listView1.View = View.Details;
-                    break;
-                case "Large Icon":
-                    listView1.View = View.LargeIcon;
-                    break;
-                case "Small Icon":
-                    listView1.View = View.SmallIcon;
-                    break;
-                case "List":
-                    listView1.View = View.List;
-                    break;
-                case "Tile":
-                    listView1.View = View.Tile;
-                    break;
-            }
-        }
+        //Change the view type of the VOD list
+        //private void viewDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    switch (viewDropDown.SelectedItem)
+        //    {
+        //        case "Details":
+        //            listView1.View = View.Details;
+        //            break;
+        //        case "Large Icon":
+        //            listView1.View = View.LargeIcon;
+        //            break;
+        //        case "Small Icon":
+        //            listView1.View = View.SmallIcon;
+        //            break;
+        //        case "List":
+        //            listView1.View = View.List;
+        //            break;
+        //        case "Tile":
+        //            listView1.View = View.Tile;
+        //            break;
+        //    }
+        //}
 
         //A lot of this stuff probably shouldn't be on the button, might fix later
+
         private async void getClipsButton_Click(object sender, EventArgs e)
         {
             pb.Text = "Getting clips...";
@@ -170,7 +176,7 @@ namespace Twitch_Clip_Grabber
         //This is only for testing at the moment
         private void listView2_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            UserSettings.FormatFilename(clipCol.data[e.Item.Index]);
+            //UserSettings.FormatFilename(clipCol.data[e.Item.Index],);
         }
 
         private async void downloadButton_Click(object sender, EventArgs e)
@@ -181,7 +187,7 @@ namespace Twitch_Clip_Grabber
             foreach (ListViewItem item in listView2.CheckedItems)
             { 
                 string newUrl = clipCol.data[item.Index].thumbnail_url.Replace("-preview-480x272.jpg", ".mp4");
-                await Program.DownloadFile(newUrl, Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index])));
+                await Program.DownloadFile(newUrl, Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index], Properties.Settings.Default.FilenameFormat)));
                 pb.UpdateProgressBar(++progress * 100 / listView2.CheckedItems.Count);
             }
             pb.Hide();
@@ -201,6 +207,18 @@ namespace Twitch_Clip_Grabber
             {
                 item.Checked = false;
             }
+        }
+
+        private void authorizeButton_Click(object sender, EventArgs e)
+        {
+            form2 = new();
+            form2.Show();
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            SettingsForm sf = new();
+            sf.Show();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Twitch_Clip_Grabber
 {
@@ -42,14 +43,34 @@ namespace Twitch_Clip_Grabber
 
         public static async Task<HttpResponseMessage> GetResponse(string url, bool attachHeaders)
         {
+            if (Properties.Settings.Default.Token == "" || Properties.Settings.Default.Token == null)
+            {
+                MessageBox.Show("No valid token, please authenticate");
+            }
+
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             if (attachHeaders)
             {
-                request.Headers.Add("Authorization", "Bearer " + Program.Token);
+                request.Headers.Add("Authorization", "Bearer " + Properties.Settings.Default.Token);
                 request.Headers.Add("Client-Id", Program.ClientId);
             }
             var response = await client.SendAsync(request);
             return response;
+        }
+
+        public static bool ValidateToken()
+        {
+            string url = "https://id.twitch.tv/oauth2/validate";
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            request.Headers.Add("Authorization", "OAuth " + Properties.Settings.Default.Token);
+            var response = client.Send(request);
+            if (!response.IsSuccessStatusCode)
+            {
+                Properties.Settings.Default.Token = "";
+                Properties.Settings.Default.Save();
+            }
+            else Program.SetTimer(3600000);
+            return response.IsSuccessStatusCode;
         }
     }
 }
