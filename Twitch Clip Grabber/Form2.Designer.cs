@@ -35,6 +35,7 @@ namespace Twitch_Clip_Grabber
             // 
             // browser
             // 
+            this.browser.AllowExternalDrop = true;
             this.browser.CreationProperties = null;
             this.browser.DefaultBackgroundColor = System.Drawing.Color.White;
             this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -53,7 +54,9 @@ namespace Twitch_Clip_Grabber
             this.ClientSize = new System.Drawing.Size(347, 450);
             this.Controls.Add(this.browser);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.ShowInTaskbar = false;
+            this.Text = "Authenticate";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.browser)).EndInit();
             this.ResumeLayout(false);
 
