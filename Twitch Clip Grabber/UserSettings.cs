@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Twitch_Clip_Grabber
 {
     static class UserSettings
     {
+
         public static string FormatFilename(Clip clip, string filenameFormat)
         {
             GetClipDict(clip);
@@ -44,7 +43,9 @@ namespace Twitch_Clip_Grabber
                     output = output.Replace(match.Value, clip.clipDict[key].ToString());
                 }
             }
-            return output + ".mp4";
+            var invalids = System.IO.Path.GetInvalidFileNameChars();
+            var newOutput = String.Join("_", output.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
+            return newOutput + ".mp4";
         }
         private static void GetClipDict(Clip clip)
         {
