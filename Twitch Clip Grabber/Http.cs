@@ -4,8 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.IO;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Twitch_Clip_Grabber

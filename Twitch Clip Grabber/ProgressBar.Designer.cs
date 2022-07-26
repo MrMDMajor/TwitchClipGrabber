@@ -83,7 +83,7 @@ namespace Twitch_Clip_Grabber
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProgressBar";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.TopMost = true;
             this.tableLayoutPanel1.ResumeLayout(false);

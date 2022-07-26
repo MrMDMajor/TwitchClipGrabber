@@ -289,6 +289,7 @@ namespace Twitch_Clip_Grabber
             // 
             // settingsButton
             // 
+            this.settingsButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.settingsButton.Location = new System.Drawing.Point(438, 3);
             this.settingsButton.Name = "settingsButton";
             this.settingsButton.Size = new System.Drawing.Size(75, 23);
@@ -300,12 +301,12 @@ namespace Twitch_Clip_Grabber
             // authorizeButton
             // 
             this.authorizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.authorizeButton.Location = new System.Drawing.Point(357, 3);
+            this.authorizeButton.Location = new System.Drawing.Point(349, 3);
             this.authorizeButton.Name = "authorizeButton";
             this.authorizeButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.authorizeButton.Size = new System.Drawing.Size(75, 23);
+            this.authorizeButton.Size = new System.Drawing.Size(83, 23);
             this.authorizeButton.TabIndex = 0;
-            this.authorizeButton.Text = "Authorize";
+            this.authorizeButton.Text = "Authenticate";
             this.authorizeButton.UseVisualStyleBackColor = true;
             this.authorizeButton.Click += new System.EventHandler(this.authorizeButton_Click);
             // 

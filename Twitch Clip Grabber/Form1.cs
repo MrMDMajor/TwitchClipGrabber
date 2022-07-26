@@ -17,7 +17,6 @@ namespace Twitch_Clip_Grabber
 
         VODManager vodManager = new();
         ClipManager clipManager = new();
-        List<int> selectedIndices = new List<int>();
         Form2 form2;
 
         public static ProgressBar pb = new();

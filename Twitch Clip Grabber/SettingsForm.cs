@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Twitch_Clip_Grabber
@@ -27,6 +20,13 @@ namespace Twitch_Clip_Grabber
         private void formatText_TextChanged(object sender, EventArgs e)
         {
             exampleText.Text = UserSettings.FormatFilename(ExampleClip.clip, formatText.Text);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.FilenameFormat = formatText.Text;
+            Properties.Settings.Default.Save();
+            this.Close();
         }
     }
 }
