@@ -5,11 +5,14 @@ using System.Text.Json;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Diagnostics;
+using LibVLCSharp.Shared;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     public partial class Form1 : Form
     {
+        private delegate void Delegate(object sender, MediaPlayerPositionChangedEventArgs e);
         string id;
 
         VODCollection vodCol;
@@ -18,12 +21,61 @@ namespace Twitch_Clip_Grabber
         VODManager vodManager = new();
         ClipManager clipManager = new();
         Form2 form2;
+        LibVLC libVLC;
+        MediaPlayer mp;
+        Timer trackBarTimer = new();
 
         public static ProgressBar pb = new();
         public Form1()
         {
             InitializeComponent();
+            Core.Initialize();
             Http.ValidateToken();
+
+            this.Shown += CheckToken;
+
+            libVLC = new LibVLC();
+            mp = new MediaPlayer(libVLC);
+            videoView1.MediaPlayer = mp;
+            trackBarTimer.Interval = 1000;
+            trackBarTimer.Tick += TrackBarSetValue;
+
+            ListViewExtender extender = new ListViewExtender(listView2);
+            ListViewButtonColumn buttonAction = new ListViewButtonColumn(listView2.Columns.Count - 1);
+            buttonAction.Click += OnButtonActionClick;
+
+            extender.AddColumn(buttonAction);
+
+            mp.Media = new Media(libVLC, new Uri(@"V:\Movies\Knives Out (2019).avi"));
+        }
+
+        private void TrackBarSetValue(object sender, EventArgs e)
+        {
+            trackBar1.Value = (int)(mp.Position * trackBar1.Maximum);
+            Console.WriteLine(trackBar1.Value);
+            if (!mp.IsPlaying)
+            {
+                trackBarTimer.Stop();
+                trackBar1.Value = trackBar1.Maximum;
+            }
+        }
+
+        private void trackBar1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            mp.Position = Math.Clamp((float)e.X / trackBar1.Width, 0, 1);
+            Console.WriteLine(e.X);
+        }
+
+        private void OnButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
+        {
+            trackBarTimer.Stop();
+            Clip currentClip = clipCol.data[e.Item.Index];
+            mp.Media = new Media(libVLC, new Uri(currentClip.download_url));
+            videoView1.BackgroundImage = new Bitmap(currentClip.thumbnail, videoView1.Size);
+        }
+
+        private void CheckToken(object sender, EventArgs e)
+        {
             if (Properties.Settings.Default.Token == "" || Properties.Settings.Default.Token == null)
             {
                 form2 = new();
@@ -52,8 +104,12 @@ namespace Twitch_Clip_Grabber
                 {
                     string responseStr = await response.Content.ReadAsStringAsync();
                     JsonDocument document = JsonDocument.Parse(responseStr);
-                    string id = document.RootElement.GetProperty("data")[0].GetProperty("id").ToString();
-                    return id;
+                    if (document.RootElement.GetProperty("data").GetArrayLength() == 0)
+                    {
+                        MessageBox.Show("Invalid username.", "Invalid username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return null;
+                    }
+                    else return document.RootElement.GetProperty("data")[0].GetProperty("id").ToString();
                 }
                 else return null;
             }
@@ -106,7 +162,8 @@ namespace Twitch_Clip_Grabber
                 string title = collection.data[i].title;
                 string createdAt = collection.data[i].created_at.ToString("yyyy/MM/dd");
                 string offset = TimeSpan.FromSeconds(collection.data[i].vod_offset).ToString(@"hh\hmm\mss\s");
-                items.Add(new ListViewItem(new string[] { title, creatorName, createdAt, offset }, i));
+                string length = collection.data[i].duration.ToString();
+                items.Add(new ListViewItem(new string[] { title, creatorName, createdAt, offset, length, "Preview" }, i));
             }
 
             view.Items.Clear();
@@ -175,20 +232,21 @@ namespace Twitch_Clip_Grabber
         //This is only for testing at the moment
         private void listView2_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            //UserSettings.FormatFilename(clipCol.data[e.Item.Index],);
         }
 
         private async void downloadButton_Click(object sender, EventArgs e)
         {
+            var queue = new Queue<Clip>();
+            var pathList = new List<string>();
             downloadTarget.ShowDialog();
             pb.Show(this);
-            int progress = 0;
             foreach (ListViewItem item in listView2.CheckedItems)
-            { 
-                string newUrl = clipCol.data[item.Index].thumbnail_url.Replace("-preview-480x272.jpg", ".mp4");
-                await Program.DownloadFile(newUrl, Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index], Properties.Settings.Default.FilenameFormat)));
-                pb.UpdateProgressBar(++progress * 100 / listView2.CheckedItems.Count);
+            {
+                queue.Enqueue(clipCol.data[item.Index]);
+                var path = Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index], Properties.Settings.Default.FilenameFormat));
+                pathList.Add(path);
             }
+            await Program.DownloadFileQueue(queue, pathList, pb);
             pb.Hide();
             pb.UpdateProgressBar();
         }
@@ -218,6 +276,30 @@ namespace Twitch_Clip_Grabber
         {
             SettingsForm sf = new();
             sf.Show();
+        }
+
+        private void playPause_Click(object sender, EventArgs e)
+        {
+            if (mp.Media != null)
+            {                
+                if (mp.IsPlaying)
+                {
+                    playPause.BackgroundImage = Properties.Resources.play_button;
+                    mp.Pause();
+                    trackBarTimer.Stop();
+                }
+                else
+                {
+                    playPause.BackgroundImage = null;
+                    mp.Play();
+                    trackBarTimer.Start();
+                }
+            }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            mp.Position = (float)trackBar1.Value / trackBar1.Maximum;
         }
     }
 }

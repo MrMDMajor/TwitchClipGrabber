@@ -57,6 +57,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="playPause.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAyFJREFUWEfNl1tIVEEYxz8vu7rq5q6ul0zzkqJgVyKRCoygGwaBYYRCUVHQDYoI
+        IexilpmVlZYKUVAEiUQQFD1FT0FET4EvPfkS9NJL9NJDTP//zpzOhmvu6jln/cO3szs7830/znzzzRxR
+        Si0oi9uZStMfhb4OqQ0MiEg1LGWygRpznsqpMiWrch+hf53+23vZQGvzJmS8Xsm9ZSoKtj74SvxprWac
+        Z7KBVuY+kds1SnqWKrmDdhRg5yqUbAl9lFDmAYxN11Pc1b9ABLkEoAvGblYrGatV0luppK1wSsr8XZhT
+        pKe6o/hAF2OMYNeqNNgA2n3FP6QuMIi59dqFs5odKBbsCp7UfSzlXYw7ulgh757Bx0btyhklDmQZwZhn
+        QwAj3JklSlry30p2epvxOS8lD2QZwdgOYg6X8zy+txZ8lojvOPwGtPvkNXcgywhGGzAboA/LuifyVSqz
+        euC/TIdJXPMHijWC9SHxRwF2C4AHS36h4I4hzmodbnY5C2QZwVgqmGPMtZMotE3BF5KRttXEnVHuAFlG
+        MPrjrhzBU+sqV7I59F7yMjpN/GlyF8gygrHlMjLPGGNX4Rcp8Z0GQ1ijaHkDFGuE6zeFlm1n0XepyeYt
+        oyY1QJYRjIV2BDn2sE6fm6X+3tQAxeYWE78bMO2RSQlndngLRJDLeCq84gwjFndfc/Aldt82LhflDRBB
+        YuvTIdSn5TkPEH+NxrDlHhAhaNdNAhNob9E3qcrqRdwKHX66nAciBNtBs8X5e2fBJM64E4iXp8POLOeA
+        GDh6C4AP7pyzKIIt+e8kJ73dxEpI8wfiKW8dE9w1x6L3pHFJk00mRlKaOxCfiHWT5FV3f/FPaQgMwWej
+        dj03JQdECNoNkx8sbLsjU1Lu74YvR+7aiQERgv38n1uXVXV7+BMK2WH4yNSunNH/gQjCQjaM/LDe1zYs
+        eiM+997X4gMR5Ko5Z/iudqT0N95oH2N8k57mnmygFQBicKuQRU/iYp7E/RgXPYm9kA3UHHwtzxv0Etl3
+        lZAe5p1soKrsHtkR/iDBmW9zXugv0EKyuJ2ptLidqTMlfwDXAB9QkW3sgwAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="downloadTarget.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>158, 17</value>
   </metadata>
