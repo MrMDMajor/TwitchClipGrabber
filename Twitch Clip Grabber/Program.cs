@@ -4,12 +4,13 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     static class Program
     {
-        public static string Token { get; set; }
         public static string ClientId { get; set; }
         private static System.Timers.Timer timer = new();
         /// <summary>
@@ -18,7 +19,6 @@ namespace Twitch_Clip_Grabber
         [STAThread]
         static void Main()
         {
-            //Token = "agxsjiuosmnivrn8nl18ljp1gfapzi";
             ClientId = "gbt9qto8lnwyj7h1n70ixb7hivdba3";
             _ = new Http();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
@@ -36,25 +36,35 @@ namespace Twitch_Clip_Grabber
                 var response = await Http.GetResponse(url, false);
                 if (!response.IsSuccessStatusCode)
                 {
-                    //If thumbnail URL is broken/does not exist, things won't break
-                    return Image.FromFile(@"resources\no_img.jpg");
+                    return Properties.Resources.no_img;
                 }
                 using (Stream responseStream = await response.Content.ReadAsStreamAsync())
                 { 
                     return Image.FromStream(responseStream);
                 };
             }
-            else return Image.FromFile(@"resources\no_img.jpg");
+            else return Properties.Resources.no_img;
         }
-        public static async Task DownloadFile(string url, string path)
+        public static async Task DownloadFileQueue(Queue<Clip> queue, List<string> paths, ProgressBar pb)
         {
-            var response = await Http.GetResponse(url, false);
-            if (response.IsSuccessStatusCode)
+            var newPaths = new List<string>();
+            newPaths = paths.Select(fn => AppendDuplicates(fn, newPaths, " (")).ToList();
+
+            int startLength = queue.Count;
+            int progress = 0;
+
+            while (queue.Count != 0)
             {
-                using (FileStream fs = new FileStream(Path.Combine(url, path), FileMode.CreateNew))
+                var currentClip = queue.Dequeue();
+                var response = await Http.GetResponse(currentClip.download_url, false);
+                if (response.IsSuccessStatusCode)
                 {
-                    await response.Content.CopyToAsync(fs);
+                    using (FileStream fs = File.Create(newPaths[progress] + ".mp4"))
+                    {
+                        await response.Content.CopyToAsync(fs);
+                    }
                 }
+                pb.UpdateProgressBar(++progress * 100 / startLength);
             }
         }
 
@@ -68,6 +78,25 @@ namespace Twitch_Clip_Grabber
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             Http.ValidateToken();
+        }
+
+        private static string AppendDuplicates(string path, List<string> pathList, string separator)
+        {
+            string dir = Path.GetDirectoryName(path);
+            string ext = Path.GetExtension(path);
+            string fileName = Path.GetFileName(path);
+            string[] tokens = fileName.Split(new[] { separator }, StringSplitOptions.None);
+
+            int num = 0;
+            int.TryParse(tokens.Last(), out num);
+
+            var dupes = pathList.Where(n => n.Equals(path, StringComparison.OrdinalIgnoreCase));
+            while (dupes.Any())
+            {
+                path = Path.Combine(dir, tokens.First() + separator + (++num + 1) + ")" + ext);
+            }
+            pathList.Add(path);
+            return path;
         }
     }
 }
