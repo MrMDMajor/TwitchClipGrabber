@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     public partial class Form2 : Form
     {

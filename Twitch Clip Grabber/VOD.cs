@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     public class VODCollection
     {

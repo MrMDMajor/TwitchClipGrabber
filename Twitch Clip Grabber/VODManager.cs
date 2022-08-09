@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     class VODManager
     {

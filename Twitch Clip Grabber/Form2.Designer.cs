@@ -1,5 +1,5 @@
 ﻿
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     partial class Form2
     {

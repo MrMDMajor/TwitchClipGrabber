@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     static class UserSettings
     {
@@ -45,7 +45,7 @@ namespace Twitch_Clip_Grabber
             }
             var invalids = System.IO.Path.GetInvalidFileNameChars();
             var newOutput = String.Join("_", output.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
-            return newOutput + ".mp4";
+            return newOutput;
         }
         private static void GetClipDict(Clip clip)
         {

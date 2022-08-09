@@ -5,8 +5,9 @@ using System.Net.Http;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.NetworkInformation;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     public class Http
     {
@@ -15,6 +16,16 @@ namespace Twitch_Clip_Grabber
 
         public Http()
         {
+            //Ping ping = new Ping();
+            //PingReply reply = ping.Send(new IPAddress(134744072));
+            //if (reply.Status != IPStatus.Success)
+            //{
+            //    if (MessageBox.Show("No internet connection. Please connect to the internet and relaunch program.", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+            //    {
+            //        Application.Exit();
+            //    }
+            //}
+
             Listener = new HttpListener();
             Listener.Prefixes.Add("http://localhost:3000/");
             Listener.Start();

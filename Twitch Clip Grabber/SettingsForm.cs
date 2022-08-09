@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     public partial class SettingsForm : Form
     {

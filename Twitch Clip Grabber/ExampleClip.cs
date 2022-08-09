@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     static class ExampleClip
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
 
     public class ClipCollection : IComparer<Clip>
@@ -43,5 +43,6 @@ namespace Twitch_Clip_Grabber
         public double vod_offset { get; set; }
         public DateTime vodDate { get; set; }
         public Dictionary<string, object> clipDict { get; set; }
+        public string download_url { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Twitch_Clip_Grabber
+namespace TwitchClipGrabber
 {
     public partial class ProgressBar : Form
     {
