@@ -12,7 +12,6 @@ namespace TwitchClipGrabber
 {
     public partial class Form1 : Form
     {
-        private delegate void Delegate(object sender, MediaPlayerPositionChangedEventArgs e);
         string id;
 
         VODCollection vodCol;
@@ -21,57 +20,29 @@ namespace TwitchClipGrabber
         VODManager vodManager = new();
         ClipManager clipManager = new();
         Form2 form2;
-        LibVLC libVLC;
-        MediaPlayer mp;
-        Timer trackBarTimer = new();
 
         public static ProgressBar pb = new();
+
+        bool resizing = false;
+        TableLayoutColumnStyleCollection columnStyles;
+        int colIndex = -1;
+
         public Form1()
         {
             InitializeComponent();
-            Core.Initialize();
             Http.ValidateToken();
-
             this.Shown += CheckToken;
-
-            libVLC = new LibVLC();
-            mp = new MediaPlayer(libVLC);
-            videoView1.MediaPlayer = mp;
-            trackBarTimer.Interval = 1000;
-            trackBarTimer.Tick += TrackBarSetValue;
 
             ListViewExtender extender = new ListViewExtender(listView2);
             ListViewButtonColumn buttonAction = new ListViewButtonColumn(listView2.Columns.Count - 1);
-            buttonAction.Click += OnButtonActionClick;
+            buttonAction.Click += preview_Click;
 
             extender.AddColumn(buttonAction);
-
-            mp.Media = new Media(libVLC, new Uri(@"V:\Movies\Knives Out (2019).avi"));
         }
 
-        private void TrackBarSetValue(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            trackBar1.Value = (int)(mp.Position * trackBar1.Maximum);
-            Console.WriteLine(trackBar1.Value);
-            if (!mp.IsPlaying)
-            {
-                trackBarTimer.Stop();
-                trackBar1.Value = trackBar1.Maximum;
-            }
-        }
-
-        private void trackBar1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            mp.Position = Math.Clamp((float)e.X / trackBar1.Width, 0, 1);
-            Console.WriteLine(e.X);
-        }
-
-        private void OnButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
-        {
-            trackBarTimer.Stop();
-            Clip currentClip = clipCol.data[e.Item.Index];
-            mp.Media = new Media(libVLC, new Uri(currentClip.download_url));
-            videoView1.BackgroundImage = new Bitmap(currentClip.thumbnail, videoView1.Size);
+            columnStyles = mainLayout.ColumnStyles;
         }
 
         private void CheckToken(object sender, EventArgs e)
@@ -80,17 +51,6 @@ namespace TwitchClipGrabber
             {
                 form2 = new();
                 form2.Show();
-            }
-        }
-
-        private async void submit_Click(object sender, EventArgs e)
-        {
-            id = await GetUserID(username.Text);
-            if (id != null)
-            {
-                vodCol = new VODCollection();
-                vodCol = await vodManager.UpdateVODCollection(id);
-                GetListViewVOD(vodCol, listView1);
             }
         }
 
@@ -153,18 +113,22 @@ namespace TwitchClipGrabber
             smallImgList.ColorDepth = ColorDepth.Depth32Bit;
             List<ListViewItem> items = new();
 
-            for (int i = 0; i < collection.data.Count; i++)
+            if (collection.data.Count != 0)
             {
-                Image img = collection.data[i].thumbnail;
-                largeImgList.Images.Add(img);
-                smallImgList.Images.Add(img);
-                string creatorName = collection.data[i].creator_name;
-                string title = collection.data[i].title;
-                string createdAt = collection.data[i].created_at.ToString("yyyy/MM/dd");
-                string offset = TimeSpan.FromSeconds(collection.data[i].vod_offset).ToString(@"hh\hmm\mss\s");
-                string length = collection.data[i].duration.ToString();
-                items.Add(new ListViewItem(new string[] { title, creatorName, createdAt, offset, length, "Preview" }, i));
+                for (int i = 0; i < collection.data.Count; i++)
+                {
+                    Image img = collection.data[i].thumbnail;
+                    largeImgList.Images.Add(img);
+                    smallImgList.Images.Add(img);
+                    string creatorName = collection.data[i].creator_name;
+                    string title = collection.data[i].title;
+                    string createdAt = collection.data[i].created_at.ToString("yyyy/MM/dd");
+                    string offset = TimeSpan.FromSeconds(collection.data[i].vod_offset).ToString(@"hh\hmm\mss\s");
+                    string length = collection.data[i].duration.ToString();
+                    items.Add(new ListViewItem(new string[] { title, creatorName, createdAt, offset, length, "Preview" }, i));
+                }
             }
+            else MessageBox.Show("Selected VOD did not contain any clips.", "No Clips", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             view.Items.Clear();
             view.SmallImageList = smallImgList;
@@ -195,19 +159,27 @@ namespace TwitchClipGrabber
         //    }
         //}
 
-        //A lot of this stuff probably shouldn't be on the button, might fix later
 
+
+        private async void submit_Click(object sender, EventArgs e)
+        {
+            id = await GetUserID(username.Text);
+            if (id != null)
+            {
+                vodCol = new VODCollection();
+                vodCol = await vodManager.UpdateVODCollection(id);
+                GetListViewVOD(vodCol, listView1);
+            }
+        }
         private async void getClipsButton_Click(object sender, EventArgs e)
         {
             pb.Text = "Getting clips...";
             pb.Show(this);
             clipCol = new ClipCollection();
-            DateTime start = new DateTime();
             VOD vod = vodCol.data[listView1.SelectedIndices[0]];
-            start = vod.created_at;
             int progress = 0;
 
-            ClipCollection newClipCol = await clipManager.UpdateClipCollection(id, start);
+            ClipCollection newClipCol = await clipManager.UpdateClipCollection(id, vod.created_at);
             foreach (Clip clip in newClipCol.data)
             {
                 //Takes list of all clips created after specified date, removes the ones that don't match selected VOD
@@ -228,12 +200,6 @@ namespace TwitchClipGrabber
             pb.UpdateProgressBar();
             GetListViewClip(clipCol, listView2);
         }
-
-        //This is only for testing at the moment
-        private void listView2_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-        }
-
         private async void downloadButton_Click(object sender, EventArgs e)
         {
             var queue = new Queue<Clip>();
@@ -250,7 +216,11 @@ namespace TwitchClipGrabber
             pb.Hide();
             pb.UpdateProgressBar();
         }
-
+        private void preview_Click(object sender, ListViewColumnMouseEventArgs e)
+        {
+            Clip currentClip = clipCol.data[e.Item.Index];
+            videoEmbed.Source = new Uri($@"http://localhost:3000/?id={currentClip.id}");
+        }
         private void selectAllButton_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in listView2.Items)
@@ -265,41 +235,77 @@ namespace TwitchClipGrabber
                 item.Checked = false;
             }
         }
-
         private void authorizeButton_Click(object sender, EventArgs e)
         {
             form2 = new();
             form2.Show();
         }
-
         private void settingsButton_Click(object sender, EventArgs e)
         {
             SettingsForm sf = new();
             sf.Show();
         }
-
-        private void playPause_Click(object sender, EventArgs e)
+        private void Form1_Resize(object sender, EventArgs e)
         {
-            if (mp.Media != null)
-            {                
-                if (mp.IsPlaying)
+            videoEmbed.Size = new Size(videoEmbed.Size.Height * 16 / 9, videoEmbed.Size.Height);
+        }
+
+
+        private void mainLayout_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                columnStyles = mainLayout.ColumnStyles;
+                resizing = true;
+            }
+        }
+
+        private void mainLayout_MouseMove(object sender, MouseEventArgs e)
+        {
+            mainLayout.Capture = true;
+            if (!resizing)
+            {
+                float width = 0;
+
+                for (int i = 0; i < columnStyles.Count; i++)
                 {
-                    playPause.BackgroundImage = Properties.Resources.play_button;
-                    mp.Pause();
-                    trackBarTimer.Stop();
+                    width += columnStyles[i].Width;
+                    if (e.X > width - 3 && e.X < width + 3)
+                    {
+                        colIndex = i;
+                        mainLayout.Cursor = Cursors.VSplit;
+                        break;
+                    }
+                    else
+                    {
+                        colIndex = -1;
+                        mainLayout.Cursor = Cursors.Default;
+                        mainLayout.Capture = false;
+                    }
                 }
-                else
+            }
+            if (resizing && colIndex > -1)
+            {
+                float width = e.X;
+                if (colIndex > -1)
                 {
-                    playPause.BackgroundImage = null;
-                    mp.Play();
-                    trackBarTimer.Start();
+                    for (int i = 0; i < colIndex; i++)
+                    {
+                        width -= columnStyles[i].Width;
+                    }
+                    columnStyles[colIndex].SizeType = SizeType.Absolute;
+                    columnStyles[colIndex].Width = width;
                 }
             }
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void mainLayout_MouseUp(object sender, MouseEventArgs e)
         {
-            mp.Position = (float)trackBar1.Value / trackBar1.Maximum;
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                resizing = false;
+                mainLayout.Cursor = Cursors.Default;
+            }
         }
     }
 }

@@ -42,7 +42,7 @@ namespace TwitchClipGrabber
             this.browser.Location = new System.Drawing.Point(0, 0);
             this.browser.Name = "browser";
             this.browser.Size = new System.Drawing.Size(347, 450);
-            this.browser.Source = new System.Uri("http://localhost:3000/", System.UriKind.Absolute);
+            this.browser.Source = new System.Uri("http://localhost:3000/login", System.UriKind.Absolute);
             this.browser.TabIndex = 0;
             this.browser.ZoomFactor = 1D;
             this.browser.SourceChanged += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs>(this.browser_SourceChanged);

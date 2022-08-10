@@ -39,9 +39,9 @@ namespace TwitchClipGrabber
                     return Properties.Resources.no_img;
                 }
                 using (Stream responseStream = await response.Content.ReadAsStreamAsync())
-                { 
+                {
                     return Image.FromStream(responseStream);
-                };
+                }
             }
             else return Properties.Resources.no_img;
         }

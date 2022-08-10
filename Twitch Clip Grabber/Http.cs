@@ -16,30 +16,32 @@ namespace TwitchClipGrabber
 
         public Http()
         {
-            //Ping ping = new Ping();
-            //PingReply reply = ping.Send(new IPAddress(134744072));
-            //if (reply.Status != IPStatus.Success)
-            //{
-            //    if (MessageBox.Show("No internet connection. Please connect to the internet and relaunch program.", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
-            //    {
-            //        Application.Exit();
-            //    }
-            //}
+            Ping ping = new Ping();
+
+            try { ping.Send(new IPAddress(134744072)); }
+            catch
+            {
+                if (MessageBox.Show("No internet connection. Please connect to the internet and relaunch program.", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+            }
 
             Listener = new HttpListener();
             Listener.Prefixes.Add("http://localhost:3000/");
+            Listener.Prefixes.Add("http://localhost:3000/login/");
             Listener.Start();
             Listener.BeginGetContext(GetContextCallback, null);
-
             client.BaseAddress = new Uri("https://api.twitch.tv/helix/");
         }
 
         private void GetContextCallback(IAsyncResult ar)
         {
             var context = Listener.EndGetContext(ar);
-
             Listener.BeginGetContext(GetContextCallback, null);
-            var responseString = string.Format(File.ReadAllText(@".\login.html"));
+            var responseString = "";
+            if (context.Request.RawUrl == "/login") responseString = string.Format(File.ReadAllText(@".\login.html"));
+            else responseString = string.Format(File.ReadAllText(@".\embed.html"), context.Request.QueryString["id"]);
             byte[] buffer = Encoding.UTF8.GetBytes(responseString);
 
             var response = context.Response;
