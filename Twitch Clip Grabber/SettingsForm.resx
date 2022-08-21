@@ -63,6 +63,7 @@
 {created_at:&lt;format&gt;} - The date and time the clip was created, Date/Time Format
 {creator_name} - Username of the clip creator
 {duration} - Length of the clip in seconds
+{id} - ID string of the clip
 {title} - The title of the clip
 {url} - The URL of the clip
 {vod_offset:&lt;format&gt;} - The timestamp of the clip in the original VOD, Time Span Format

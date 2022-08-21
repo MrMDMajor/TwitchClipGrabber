@@ -7,27 +7,33 @@ namespace TwitchClipGrabber
 {
     class VODManager
     {
-        public async Task<VODCollection> UpdateVODCollection(string id)
+        public async Task<VODCollection> UpdateVODCollection(string id, Form1 form)
         {
             VODCollection outputCol = new VODCollection();
             int iterations = 0;
-            Form1.pb.Text = "Loading VODs...";
-            Form1.pb.Show(Form.ActiveForm);
+            form.progressStatusStrip.Visible = true;
+            form.busyInt++;
 
             //Goes through all possible pages of VODs and combines them into a single list
             do
             {
-                VODCollection tempCol = await GetVODCollection(id, cursor: outputCol.pagination.cursor);
+                VODCollection tempCol = await GetVODCollection(id, form, cursor: outputCol.pagination.cursor);
                 outputCol.data.AddRange(tempCol.data);
                 outputCol.pagination.cursor = tempCol.pagination.cursor;
                 iterations++;
+
             } while (outputCol.pagination.cursor != "");
-            Form1.pb.Hide();
-            Form1.pb.UpdateProgressBar();
+            form.busyInt--;
+            if (form.busyInt == 0)
+            {
+                form.progressStatusStrip.Visible = false;
+                form.progressBar.Value = 0;
+                form.progressLabel.Text = ""; 
+            }
             return outputCol;
         }
 
-        private async Task<VODCollection> GetVODCollection(string id, string cursor = "")
+        private async Task<VODCollection> GetVODCollection(string id, Form1 form, string cursor = "")
         {
             string url = $"videos?user_id={id}&type=archive&after={cursor}&first=100";
             var response = await Http.GetResponse(url, true);
@@ -37,7 +43,8 @@ namespace TwitchClipGrabber
             foreach (VOD v in vodCol.data)
             {
                 v.thumbnail = await Program.LoadImage(v.thumbnail_url, new Size(256, 144));
-                Form1.pb.UpdateProgressBar(++progress * 100 / vodCol.data.Count);      
+                form.progressBar.Value = ++progress * 100 / vodCol.data.Count;
+                form.progressLabel.Text = string.Format("Getting VODs...  {0}%", form.progressBar.Value);
             }
             await Task.Delay(350);
             return vodCol;

@@ -129,7 +129,7 @@ namespace TwitchClipGrabber
         }
 
         public virtual ListViewExtender Extender { get; protected internal set; }
-        public int ColumnIndex { get; private set; }
+        public int ColumnIndex { get; set; }
 
         public virtual Font Font
         {

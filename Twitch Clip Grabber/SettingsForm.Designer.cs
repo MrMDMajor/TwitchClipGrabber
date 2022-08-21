@@ -42,11 +42,27 @@ namespace TwitchClipGrabber
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.exampleLabel = new System.Windows.Forms.Label();
             this.exampleText = new System.Windows.Forms.TextBox();
+            this.fieldsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.vodFieldsSourceBox = new System.Windows.Forms.ListBox();
+            this.clipFieldsSourceBox = new System.Windows.Forms.ListBox();
+            this.clipFieldsAddButton = new System.Windows.Forms.Button();
+            this.vodFieldsAddButton = new System.Windows.Forms.Button();
+            this.clipFieldsDownButton = new System.Windows.Forms.Button();
+            this.vodFieldsDownButton = new System.Windows.Forms.Button();
+            this.clipFieldsUpButton = new System.Windows.Forms.Button();
+            this.vodClipsLabel = new System.Windows.Forms.Label();
+            this.clipFieldsLabel = new System.Windows.Forms.Label();
+            this.clipFieldsSelected = new System.Windows.Forms.ListBox();
+            this.vodFieldsSelected = new System.Windows.Forms.ListBox();
+            this.vodFieldsUpButton = new System.Windows.Forms.Button();
+            this.vodFieldsRemoveButton = new System.Windows.Forms.Button();
+            this.clipFieldsRemoveButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.helpFlow.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.fieldsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // formatText
@@ -98,6 +114,7 @@ namespace TwitchClipGrabber
             this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel1);
             this.flowLayoutPanel1.Controls.Add(this.helpFlow);
             this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel2);
+            this.flowLayoutPanel1.Controls.Add(this.fieldsPanel);
             this.flowLayoutPanel1.Controls.Add(this.saveButton);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -192,9 +209,250 @@ namespace TwitchClipGrabber
             this.exampleText.Size = new System.Drawing.Size(635, 23);
             this.exampleText.TabIndex = 3;
             // 
+            // fieldsPanel
+            // 
+            this.fieldsPanel.ColumnCount = 8;
+            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.fieldsPanel.Controls.Add(this.vodFieldsSourceBox, 0, 1);
+            this.fieldsPanel.Controls.Add(this.clipFieldsSourceBox, 4, 1);
+            this.fieldsPanel.Controls.Add(this.clipFieldsAddButton, 5, 1);
+            this.fieldsPanel.Controls.Add(this.vodFieldsAddButton, 1, 1);
+            this.fieldsPanel.Controls.Add(this.clipFieldsDownButton, 7, 3);
+            this.fieldsPanel.Controls.Add(this.vodFieldsDownButton, 3, 3);
+            this.fieldsPanel.Controls.Add(this.clipFieldsUpButton, 6, 3);
+            this.fieldsPanel.Controls.Add(this.vodClipsLabel, 0, 0);
+            this.fieldsPanel.Controls.Add(this.clipFieldsLabel, 4, 0);
+            this.fieldsPanel.Controls.Add(this.clipFieldsSelected, 6, 1);
+            this.fieldsPanel.Controls.Add(this.vodFieldsSelected, 2, 1);
+            this.fieldsPanel.Controls.Add(this.vodFieldsUpButton, 2, 3);
+            this.fieldsPanel.Controls.Add(this.vodFieldsRemoveButton, 1, 2);
+            this.fieldsPanel.Controls.Add(this.clipFieldsRemoveButton, 5, 2);
+            this.fieldsPanel.Location = new System.Drawing.Point(8, 231);
+            this.fieldsPanel.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.fieldsPanel.Name = "fieldsPanel";
+            this.fieldsPanel.RowCount = 4;
+            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.fieldsPanel.Size = new System.Drawing.Size(553, 242);
+            this.fieldsPanel.TabIndex = 11;
+            // 
+            // vodFieldsSourceBox
+            // 
+            this.vodFieldsSourceBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.vodFieldsSourceBox.FormattingEnabled = true;
+            this.vodFieldsSourceBox.IntegralHeight = false;
+            this.vodFieldsSourceBox.ItemHeight = 15;
+            this.vodFieldsSourceBox.Items.AddRange(new object[] {
+            "Broadcaster",
+            "Date Created",
+            "Duration",
+            "Title",
+            "URL",
+            "Views"});
+            this.vodFieldsSourceBox.Location = new System.Drawing.Point(0, 20);
+            this.vodFieldsSourceBox.Margin = new System.Windows.Forms.Padding(0);
+            this.vodFieldsSourceBox.Name = "vodFieldsSourceBox";
+            this.fieldsPanel.SetRowSpan(this.vodFieldsSourceBox, 2);
+            this.vodFieldsSourceBox.Size = new System.Drawing.Size(128, 196);
+            this.vodFieldsSourceBox.Sorted = true;
+            this.vodFieldsSourceBox.TabIndex = 0;
+            // 
+            // clipFieldsSourceBox
+            // 
+            this.clipFieldsSourceBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clipFieldsSourceBox.FormattingEnabled = true;
+            this.clipFieldsSourceBox.IntegralHeight = false;
+            this.clipFieldsSourceBox.ItemHeight = 15;
+            this.clipFieldsSourceBox.Items.AddRange(new object[] {
+            "Broadcaster",
+            "Creator",
+            "Date Created",
+            "Duration",
+            "ID",
+            "Title",
+            "URL",
+            "Views",
+            "VOD Date",
+            "VOD Timestamp"});
+            this.clipFieldsSourceBox.Location = new System.Drawing.Point(279, 20);
+            this.clipFieldsSourceBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.clipFieldsSourceBox.Name = "clipFieldsSourceBox";
+            this.fieldsPanel.SetRowSpan(this.clipFieldsSourceBox, 2);
+            this.clipFieldsSourceBox.Size = new System.Drawing.Size(125, 196);
+            this.clipFieldsSourceBox.Sorted = true;
+            this.clipFieldsSourceBox.TabIndex = 2;
+            // 
+            // clipFieldsAddButton
+            // 
+            this.clipFieldsAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.clipFieldsAddButton.Location = new System.Drawing.Point(404, 95);
+            this.clipFieldsAddButton.Margin = new System.Windows.Forms.Padding(0);
+            this.clipFieldsAddButton.Name = "clipFieldsAddButton";
+            this.clipFieldsAddButton.Size = new System.Drawing.Size(20, 23);
+            this.clipFieldsAddButton.TabIndex = 5;
+            this.clipFieldsAddButton.Text = ">";
+            this.clipFieldsAddButton.UseVisualStyleBackColor = true;
+            this.clipFieldsAddButton.Click += new System.EventHandler(this.fieldsAddButton_Click);
+            // 
+            // vodFieldsAddButton
+            // 
+            this.vodFieldsAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.vodFieldsAddButton.Location = new System.Drawing.Point(128, 95);
+            this.vodFieldsAddButton.Margin = new System.Windows.Forms.Padding(0);
+            this.vodFieldsAddButton.Name = "vodFieldsAddButton";
+            this.vodFieldsAddButton.Size = new System.Drawing.Size(20, 23);
+            this.vodFieldsAddButton.TabIndex = 4;
+            this.vodFieldsAddButton.Text = ">";
+            this.vodFieldsAddButton.UseVisualStyleBackColor = true;
+            this.vodFieldsAddButton.Click += new System.EventHandler(this.fieldsAddButton_Click);
+            // 
+            // clipFieldsDownButton
+            // 
+            this.clipFieldsDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.clipFieldsDownButton.Location = new System.Drawing.Point(488, 216);
+            this.clipFieldsDownButton.Margin = new System.Windows.Forms.Padding(0);
+            this.clipFieldsDownButton.Name = "clipFieldsDownButton";
+            this.clipFieldsDownButton.Size = new System.Drawing.Size(25, 26);
+            this.clipFieldsDownButton.TabIndex = 3;
+            this.clipFieldsDownButton.Text = "∨";
+            this.clipFieldsDownButton.UseVisualStyleBackColor = true;
+            this.clipFieldsDownButton.Click += new System.EventHandler(this.fieldsDownButton_Click);
+            // 
+            // vodFieldsDownButton
+            // 
+            this.vodFieldsDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.vodFieldsDownButton.Location = new System.Drawing.Point(212, 216);
+            this.vodFieldsDownButton.Margin = new System.Windows.Forms.Padding(0);
+            this.vodFieldsDownButton.Name = "vodFieldsDownButton";
+            this.vodFieldsDownButton.Size = new System.Drawing.Size(25, 26);
+            this.vodFieldsDownButton.TabIndex = 5;
+            this.vodFieldsDownButton.Text = "∨";
+            this.vodFieldsDownButton.UseVisualStyleBackColor = true;
+            this.vodFieldsDownButton.Click += new System.EventHandler(this.fieldsDownButton_Click);
+            // 
+            // clipFieldsUpButton
+            // 
+            this.clipFieldsUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.clipFieldsUpButton.Location = new System.Drawing.Point(463, 216);
+            this.clipFieldsUpButton.Margin = new System.Windows.Forms.Padding(0);
+            this.clipFieldsUpButton.Name = "clipFieldsUpButton";
+            this.clipFieldsUpButton.Size = new System.Drawing.Size(25, 26);
+            this.clipFieldsUpButton.TabIndex = 4;
+            this.clipFieldsUpButton.Text = "∧";
+            this.clipFieldsUpButton.UseVisualStyleBackColor = true;
+            this.clipFieldsUpButton.Click += new System.EventHandler(this.fieldsUpButton_Click);
+            // 
+            // vodClipsLabel
+            // 
+            this.vodClipsLabel.AutoSize = true;
+            this.fieldsPanel.SetColumnSpan(this.vodClipsLabel, 4);
+            this.vodClipsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.vodClipsLabel.Location = new System.Drawing.Point(0, 0);
+            this.vodClipsLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.vodClipsLabel.Name = "vodClipsLabel";
+            this.vodClipsLabel.Size = new System.Drawing.Size(276, 20);
+            this.vodClipsLabel.TabIndex = 6;
+            this.vodClipsLabel.Text = "VOD: Displayed Fields";
+            this.vodClipsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // clipFieldsLabel
+            // 
+            this.clipFieldsLabel.AutoSize = true;
+            this.fieldsPanel.SetColumnSpan(this.clipFieldsLabel, 4);
+            this.clipFieldsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clipFieldsLabel.Location = new System.Drawing.Point(279, 0);
+            this.clipFieldsLabel.Name = "clipFieldsLabel";
+            this.clipFieldsLabel.Size = new System.Drawing.Size(271, 20);
+            this.clipFieldsLabel.TabIndex = 7;
+            this.clipFieldsLabel.Text = "Clip: Displayed Fields";
+            this.clipFieldsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // clipFieldsSelected
+            // 
+            this.fieldsPanel.SetColumnSpan(this.clipFieldsSelected, 2);
+            this.clipFieldsSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clipFieldsSelected.FormattingEnabled = true;
+            this.clipFieldsSelected.IntegralHeight = false;
+            this.clipFieldsSelected.ItemHeight = 15;
+            this.clipFieldsSelected.Location = new System.Drawing.Point(424, 20);
+            this.clipFieldsSelected.Margin = new System.Windows.Forms.Padding(0);
+            this.clipFieldsSelected.Name = "clipFieldsSelected";
+            this.fieldsPanel.SetRowSpan(this.clipFieldsSelected, 2);
+            this.clipFieldsSelected.Size = new System.Drawing.Size(129, 196);
+            this.clipFieldsSelected.TabIndex = 3;
+            // 
+            // vodFieldsSelected
+            // 
+            this.fieldsPanel.SetColumnSpan(this.vodFieldsSelected, 2);
+            this.vodFieldsSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.vodFieldsSelected.FormattingEnabled = true;
+            this.vodFieldsSelected.IntegralHeight = false;
+            this.vodFieldsSelected.ItemHeight = 15;
+            this.vodFieldsSelected.Location = new System.Drawing.Point(148, 20);
+            this.vodFieldsSelected.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.vodFieldsSelected.Name = "vodFieldsSelected";
+            this.fieldsPanel.SetRowSpan(this.vodFieldsSelected, 2);
+            this.vodFieldsSelected.Size = new System.Drawing.Size(125, 196);
+            this.vodFieldsSelected.TabIndex = 1;
+            // 
+            // vodFieldsUpButton
+            // 
+            this.vodFieldsUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.vodFieldsUpButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.vodFieldsUpButton.Location = new System.Drawing.Point(187, 216);
+            this.vodFieldsUpButton.Margin = new System.Windows.Forms.Padding(0);
+            this.vodFieldsUpButton.Name = "vodFieldsUpButton";
+            this.vodFieldsUpButton.Size = new System.Drawing.Size(25, 26);
+            this.vodFieldsUpButton.TabIndex = 2;
+            this.vodFieldsUpButton.Text = "∧";
+            this.vodFieldsUpButton.UseVisualStyleBackColor = true;
+            this.vodFieldsUpButton.Click += new System.EventHandler(this.fieldsUpButton_Click);
+            // 
+            // vodFieldsRemoveButton
+            // 
+            this.vodFieldsRemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.vodFieldsRemoveButton.Location = new System.Drawing.Point(128, 118);
+            this.vodFieldsRemoveButton.Margin = new System.Windows.Forms.Padding(0);
+            this.vodFieldsRemoveButton.Name = "vodFieldsRemoveButton";
+            this.vodFieldsRemoveButton.Size = new System.Drawing.Size(20, 23);
+            this.vodFieldsRemoveButton.TabIndex = 8;
+            this.vodFieldsRemoveButton.Text = "<";
+            this.vodFieldsRemoveButton.UseVisualStyleBackColor = true;
+            this.vodFieldsRemoveButton.Click += new System.EventHandler(this.fieldsRemoveButton_Click);
+            // 
+            // clipFieldsRemoveButton
+            // 
+            this.clipFieldsRemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.clipFieldsRemoveButton.Location = new System.Drawing.Point(404, 118);
+            this.clipFieldsRemoveButton.Margin = new System.Windows.Forms.Padding(0);
+            this.clipFieldsRemoveButton.Name = "clipFieldsRemoveButton";
+            this.clipFieldsRemoveButton.Size = new System.Drawing.Size(20, 23);
+            this.clipFieldsRemoveButton.TabIndex = 9;
+            this.clipFieldsRemoveButton.Text = "<";
+            this.clipFieldsRemoveButton.UseVisualStyleBackColor = true;
+            this.clipFieldsRemoveButton.Click += new System.EventHandler(this.fieldsRemoveButton_Click);
+            // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(3, 234);
+            this.saveButton.Location = new System.Drawing.Point(8, 476);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(100, 23);
             this.saveButton.TabIndex = 10;
@@ -211,6 +469,7 @@ namespace TwitchClipGrabber
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SettingsForm";
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -218,6 +477,8 @@ namespace TwitchClipGrabber
             this.helpFlow.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.fieldsPanel.ResumeLayout(false);
+            this.fieldsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -237,5 +498,20 @@ namespace TwitchClipGrabber
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.TableLayoutPanel fieldsPanel;
+        private System.Windows.Forms.ListBox vodFieldsSelected;
+        private System.Windows.Forms.ListBox clipFieldsSourceBox;
+        private System.Windows.Forms.ListBox clipFieldsSelected;
+        private System.Windows.Forms.ListBox vodFieldsSourceBox;
+        private System.Windows.Forms.Button clipFieldsAddButton;
+        private System.Windows.Forms.Button vodFieldsAddButton;
+        private System.Windows.Forms.Label vodClipsLabel;
+        private System.Windows.Forms.Button vodFieldsUpButton;
+        private System.Windows.Forms.Button clipFieldsDownButton;
+        private System.Windows.Forms.Button clipFieldsUpButton;
+        private System.Windows.Forms.Button vodFieldsDownButton;
+        private System.Windows.Forms.Label clipFieldsLabel;
+        private System.Windows.Forms.Button vodFieldsRemoveButton;
+        private System.Windows.Forms.Button clipFieldsRemoveButton;
     }
 }

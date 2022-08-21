@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TwitchClipGrabber
@@ -8,7 +10,37 @@ namespace TwitchClipGrabber
         public SettingsForm()
         {
             InitializeComponent();
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
             this.formatText.Text = Properties.Settings.Default.FilenameFormat;
+            vodFieldsSourceBox.Items.Clear();
+            clipFieldsSourceBox.Items.Clear();
+
+            var form1 = Application.OpenForms["Form1"] as Form1;
+
+            foreach (KeyValuePair<string, int> i in form1.vodDict)
+            {
+                vodFieldsSourceBox.Items.Add(i.Key);
+            }
+            foreach (KeyValuePair<string, int> i in form1.clipDict)
+            {
+                if (i.Key != "")
+                {
+                    clipFieldsSourceBox.Items.Add(i.Key);
+                }
+            }
+            foreach (var i in Properties.Settings.Default.VODFields)
+            {
+                vodFieldsSelected.Items.Add(i);
+                vodFieldsSourceBox.Items.Remove(i);
+            }
+            foreach (var i in Properties.Settings.Default.ClipFields)
+            {
+                clipFieldsSelected.Items.Add(i);
+                clipFieldsSourceBox.Items.Remove(i);
+            }
         }
 
         private void helpButton_Click(object sender, EventArgs e)
@@ -25,8 +57,86 @@ namespace TwitchClipGrabber
         private void saveButton_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.FilenameFormat = formatText.Text;
+            Properties.Settings.Default.VODFields.Clear();
+            Properties.Settings.Default.ClipFields.Clear();
+            Properties.Settings.Default.VODFields.AddRange(vodFieldsSelected.Items.Cast<string>().ToArray());
+            Properties.Settings.Default.ClipFields.AddRange(clipFieldsSelected.Items.Cast<string>().ToArray());
             Properties.Settings.Default.Save();
+            (Application.OpenForms["Form1"] as Form1).UpdateListViews();
             this.Close();
+        }
+
+        private void fieldsAddButton_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            ListBox selected, source;
+            if (button.Name == "vodFieldsAddButton")
+            {
+                selected = vodFieldsSelected;
+                source = vodFieldsSourceBox;
+            }
+            else
+            {
+                selected = clipFieldsSelected;
+                source = clipFieldsSourceBox;
+            }
+            if (source.SelectedItem != null)
+            {
+                selected.Items.Add(source.SelectedItem);
+                selected.SelectedItem = source.SelectedItem;
+                source.Items.Remove(source.SelectedItem);
+            }
+        }
+
+        private void fieldsRemoveButton_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            ListBox selected, source;
+            if (button.Name == "vodFieldsRemoveButton")
+            {
+                selected = vodFieldsSelected;
+                source = vodFieldsSourceBox;
+            }
+            else
+            {
+                selected = clipFieldsSelected;
+                source = clipFieldsSourceBox;
+            }
+            if (selected.SelectedItem != null)
+            {
+                source.Items.Add(selected.SelectedItem);
+                var index = selected.SelectedIndex;
+                selected.Items.Remove(selected.SelectedItem);
+                selected.SelectedItem = index != 0 ? selected.Items[index - 1] : selected.Items.Count < 1 ? null : selected.Items[0];
+            }
+        }
+
+        private void fieldsUpButton_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            ListBox selected = button.Name == "vodFieldsUpButton" ? vodFieldsSelected : clipFieldsSelected;
+            var selectedItem = selected.SelectedItem;
+            var index = selected.SelectedIndex;
+            if (index > 0 && selected != null)
+            {
+                selected.Items.Remove(selectedItem);
+                selected.Items.Insert(index - 1, selectedItem);
+                selected.SelectedItem = selectedItem;
+            }
+        }
+
+        private void fieldsDownButton_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            ListBox selected = button.Name == "vodFieldsDownButton" ? vodFieldsSelected : clipFieldsSelected;
+            var selectedItem = selected.SelectedItem;
+            var index = selected.SelectedIndex;
+            if (index < selected.Items.Count && selected != null)
+            {
+                selected.Items.Remove(selectedItem);
+                selected.Items.Insert(index + 1, selectedItem);
+                selected.SelectedItem = selectedItem;
+            }
         }
     }
 }

@@ -1,12 +1,51 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Twitch_Clip_Grabber.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="FilenameFormat" Type="System.String" Scope="User">
       <Value Profile="(Default)">{vod_date:yyyy-MM-dd} {vod_offset:hh\hmm\mss\s} {creator_name}</Value>
     </Setting>
+    <Setting Name="ClientId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">gbt9qto8lnwyj7h1n70ixb7hivdba3</Value>
+    </Setting>
     <Setting Name="Token" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="VODFields" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;Title&lt;/string&gt;
+  &lt;string&gt;Date Created&lt;/string&gt;
+  &lt;string&gt;Duration&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ClipFields" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;Title&lt;/string&gt;
+  &lt;string&gt;Creator&lt;/string&gt;
+  &lt;string&gt;VOD Date&lt;/string&gt;
+  &lt;string&gt;VOD Timestamp&lt;/string&gt;
+  &lt;string&gt;Duration&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="VODDictionary" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{"Broadcaster":100,"Date Created":120,"Duration":60,"Title":350,"URL":100,"Views":100}</Value>
+    </Setting>
+    <Setting Name="ClipDictionary" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{"Broadcaster":100,"Creator":120,"Date Created":70,"Duration":60,"ID":100,"Title":290,"URL":100,"Views":100,"VOD Date":70,"VOD Timestamp":75}</Value>
+    </Setting>
+    <Setting Name="WindowState" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ColumnWidth" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+    <Setting Name="RowHeight" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="WindowSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1290, 784</Value>
     </Setting>
   </Settings>
 </SettingsFile>

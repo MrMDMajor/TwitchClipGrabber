@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Text;
+using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.IO;
+using System.Net.NetworkInformation;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net.NetworkInformation;
 
 namespace TwitchClipGrabber
 {
@@ -63,7 +63,7 @@ namespace TwitchClipGrabber
             if (attachHeaders)
             {
                 request.Headers.Add("Authorization", "Bearer " + Properties.Settings.Default.Token);
-                request.Headers.Add("Client-Id", Program.ClientId);
+                request.Headers.Add("Client-Id", Properties.Settings.Default.ClientId);
             }
             var response = await client.SendAsync(request);
             return response;
