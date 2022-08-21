@@ -9,7 +9,7 @@
     <ApplicationIcon />
     <StartupObject />
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <BaseOutputPath>Z:\Desktop\TwitchClipGrabber</BaseOutputPath>
+    <BaseOutputPath></BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
