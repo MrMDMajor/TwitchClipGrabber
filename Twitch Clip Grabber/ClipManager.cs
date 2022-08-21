@@ -14,7 +14,7 @@ namespace TwitchClipGrabber
             if (start != default(DateTime))
             {
                 startString = start.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'");
-                now = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'");                
+                now = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'");
             }
             string url = $"clips?broadcaster_id={id}&after={cursor}&started_at={startString}&ended_at={now}";
             var response = await Http.GetResponse(url, true);
@@ -32,7 +32,7 @@ namespace TwitchClipGrabber
                 ClipCollection tempCol = await GetClipCollection(id, start, outputCol.pagination.cursor);
                 foreach (Clip clip in tempCol.data)
                 {
-                    clip.vodDate = start;
+                    clip.vod_date = start;
                     clip.download_url = clip.thumbnail_url.Replace(@"-preview-480x272.jpg", ".mp4");
                 }
                 outputCol.data.AddRange(tempCol.data);

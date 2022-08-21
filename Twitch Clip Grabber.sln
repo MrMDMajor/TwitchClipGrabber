@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch Clip Grabber", "Twitch Clip Grabber\Twitch Clip Grabber.csproj", "{54670307-3604-4440-8DA0-E7FC332798F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitchClipGrabber", "Twitch Clip Grabber\TwitchClipGrabber.csproj", "{54670307-3604-4440-8DA0-E7FC332798F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

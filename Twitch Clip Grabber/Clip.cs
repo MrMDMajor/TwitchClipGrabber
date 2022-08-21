@@ -40,8 +40,8 @@ namespace TwitchClipGrabber
         public string video_id { get; set; }
         public int view_count { get; set; }
         public Image thumbnail { get; set; }
-        public double vod_offset { get; set; }
-        public DateTime vodDate { get; set; }
+        public int vod_offset { get; set; }
+        public DateTime vod_date { get; set; }
         public Dictionary<string, object> clipDict { get; set; }
         public string download_url { get; set; }
     }

@@ -54,12 +54,13 @@ namespace TwitchClipGrabber
                 {"{broadcaster_name}", clip.broadcaster_name },
                 {"{created_at}", clip.created_at },
                 {"{creator_name}", clip.creator_name },
+                {"{id}", clip.id },
                 {"{duration}", clip.duration.ToString() + "s" },
                 {"{title}", clip.title },
                 {"{url}", clip.url },
                 {"{vod_offset}", TimeSpan.FromSeconds(clip.vod_offset) },
                 {"{today}", DateTime.Today },
-                {"{vod_date}", clip.vodDate }
+                {"{vod_date}", clip.vod_date }
             };
         }
     }

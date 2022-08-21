@@ -1,25 +1,24 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Timers;
-using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Forms;
 
 namespace TwitchClipGrabber
 {
     static class Program
     {
-        public static string ClientId { get; set; }
         private static System.Timers.Timer timer = new();
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            ClientId = "gbt9qto8lnwyj7h1n70ixb7hivdba3";
             _ = new Http();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
@@ -45,7 +44,7 @@ namespace TwitchClipGrabber
             }
             else return Properties.Resources.no_img;
         }
-        public static async Task DownloadFileQueue(Queue<Clip> queue, List<string> paths, ProgressBar pb)
+        public static async Task DownloadFileQueue(Queue<Clip> queue, List<string> paths, Form1 form)
         {
             var newPaths = new List<string>();
             newPaths = paths.Select(fn => AppendDuplicates(fn, newPaths, " (")).ToList();
@@ -64,7 +63,8 @@ namespace TwitchClipGrabber
                         await response.Content.CopyToAsync(fs);
                     }
                 }
-                pb.UpdateProgressBar(++progress * 100 / startLength);
+                form.progressBar.Value = ++progress * 100 / startLength;
+                form.progressLabel.Text = string.Format("Downloading...  {0}/{1}", progress, startLength);
             }
         }
 

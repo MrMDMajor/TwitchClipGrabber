@@ -15,7 +15,7 @@ namespace TwitchClipGrabber
             clip.title = "BEST CLIP EVER (no clickbait)";
             clip.url = "www.example.com";
             clip.vod_offset = 1234;
-            clip.vodDate = new DateTime(2009, 12, 14);
+            clip.vod_date = new DateTime(2009, 12, 14);
         }
     }
 }

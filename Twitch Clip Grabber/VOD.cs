@@ -19,9 +19,12 @@ namespace TwitchClipGrabber
     public class Pagination
     {
         private string _cursor = "";
-        public string cursor { 
+        public string cursor
+        {
             get { return _cursor; }
-            set { if (value == null)
+            set
+            {
+                if (value == null)
                 {
                     _cursor = "";
                 }
