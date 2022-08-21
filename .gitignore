@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+Twitch Clip Grabber/App.config
+Twitch Clip Grabber/ToolStripMenuItemComparer.cs
