@@ -59,6 +59,12 @@ namespace TwitchClipGrabber
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
             //Properties.Settings.Default.Reset();
             Http.ValidateToken();
 
