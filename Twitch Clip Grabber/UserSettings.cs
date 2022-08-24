@@ -45,7 +45,7 @@ namespace TwitchClipGrabber
             }
             var invalids = System.IO.Path.GetInvalidFileNameChars();
             var newOutput = String.Join("_", output.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
-            return newOutput;
+            return newOutput + ".mp4";
         }
         private static void GetClipDict(Clip clip)
         {

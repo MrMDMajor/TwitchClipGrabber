@@ -12,6 +12,12 @@ namespace TwitchClipGrabber
     static class Program
     {
         private static System.Timers.Timer timer = new();
+        private static Queue<Clip> downloadQueue = new();
+        private static Queue<string> pathsQueue = new();
+        private static bool isDownloading = false;
+        private static int progress = 0;
+        private static int queueStartCount = 0;
+        private static Form1 form1;
 
         /// <summary>
         ///  The main entry point for the application.
@@ -44,27 +50,69 @@ namespace TwitchClipGrabber
             }
             else return Properties.Resources.no_img;
         }
-        public static async Task DownloadFileQueue(Queue<Clip> queue, List<string> paths, Form1 form)
+
+        public static async Task AddToQueue(Queue<Clip> queue, Queue<string> paths)
         {
-            var newPaths = new List<string>();
-            newPaths = paths.Select(fn => AppendDuplicates(fn, newPaths, " (")).ToList();
-
-            int startLength = queue.Count;
-            int progress = 0;
-
-            while (queue.Count != 0)
+            form1 = Application.OpenForms["Form1"] as Form1;
+            queueStartCount += queue.Count;
+            foreach (var clip in queue)
             {
-                var currentClip = queue.Dequeue();
-                var response = await Http.GetResponse(currentClip.download_url, false);
-                if (response.IsSuccessStatusCode)
+                downloadQueue.Enqueue(clip);
+            }
+            foreach (var path in paths)
+            {
+                pathsQueue.Enqueue(path);
+            }
+            if (!isDownloading)
+            {
+                await DownloadNext();
+                isDownloading = true;
+                form1.busyInt++;
+            }
+        }
+
+        private static async void DequeueItem()
+        {
+            downloadQueue.Dequeue();
+            await DownloadNext();
+        }
+
+        private static async Task DownloadNext()
+        {
+            var current = downloadQueue.Peek();
+            var response = await Http.GetResponse(current.download_url, false);
+            form1.progressBar.Value = ++progress * 100 / queueStartCount;
+            form1.progressLabel.Text = String.Format("Downloading Clips {0}/{1}", progress, queueStartCount);
+            if (response.IsSuccessStatusCode)
+            {
+                if (!File.Exists(pathsQueue.Peek()))
                 {
-                    using (FileStream fs = File.Create(newPaths[progress] + ".mp4"))
-                    {
-                        await response.Content.CopyToAsync(fs);
-                    }
+                    using FileStream fs = File.Create(pathsQueue.Dequeue());
+                    await response.Content.CopyToAsync(fs);
                 }
-                form.progressBar.Value = ++progress * 100 / startLength;
-                form.progressLabel.Text = string.Format("Downloading...  {0}/{1}", progress, startLength);
+                else
+                {
+                    using FileStream fs = File.Create(Append(pathsQueue.Dequeue()));
+                    await response.Content.CopyToAsync(fs);
+                }
+            }
+            if (downloadQueue.Count > 1)
+            {
+                DequeueItem();
+            }
+            else
+            {
+                downloadQueue.Dequeue();
+                isDownloading = false;
+                progress = 0;
+                queueStartCount = 0;
+                form1.busyInt--;
+                if (form1.busyInt == 0)
+                {
+                    form1.progressStatusStrip.Visible = false;
+                    form1.progressBar.Value = 0;
+                    form1.progressLabel.Text = "";
+                }
             }
         }
 
@@ -80,23 +128,16 @@ namespace TwitchClipGrabber
             Http.ValidateToken();
         }
 
-        private static string AppendDuplicates(string path, List<string> pathList, string separator)
+        private static string Append(string path)
         {
             string dir = Path.GetDirectoryName(path);
             string ext = Path.GetExtension(path);
-            string fileName = Path.GetFileName(path);
-            string[] tokens = fileName.Split(new[] { separator }, StringSplitOptions.None);
+            string fileName = Path.GetFileNameWithoutExtension(path);
+            string[] tokens = fileName.Split(new[] { '(' }, StringSplitOptions.None);
 
             int num = 0;
             int.TryParse(tokens.Last(), out num);
-
-            var dupes = pathList.Where(n => n.Equals(path, StringComparison.OrdinalIgnoreCase));
-            while (dupes.Any())
-            {
-                path = Path.Combine(dir, tokens.First() + separator + (++num + 1) + ")" + ext);
-            }
-            pathList.Add(path);
-            return path;
+            return Path.Combine(dir, tokens.First() + '(' + (++num + 1) + ')' + ext);
         }
     }
 }

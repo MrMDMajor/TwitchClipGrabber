@@ -54,7 +54,7 @@ namespace TwitchClipGrabber
             this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainPanels = new System.Windows.Forms.TableLayoutPanel();
             this.rightPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.listView2 = new TwitchClipGrabber.CustomListView();
             this.clipTitle = new System.Windows.Forms.ColumnHeader();
             this.clipCreator = new System.Windows.Forms.ColumnHeader();
             this.clipDate = new System.Windows.Forms.ColumnHeader();
@@ -393,6 +393,7 @@ namespace TwitchClipGrabber
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
             this.listView2.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.listView_ColumnWidthChanged);
+            this.listView2.DoubleClick += new System.EventHandler(this.preview_Click);
             // 
             // clipTitle
             // 
@@ -503,7 +504,6 @@ namespace TwitchClipGrabber
         private System.Windows.Forms.TableLayoutPanel mainLayout;
         private System.Windows.Forms.FolderBrowserDialog downloadTarget;
         private System.Windows.Forms.TableLayoutPanel rightPanel;
-        private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.ColumnHeader clipTitle;
         private System.Windows.Forms.ColumnHeader clipCreator;
         private System.Windows.Forms.ColumnHeader clipDate;
@@ -526,6 +526,7 @@ namespace TwitchClipGrabber
         public System.Windows.Forms.ToolStripProgressBar progressBar;
         public System.Windows.Forms.ToolStripStatusLabel progressLabel;
         public System.Windows.Forms.StatusStrip progressStatusStrip;
+        private CustomListView listView2;
     }
 }
 

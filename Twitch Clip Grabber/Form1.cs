@@ -17,12 +17,9 @@ namespace TwitchClipGrabber
         VODCollection vodCol;
         ClipCollection clipCol;
 
-        VODManager vodManager = new();
-        ClipManager clipManager = new();
+        readonly VODManager vodManager = new();
+        readonly ClipManager clipManager = new();
         Form2 form2;
-
-        public static ProgressBar pb = new();
-        Queue<Clip> downloadQueue = new Queue<Clip>();
 
         bool resizing = false;
         bool inRange = false;
@@ -31,7 +28,7 @@ namespace TwitchClipGrabber
 
         public Dictionary<string, int> vodDict;
         public Dictionary<string, int> clipDict;
-        Dictionary<string, string> vodLookup = new Dictionary<string, string>()
+        readonly Dictionary<string, string> vodLookup = new()
         {
             {"Broadcaster", "user_name" },
             {"Date Created", "created_at" },
@@ -40,7 +37,7 @@ namespace TwitchClipGrabber
             {"URL", "url" },
             {"Views", "view_count" }
         };
-        Dictionary<string, string> clipLookup = new Dictionary<string, string>()
+        readonly Dictionary<string, string> clipLookup = new()
         {
             {"Broadcaster", "broadcaster_name" },
             {"Creator", "creator_name" },
@@ -102,7 +99,7 @@ namespace TwitchClipGrabber
         }
 
         //Takes user input username, and gets User ID, necessary for subsequent API calls
-        private async Task<string> GetUserID(string username)
+        private static async Task<string> GetUserID(string username)
         {
             if (username != "")
             {
@@ -285,7 +282,6 @@ namespace TwitchClipGrabber
                 int progress = 0;
 
                 ClipCollection newClipCol = await clipManager.UpdateClipCollection(id, vod.created_at);
-                Console.WriteLine(newClipCol.data[0].title);
                 foreach (Clip clip in newClipCol.data)
                 {
                     //Takes list of all clips created after specified date, removes the ones that don't match selected VOD
@@ -319,24 +315,25 @@ namespace TwitchClipGrabber
         }
         private async void downloadButton_Click(object sender, EventArgs e)
         {
-            var pathList = new List<string>();
-            downloadTarget.ShowDialog();
-            progressStatusStrip.Visible = true;
-            busyInt++;
-            foreach (ListViewItem item in listView2.CheckedItems)
+            var pathsQueue = new Queue<string>();
+            var downloadQueue = new Queue<Clip>();
+            var result = downloadTarget.ShowDialog();
+            if (result == DialogResult.OK)
             {
-
-                downloadQueue.Enqueue(clipCol.data[item.Index]);
-                var path = Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index], Properties.Settings.Default.FilenameFormat));
-                pathList.Add(path);
-            }
-            await Program.DownloadFileQueue(downloadQueue, pathList, this);
-            busyInt--;
-            if (busyInt == 0)
-            {
-                progressStatusStrip.Visible = false;
-                progressBar.Value = 0;
-                progressLabel.Text = "";
+                progressStatusStrip.Visible = true;
+                foreach (ListViewItem item in listView2.CheckedItems)
+                {
+                    downloadQueue.Enqueue(clipCol.data[item.Index]);
+                    var path = Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index], Properties.Settings.Default.FilenameFormat));
+                    pathsQueue.Enqueue(path);
+                }
+                await Program.AddToQueue(downloadQueue, pathsQueue);
+                if (busyInt == 0)
+                {
+                    progressStatusStrip.Visible = false;
+                    progressBar.Value = 0;
+                    progressLabel.Text = "";
+                } 
             }
         }
         private void preview_Click(object sender, EventArgs e)
@@ -344,7 +341,7 @@ namespace TwitchClipGrabber
             if (clipCol != null && listView2.SelectedItems.Count > 0)
             {
                 Clip currentClip = clipCol.data[listView2.SelectedIndices[0]];
-                videoEmbed.Source = new Uri($@"http://localhost:3000/?id={currentClip.id}"); 
+                videoEmbed.Source = new Uri($@"http://localhost:3000/?id={currentClip.id}");
             }
         }
         private void selectAllButton_Click(object sender, EventArgs e)
