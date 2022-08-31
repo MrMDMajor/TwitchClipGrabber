@@ -1,5 +1,5 @@
 # TwitchClipGrabber
-Easy tool for downloading Twitch clips
+Easy Windows tool for downloading Twitch clips
 
 
 
