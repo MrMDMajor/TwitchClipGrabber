@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace TwitchClipGrabber
 {
@@ -58,7 +59,7 @@ namespace TwitchClipGrabber
                 {"{duration}", clip.duration.ToString() + "s" },
                 {"{title}", clip.title },
                 {"{url}", clip.url },
-                {"{vod_offset}", TimeSpan.FromSeconds(clip.vod_offset) },
+                {"{vod_offset}", clip.vod_offset != null ? TimeSpan.FromSeconds((double)clip.vod_offset) : 0 },
                 {"{today}", DateTime.Today },
                 {"{vod_date}", clip.vod_date }
             };
