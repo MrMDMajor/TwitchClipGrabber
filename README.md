@@ -14,7 +14,7 @@ To Build
 - Download code as .zip and extract it to wherever you would like
 - Open a command prompt and navigate to the folder where .sln file is located
 - Type or copy/paste `dotnet build -c release`
-- Built project will be located in `bin\release\net5.0-windows` folder
+- Built project will be located in `bin\release\[version]` folder
 
 ----
 

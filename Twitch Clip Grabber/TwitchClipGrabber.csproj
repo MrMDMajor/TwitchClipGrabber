@@ -9,10 +9,11 @@
     <ApplicationIcon />
     <StartupObject />
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <BaseOutputPath></BaseOutputPath>
-    <Version>0.2.0-beta</Version>
+    <Version>0.2.1-beta</Version>
+    <OutputPath>bin\$(Configuration)\$(Version)</OutputPath>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <Authors>MDMajor</Authors>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
