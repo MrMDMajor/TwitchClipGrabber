@@ -10,7 +10,7 @@
     <StartupObject />
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <Version>0.2.1-beta</Version>
-    <OutputPath>bin\$(Configuration)\$(Version)</OutputPath>
+    <OutputPath>bin\$(Configuration)\$(Version)\TwitchClipGrabber</OutputPath>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <Authors>MDMajor</Authors>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
