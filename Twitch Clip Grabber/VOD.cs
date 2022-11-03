@@ -1,18 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace TwitchClipGrabber
 {
-    public class VODCollection
+    public class VODCollection : IComparer<VOD>
     {
         public List<VOD> data { get; set; }
         public Pagination pagination { get; set; }
+        public SortOrder VODSort { get; set; }
+        public string SortField { get; set; }
 
         public VODCollection()
         {
             data = new List<VOD>();
             pagination = new Pagination();
+        }
+
+        public int Compare(VOD x, VOD y)
+        {
+            var xVal = x.GetType().GetProperty(SortField).GetValue(x) as IComparable;
+            var yVal = y.GetType().GetProperty(SortField).GetValue(y) as IComparable;
+            if (SortField == "duration")
+            {
+                xVal = TimeSpan.Parse(xVal.ToString().Replace('h', ':').Replace('m', ':').Replace("s", String.Empty));
+                yVal = TimeSpan.Parse(yVal.ToString().Replace('h', ':').Replace('m', ':').Replace("s", String.Empty));
+            }
+            if (VODSort == SortOrder.Ascending)
+            {
+                return xVal.CompareTo(yVal);
+            }
+            else if (VODSort == SortOrder.Descending)
+            {
+                return yVal.CompareTo(xVal);
+            }
+            else return 0;
         }
     }
 

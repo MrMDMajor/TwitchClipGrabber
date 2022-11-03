@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TwitchClipGrabber
 {
@@ -38,9 +39,10 @@ namespace TwitchClipGrabber
                 outputCol.data.AddRange(tempCol.data);
                 outputCol.pagination.cursor = tempCol.pagination.cursor;
             } while (outputCol.pagination.cursor != "");
+            outputCol.SortField = "vod_offset";
+            outputCol.ClipSort = SortOrder.Ascending;
             outputCol.data.Sort(outputCol);
             return outputCol;
         }
-
     }
 }

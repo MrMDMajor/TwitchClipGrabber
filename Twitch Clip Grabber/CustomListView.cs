@@ -1,10 +1,17 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections;
+using System.Windows.Forms;
 
 namespace TwitchClipGrabber
 {
     class CustomListView : ListView
     {
         private bool checkFromDoubleClick = false;
+        private int _sortedColumnIndex = -1;
+        public int SortedColumnIndex
+        {
+            get { return _sortedColumnIndex; }
+            set { _sortedColumnIndex = value; }
+        }
 
         protected override void OnItemCheck(ItemCheckEventArgs ice)
         {

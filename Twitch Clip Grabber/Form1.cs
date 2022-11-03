@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace TwitchClipGrabber
 {
@@ -79,7 +81,6 @@ namespace TwitchClipGrabber
 
             embedPanel_Resize(embedPanel, e);
             videoEmbed.EnsureCoreWebView2Async();
-
             UpdateListViews();
         }
 
@@ -146,12 +147,16 @@ namespace TwitchClipGrabber
                 smallImgList.Images.Add(img);
                 foreach (var kvp in vodDict)
                 {
-                    var fields = vodCol.data[i].GetType().GetProperty(vodLookup[kvp.Key]).GetValue(vodCol.data[i]);
-                    if (fields.GetType() == typeof(System.DateTime))
+                    var field = vodCol.data[i].GetType().GetProperty(vodLookup[kvp.Key]).GetValue(vodCol.data[i]);
+                    if (field.GetType() == typeof(System.DateTime))
                     {
-                        fields = ((DateTime)fields).ToString("yyyy/MM/dd");
+                        field = ((DateTime)field).ToString("yyyy/MM/dd");
                     }
-                    vodAllFields.Add(kvp.Key, fields.ToString());
+                    else if (kvp.Key == "Duration")
+                    {
+                        field = TimeSpan.Parse(field.ToString().Replace('h', ':').Replace('m', ':').Replace("s", String.Empty)).ToString(@"h\hmm\mss\s");
+                    }
+                    vodAllFields.Add(kvp.Key, field.ToString());
                 }
                 foreach (var k in Properties.Settings.Default.VODFields)
                 {
@@ -273,6 +278,8 @@ namespace TwitchClipGrabber
                 vodCol = await vodManager.UpdateVODCollection(id, this);
                 GetListViewVOD();
             }
+            listView1.SortedColumnIndex = -1;
+            listView1.SetSortIcon(listView1.SortedColumnIndex, SortOrder.None);
         }
         private async void getClipsButton_Click(object sender, EventArgs e)
         {
@@ -284,6 +291,7 @@ namespace TwitchClipGrabber
                 progressLabel.Text = "Getting Clips...  0%";
 
                 clipCol = new ClipCollection();
+
                 VOD vod = vodCol.data[listView1.SelectedIndices[0]];
                 int progress = 0;
 
@@ -317,6 +325,8 @@ namespace TwitchClipGrabber
                 }
                 GetListViewClip();
                 busy = false;
+                listView2.SortedColumnIndex = -1;
+                listView2.SetSortIcon(listView2.SortedColumnIndex, SortOrder.None);
             }
         }
         private async void downloadButton_Click(object sender, EventArgs e)
@@ -491,6 +501,62 @@ namespace TwitchClipGrabber
                 }
             }
             Properties.Settings.Default.Save();
+        }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            var listView = sender as CustomListView;
+            if (vodCol != null)
+            {
+                if (e.Column == listView.SortedColumnIndex)
+                {
+                    if (vodCol.VODSort == SortOrder.Descending)
+                    {
+                        vodCol.VODSort = SortOrder.Ascending;
+                    }
+                    else
+                    {
+                        vodCol.VODSort = SortOrder.Descending;
+                    }
+                }
+                else
+                {
+                    vodCol.VODSort = SortOrder.Ascending;
+                    listView.SortedColumnIndex = e.Column;
+                }
+                vodCol.SortField = vodLookup[listView.Columns[e.Column].Text];
+                vodCol.data.Sort(vodCol);
+                listView.SetSortIcon(listView.SortedColumnIndex, vodCol.VODSort);
+                GetListViewVOD();
+            }
+        }
+
+        private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            var listView = sender as CustomListView;
+            if (clipCol != null)
+            {
+                if (e.Column == listView.SortedColumnIndex)
+                {
+                    if (clipCol.ClipSort == SortOrder.Descending)
+                    {
+                        clipCol.ClipSort = SortOrder.Ascending;
+                    }
+                    else
+                    {
+                        clipCol.ClipSort = SortOrder.Descending;
+                    }
+                }
+                else
+                {
+                    clipCol.ClipSort = SortOrder.Ascending;
+                    listView.SortedColumnIndex = e.Column;
+                }
+                clipCol.SortField = clipLookup[listView.Columns[e.Column].Text];
+                clipCol.data.Sort(clipCol);
+                listView.SetSortIcon(listView.SortedColumnIndex, clipCol.ClipSort);
+                GetListViewClip();
+            }
         }
     }
 }

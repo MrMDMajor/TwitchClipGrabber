@@ -10,7 +10,6 @@ namespace TwitchClipGrabber
         public async Task<VODCollection> UpdateVODCollection(string id, Form1 form)
         {
             VODCollection outputCol = new VODCollection();
-            int iterations = 0;
             form.progressStatusStrip.Visible = true;
             form.busyInt++;
 
@@ -20,7 +19,6 @@ namespace TwitchClipGrabber
                 VODCollection tempCol = await GetVODCollection(id, form, cursor: outputCol.pagination.cursor);
                 outputCol.data.AddRange(tempCol.data);
                 outputCol.pagination.cursor = tempCol.pagination.cursor;
-                iterations++;
 
             } while (outputCol.pagination.cursor != "");
             form.busyInt--;

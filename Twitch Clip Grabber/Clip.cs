@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace TwitchClipGrabber
 {
@@ -9,20 +10,33 @@ namespace TwitchClipGrabber
     {
         public List<Clip> data { get; set; }
         public Pagination pagination { get; set; }
+        public SortOrder ClipSort { get; set; }
+        public string SortField { get; set; }
 
         public ClipCollection()
         {
             data = new List<Clip>();
             pagination = new Pagination();
+            SortField = "vod_offset";
         }
 
         public int Compare(Clip x, Clip y)
         {
-            int xInt, yInt;
-            xInt = x.vod_offset == null ? 0 : (int)x.vod_offset;
-            yInt = y.vod_offset == null ? 0 : (int)y.vod_offset;
-
-            return xInt.CompareTo(yInt);
+            var xVal = x.GetType().GetProperty(SortField).GetValue(x) as IComparable;
+            var yVal = y.GetType().GetProperty(SortField).GetValue(y) as IComparable;
+            if (xVal != null && yVal != null)
+            {
+                if (ClipSort == SortOrder.Ascending)
+                {
+                    return xVal.CompareTo(yVal);
+                }
+                else if (ClipSort == SortOrder.Descending)
+                {
+                    return yVal.CompareTo(xVal);
+                }
+                else return 0;
+            }
+            else return 0;
         }
     }
 
