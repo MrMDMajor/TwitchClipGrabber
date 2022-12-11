@@ -383,6 +383,7 @@ namespace TwitchClipGrabber
             this.progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.progressLabel.Size = new System.Drawing.Size(23, 25);
             this.progressLabel.Text = "0%";
+            this.progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.progressLabel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.progressLabel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -409,19 +410,18 @@ namespace TwitchClipGrabber
             // 
             // rightPanel
             // 
-            this.rightPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.rightPanel.ColumnCount = 1;
             this.rightPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.rightPanel.Controls.Add(this.listView2, 0, 1);
             this.rightPanel.Controls.Add(this.embedPanel, 0, 0);
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightPanel.Location = new System.Drawing.Point(570, 0);
-            this.rightPanel.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.rightPanel.Location = new System.Drawing.Point(572, 0);
+            this.rightPanel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.rightPanel.Name = "rightPanel";
             this.rightPanel.RowCount = 2;
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.rightPanel.Size = new System.Drawing.Size(696, 631);
+            this.rightPanel.Size = new System.Drawing.Size(694, 631);
             this.rightPanel.TabIndex = 2;
             this.rightPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rightPanel_MouseDown);
             this.rightPanel.MouseLeave += new System.EventHandler(this.mainPanels_MouseLeave);
@@ -442,11 +442,11 @@ namespace TwitchClipGrabber
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.FullRowSelect = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(3, 379);
-            this.listView2.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.listView2.Location = new System.Drawing.Point(0, 381);
+            this.listView2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.listView2.MultiSelect = false;
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(691, 250);
+            this.listView2.Size = new System.Drawing.Size(694, 250);
             this.listView2.SortedColumnIndex = -1;
             this.listView2.TabIndex = 9;
             this.listView2.UseCompatibleStateImageBehavior = false;
@@ -486,13 +486,13 @@ namespace TwitchClipGrabber
             this.embedPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.embedPanel.Controls.Add(this.videoEmbed, 0, 0);
             this.embedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.embedPanel.Location = new System.Drawing.Point(2, 2);
+            this.embedPanel.Location = new System.Drawing.Point(0, 0);
             this.embedPanel.Margin = new System.Windows.Forms.Padding(0);
             this.embedPanel.Name = "embedPanel";
             this.embedPanel.RowCount = 1;
             this.embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 371F));
-            this.embedPanel.Size = new System.Drawing.Size(692, 375);
+            this.embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 378F));
+            this.embedPanel.Size = new System.Drawing.Size(694, 378);
             this.embedPanel.TabIndex = 18;
             this.embedPanel.Resize += new System.EventHandler(this.embedPanel_Resize);
             // 
@@ -503,10 +503,10 @@ namespace TwitchClipGrabber
             this.videoEmbed.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.videoEmbed.CreationProperties = null;
             this.videoEmbed.DefaultBackgroundColor = System.Drawing.Color.Black;
-            this.videoEmbed.Location = new System.Drawing.Point(2, 0);
+            this.videoEmbed.Location = new System.Drawing.Point(3, 0);
             this.videoEmbed.Margin = new System.Windows.Forms.Padding(0);
             this.videoEmbed.Name = "videoEmbed";
-            this.videoEmbed.Size = new System.Drawing.Size(688, 375);
+            this.videoEmbed.Size = new System.Drawing.Size(688, 378);
             this.videoEmbed.TabIndex = 10;
             this.videoEmbed.ZoomFactor = 1D;
             // 
@@ -537,6 +537,7 @@ namespace TwitchClipGrabber
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.mainLayout);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
@@ -544,7 +545,6 @@ namespace TwitchClipGrabber
             this.tabPage1.Size = new System.Drawing.Size(1266, 717);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 

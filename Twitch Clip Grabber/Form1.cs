@@ -337,6 +337,7 @@ namespace TwitchClipGrabber
             if (result == DialogResult.OK)
             {
                 progressStatusStrip.Visible = true;
+                progressBar.Visible = true;
                 foreach (ListViewItem item in listView2.CheckedItems)
                 {
                     downloadQueue.Enqueue(clipCol.data[item.Index]);
@@ -344,12 +345,6 @@ namespace TwitchClipGrabber
                     pathsQueue.Enqueue(path);
                 }
                 await Program.AddToQueue(downloadQueue, pathsQueue);
-                if (busyInt == 0)
-                {
-                    progressStatusStrip.Visible = false;
-                    progressBar.Value = 0;
-                    progressLabel.Text = "";
-                } 
             }
         }
         private void preview_Click(object sender, EventArgs e)
