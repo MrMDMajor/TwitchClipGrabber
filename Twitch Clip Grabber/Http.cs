@@ -59,14 +59,19 @@ namespace TwitchClipGrabber
                 MessageBox.Show("No valid token, please authenticate");
             }
 
-            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            using var request = new HttpRequestMessage(HttpMethod.Get, url);
             if (attachHeaders)
             {
                 request.Headers.Add("Authorization", "Bearer " + Properties.Settings.Default.Token);
                 request.Headers.Add("Client-Id", Properties.Settings.Default.ClientId);
             }
-            var response = await client.SendAsync(request);
-            return response;
+            return await client.SendAsync(request);
+        }
+
+        public static async Task<HttpResponseMessage> GetHeader(string url)
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Head, url);
+            return await client.SendAsync(request);
         }
 
         public static bool ValidateToken()
