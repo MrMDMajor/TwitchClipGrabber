@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq;
+using Microsoft.Web.WebView2.WinForms;
 
 namespace TwitchClipGrabber
 {
@@ -382,7 +383,7 @@ namespace TwitchClipGrabber
         private void embedPanel_Resize(object sender, EventArgs e)
         {
             var panel = sender as TableLayoutPanel;
-            if (panel.Width < panel.Height)
+            if ((float)panel.Width / (float)panel.Height < 16f / 9f)
             {
                 videoEmbed.Anchor = AnchorStyles.Left | AnchorStyles.Right;
                 videoEmbed.Height = videoEmbed.Width * 9 / 16;
@@ -433,7 +434,6 @@ namespace TwitchClipGrabber
             var thisPanel = (TableLayoutPanel)sender;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-
                 resizing = false;
                 thisPanel.Cursor = Cursors.Default;
             }
