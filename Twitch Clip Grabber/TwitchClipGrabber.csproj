@@ -9,7 +9,7 @@
     <ApplicationIcon />
     <StartupObject />
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <Version>0.2.1-beta</Version>
+    <Version>0.2.2-beta</Version>
     <OutputPath>bin\$(Configuration)\$(Version)\TwitchClipGrabber</OutputPath>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <Authors>MDMajor</Authors>
