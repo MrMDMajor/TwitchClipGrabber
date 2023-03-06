@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq;
 using Microsoft.Web.WebView2.WinForms;
+using System.Globalization;
+using System.Windows.Forms.VisualStyles;
 
 namespace TwitchClipGrabber
 {
@@ -35,7 +37,7 @@ namespace TwitchClipGrabber
         {
             {"Broadcaster", "user_name" },
             {"Date Created", "created_at" },
-            {"Duration", "duration" },
+            {"Duration", "durationSpan" },
             {"Title", "title" },
             {"URL", "url" },
             {"Views", "view_count" }
@@ -155,7 +157,8 @@ namespace TwitchClipGrabber
                     }
                     else if (kvp.Key == "Duration")
                     {
-                        field = TimeSpan.Parse(field.ToString().Replace('h', ':').Replace('m', ':').Replace("s", String.Empty)).ToString(@"h\hmm\mss\s");
+                        TimeSpan ts = (TimeSpan)field;
+                        field = string.Format("{0}h{1:D2}m{2:D2}s", ts.Days * 24 + ts.Hours, ts.Minutes, ts.Seconds);
                     }
                     vodAllFields.Add(kvp.Key, field.ToString());
                 }
@@ -289,6 +292,7 @@ namespace TwitchClipGrabber
                 busy = true;
                 busyInt++;
                 progressStatusStrip.Visible = true;
+                progressBar.Visible = true;
                 progressLabel.Text = "Getting Clips...  0%";
 
                 clipCol = new ClipCollection();

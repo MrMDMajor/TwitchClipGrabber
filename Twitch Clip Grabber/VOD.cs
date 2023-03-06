@@ -22,11 +22,7 @@ namespace TwitchClipGrabber
         {
             var xVal = x.GetType().GetProperty(SortField).GetValue(x) as IComparable;
             var yVal = y.GetType().GetProperty(SortField).GetValue(y) as IComparable;
-            if (SortField == "duration")
-            {
-                xVal = TimeSpan.Parse(xVal.ToString().Replace('h', ':').Replace('m', ':').Replace("s", String.Empty));
-                yVal = TimeSpan.Parse(yVal.ToString().Replace('h', ':').Replace('m', ':').Replace("s", String.Empty));
-            }
+
             if (VODSort == SortOrder.Ascending)
             {
                 return xVal.CompareTo(yVal);
@@ -64,6 +60,7 @@ namespace TwitchClipGrabber
         public DateTime created_at { get; set; }
         public string description { get; set; }
         public string duration { get; set; }
+        public TimeSpan durationSpan { get; set; }
         public string id { get; set; }
         public string language { get; set; }
         public object muted_segments { get; set; }

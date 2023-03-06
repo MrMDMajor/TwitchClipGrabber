@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>TwitchClipGrabber</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
@@ -9,7 +9,7 @@
     <ApplicationIcon />
     <StartupObject />
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <Version>0.2.2-beta</Version>
+    <Version>0.2.3</Version>
     <OutputPath>bin\$(Configuration)\$(Version)\TwitchClipGrabber</OutputPath>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <Authors>MDMajor</Authors>

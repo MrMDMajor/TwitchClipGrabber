@@ -321,10 +321,10 @@ namespace TwitchClipGrabber
             this.progressStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.progressBar,
             this.progressLabel});
-            this.progressStatusStrip.Location = new System.Drawing.Point(98, 6);
+            this.progressStatusStrip.Location = new System.Drawing.Point(125, 6);
             this.progressStatusStrip.Name = "progressStatusStrip";
             this.progressStatusStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.progressStatusStrip.Size = new System.Drawing.Size(173, 30);
+            this.progressStatusStrip.Size = new System.Drawing.Size(150, 30);
             this.progressStatusStrip.SizingGrip = false;
             this.progressStatusStrip.TabIndex = 15;
             this.progressStatusStrip.Text = "statusStrip1";
@@ -339,8 +339,7 @@ namespace TwitchClipGrabber
             // 
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.progressLabel.Size = new System.Drawing.Size(23, 25);
-            this.progressLabel.Text = "0%";
+            this.progressLabel.Size = new System.Drawing.Size(0, 25);
             this.progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.progressLabel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.progressLabel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -444,12 +443,12 @@ namespace TwitchClipGrabber
             this.embedPanel.Controls.Add(this.videoEmbed, 0, 0);
             this.embedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.embedPanel.Location = new System.Drawing.Point(0, 0);
-            this.embedPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.embedPanel.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.embedPanel.Name = "embedPanel";
             this.embedPanel.RowCount = 1;
             this.embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 391F));
-            this.embedPanel.Size = new System.Drawing.Size(698, 403);
+            this.embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 403F));
+            this.embedPanel.Size = new System.Drawing.Size(693, 403);
             this.embedPanel.TabIndex = 18;
             this.embedPanel.Resize += new System.EventHandler(this.embedPanel_Resize);
             // 
@@ -460,7 +459,7 @@ namespace TwitchClipGrabber
             this.videoEmbed.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.videoEmbed.CreationProperties = null;
             this.videoEmbed.DefaultBackgroundColor = System.Drawing.Color.Black;
-            this.videoEmbed.Location = new System.Drawing.Point(5, 0);
+            this.videoEmbed.Location = new System.Drawing.Point(2, 0);
             this.videoEmbed.Margin = new System.Windows.Forms.Padding(0);
             this.videoEmbed.Name = "videoEmbed";
             this.videoEmbed.Size = new System.Drawing.Size(688, 403);
@@ -471,8 +470,7 @@ namespace TwitchClipGrabber
             // 
             this.getClipsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.getClipsButton.Location = new System.Drawing.Point(0, 712);
-            this.getClipsButton.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.getClipsButton.Location = new System.Drawing.Point(3, 712);
             this.getClipsButton.Name = "getClipsButton";
             this.getClipsButton.Size = new System.Drawing.Size(94, 30);
             this.getClipsButton.TabIndex = 17;
