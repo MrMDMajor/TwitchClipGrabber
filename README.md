@@ -1,7 +1,7 @@
 # TwitchClipGrabber
 Easy Windows tool for downloading Twitch clips
 
-
+# As of September 1, 2024 this tool in its current form will no longer work due to a change in Twitch's API
 
 
 ![Text](https://i.imgur.com/sHKFVRR.png)
