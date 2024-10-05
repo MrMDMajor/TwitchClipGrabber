@@ -18,6 +18,7 @@ namespace TwitchClipGrabber
         private static YoutubeDL clipDownloader = new();
         private static Queue<Clip> downloadQueue = new();
         private static Queue<string> pathsQueue = new();
+        private static List<string> failedDownloads = new();
         private static bool _isDownloading;
         public static bool isDownloading
         {
@@ -112,7 +113,11 @@ namespace TwitchClipGrabber
                     Output = outputPath
                 }
             );
-            // TODO success check
+            if (!response.Success)
+            {
+                failedDownloads.Add(String.Format("\"{0}\" by {1} (at {2})",
+                        current.title, current.creator_name, TimeSpan.FromSeconds((double)current.vod_offset)));
+            }
 
             if (downloadQueue.Count > 1)
             {
@@ -131,6 +136,18 @@ namespace TwitchClipGrabber
                     form1.progressBar.Value = 0;
                     form1.progressBar.Visible = false;
                     form1.progressLabel.Text = "Download Completed";
+
+                    if (failedDownloads.Count > 0)
+                    {
+                        string message = String.Format("Download failed for {0} clip{1}:",
+                                failedDownloads.Count, failedDownloads.Count == 1 ? "" : "s");
+                        foreach (string c in failedDownloads)
+                        {
+                            message += "\n" + c;
+                        }
+                        MessageBox.Show(message);
+                        failedDownloads.Clear();
+                    }
                 }
             }
         }
