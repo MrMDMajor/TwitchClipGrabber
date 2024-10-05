@@ -19,6 +19,7 @@ namespace TwitchClipGrabber
         private static Queue<Clip> downloadQueue = new();
         private static Queue<string> pathsQueue = new();
         private static List<string> failedDownloads = new();
+        private static bool isFirstDownload = true;
         private static bool _isDownloading;
         public static bool isDownloading
         {
@@ -40,7 +41,6 @@ namespace TwitchClipGrabber
         {
             clipDownloader.IgnoreDownloadErrors = false;
             clipDownloader.OverwriteFiles = false;
-            Utils.DownloadBinaries();
 
             _ = new Http();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
@@ -71,6 +71,17 @@ namespace TwitchClipGrabber
         public static async Task AddToQueue(Queue<Clip> queue, Queue<string> paths)
         {
             form1 = Application.OpenForms["Form1"] as Form1;
+
+            if (isFirstDownload)
+            {
+                isFirstDownload = false;
+                form1.progressBar.Value = 0;
+                form1.progressLabel.Text = "Downloading Dependencies";
+                await Utils.DownloadBinaries();
+                form1.progressLabel.Text = "Checking for Dependency Updates";
+                await clipDownloader.RunUpdate();
+            }
+
             queueStartCount += queue.Count;
             foreach (var clip in queue)
             {
