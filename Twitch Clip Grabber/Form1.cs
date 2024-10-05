@@ -336,6 +336,12 @@ namespace TwitchClipGrabber
         }
         private async void downloadButton_Click(object sender, EventArgs e)
         {
+            if (listView2.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Please select at least one clip!");
+                return;
+            }
+
             var pathsQueue = new Queue<string>();
             var downloadQueue = new Queue<Clip>();
             var result = downloadTarget.ShowDialog();
@@ -349,7 +355,10 @@ namespace TwitchClipGrabber
                     var path = Path.Combine(downloadTarget.SelectedPath, UserSettings.FormatFilename(clipCol.data[item.Index], Properties.Settings.Default.FilenameFormat));
                     pathsQueue.Enqueue(path);
                 }
-                await Program.AddToQueue(downloadQueue, pathsQueue);
+                if (downloadQueue.Count > 0)
+                {
+                    await Program.AddToQueue(downloadQueue, pathsQueue);
+                }
             }
         }
         private void preview_Click(object sender, EventArgs e)
