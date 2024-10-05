@@ -7,12 +7,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using YoutubeDLSharp;
+using YoutubeDLSharp.Options;
 
 namespace TwitchClipGrabber
 {
     static class Program
     {
         private static System.Timers.Timer timer = new();
+        private static YoutubeDL clipDownloader = new();
         private static Queue<Clip> downloadQueue = new();
         private static Queue<string> pathsQueue = new();
         private static bool _isDownloading;
@@ -26,8 +29,6 @@ namespace TwitchClipGrabber
         }
         private static int progress = 0;
         private static int queueStartCount = 0;
-        private static long? downloadSize = 0;
-        private static long? completedSize = 0;
         private static Form1 form1;
 
         /// <summary>
@@ -36,6 +37,9 @@ namespace TwitchClipGrabber
         [STAThread]
         static void Main()
         {
+            clipDownloader.IgnoreDownloadErrors = false;
+            Utils.DownloadBinaries();
+
             _ = new Http();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
@@ -69,10 +73,6 @@ namespace TwitchClipGrabber
             foreach (var clip in queue)
             {
                 downloadQueue.Enqueue(clip);
-                using (var header = await Http.GetHeader(clip.download_url))
-                {
-                    downloadSize += header.Content.Headers.ContentLength;
-                }
             }
             foreach (var path in paths)
             {
@@ -96,22 +96,23 @@ namespace TwitchClipGrabber
         {
             var current = downloadQueue.Peek();
             form1.progressBar.Value = progress++ * 100 / queueStartCount;
-            form1.progressLabel.Text = String.Format("Downloading Clips {0}/{1}\n{2}/{3}", progress, queueStartCount, BytesToReadable(completedSize), BytesToReadable(downloadSize));
-            var response = await Http.GetResponse(current.download_url, false);
-            if (response.IsSuccessStatusCode)
+            form1.progressLabel.Text = String.Format("Downloading Clips {0}/{1}", progress, queueStartCount);
+
+            var outputPath = pathsQueue.Dequeue();
+            if (File.Exists(outputPath))
             {
-                if (!File.Exists(pathsQueue.Peek()))
-                {
-                    using FileStream fs = File.Create(pathsQueue.Dequeue());
-                    await response.Content.CopyToAsync(fs);
-                }
-                else
-                {
-                    using FileStream fs = File.Create(Append(pathsQueue.Dequeue()));
-                    await response.Content.CopyToAsync(fs);
-                }
-                completedSize += response.Content.Headers.ContentLength;
+                outputPath = Append(outputPath);
             }
+
+            var response = await clipDownloader.RunVideoDownload(
+                current.url,
+                overrideOptions: new OptionSet()
+                {
+                    Output = outputPath
+                }
+            );
+            // TODO success check
+
             if (downloadQueue.Count > 1)
             {
                 DequeueItem();
@@ -155,19 +156,6 @@ namespace TwitchClipGrabber
             int num = 0;
             int.TryParse(tokens.Last(), out num);
             return Path.Combine(dir, tokens.First() + '(' + (++num + 1) + ')' + ext);
-        }
-
-        private static string BytesToReadable(long? bytes)
-        {
-            string prefixes = "\u200BkMGT";
-            float bytesF = (float)bytes;
-            int index = 0;
-            while (bytesF >= 1024f)
-            {
-                bytesF /= 1024;
-                index++;
-            }
-            return String.Format("{0} {1}B", bytesF.ToString("F2", CultureInfo.InvariantCulture), prefixes[index]);
         }
     }
 }
