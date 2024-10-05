@@ -38,6 +38,7 @@ namespace TwitchClipGrabber
         static void Main()
         {
             clipDownloader.IgnoreDownloadErrors = false;
+            clipDownloader.OverwriteFiles = false;
             Utils.DownloadBinaries();
 
             _ = new Http();
@@ -155,7 +156,12 @@ namespace TwitchClipGrabber
 
             int num = 0;
             int.TryParse(tokens.Last(), out num);
-            return Path.Combine(dir, tokens.First() + '(' + (++num + 1) + ')' + ext);
+            string newPath;
+            do
+            {
+                newPath = Path.Combine(dir, tokens.First() + '(' + (++num + 1) + ')' + ext);
+            } while (File.Exists(newPath));
+            return newPath;
         }
     }
 }
