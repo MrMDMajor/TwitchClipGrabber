@@ -74,12 +74,29 @@ namespace TwitchClipGrabber
 
             if (isFirstDownload)
             {
-                isFirstDownload = false;
                 form1.progressBar.Value = 0;
                 form1.progressLabel.Text = "Downloading Dependencies";
-                await Utils.DownloadBinaries();
+                try
+                {
+                    await Utils.DownloadBinaries();
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to download dependencies. Please download yt-dlp and ffmpeg yourself from their respective sites, and place the .exe files in the same folder as this tool!");
+                    return;
+                }
+
                 form1.progressLabel.Text = "Checking for Dependency Updates";
-                await clipDownloader.RunUpdate();
+                try
+                {
+                    await clipDownloader.RunUpdate();
+                }
+                catch
+                {
+                    // ignore exception - if the update fails, we can still try to download clips with the old version
+                }
+
+                isFirstDownload = false;
             }
 
             queueStartCount += queue.Count;
