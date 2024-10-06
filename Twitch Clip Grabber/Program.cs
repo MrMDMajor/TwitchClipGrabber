@@ -163,6 +163,7 @@ namespace TwitchClipGrabber
             {
                 downloadQueue.Dequeue();
                 isDownloading = false;
+                currentFileIndex = 0;
                 queueStartCount = 0;
                 mainForm.busyInt--;
                 if (mainForm.busyInt == 0)
