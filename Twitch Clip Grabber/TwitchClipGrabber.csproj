@@ -2,18 +2,19 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <RootNamespace>TwitchClipGrabber</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ApplicationIcon />
-    <StartupObject />
+    <StartupObject>TwitchClipGrabber.Program</StartupObject>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <Version>0.2.3</Version>
-    <OutputPath>bin\$(Configuration)\$(Version)\TwitchClipGrabber</OutputPath>
+    <Version>0.3.0</Version>
+    <OutputPath>bin\$(Configuration)\TwitchClipGrabber</OutputPath>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <Authors>MDMajor</Authors>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <SignAssembly>False</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
