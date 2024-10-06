@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -31,6 +31,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1293.44" />
+    <PackageReference Include="YoutubeDLSharp" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,14 +7,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using YoutubeDLSharp;
+using YoutubeDLSharp.Options;
 
 namespace TwitchClipGrabber
 {
     static class Program
     {
         private static System.Timers.Timer timer = new();
+        private static YoutubeDL clipDownloader = new();
         private static Queue<Clip> downloadQueue = new();
         private static Queue<string> pathsQueue = new();
+        private static List<string> failedDownloads = new();
+        private static bool isFirstDownload = true;
         private static bool _isDownloading;
         public static bool isDownloading
         {
@@ -26,8 +31,6 @@ namespace TwitchClipGrabber
         }
         private static int progress = 0;
         private static int queueStartCount = 0;
-        private static long? downloadSize = 0;
-        private static long? completedSize = 0;
         private static Form1 form1;
 
         /// <summary>
@@ -36,6 +39,9 @@ namespace TwitchClipGrabber
         [STAThread]
         static void Main()
         {
+            clipDownloader.IgnoreDownloadErrors = false;
+            clipDownloader.OverwriteFiles = false;
+
             _ = new Http();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
@@ -65,14 +71,38 @@ namespace TwitchClipGrabber
         public static async Task AddToQueue(Queue<Clip> queue, Queue<string> paths)
         {
             form1 = Application.OpenForms["Form1"] as Form1;
+
+            if (isFirstDownload)
+            {
+                form1.progressBar.Value = 0;
+                form1.progressLabel.Text = "Downloading Dependencies";
+                try
+                {
+                    await Utils.DownloadBinaries();
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to download dependencies. Please download yt-dlp and ffmpeg yourself from their respective sites, and place the .exe files in the same folder as this tool!");
+                    return;
+                }
+
+                form1.progressLabel.Text = "Checking for Dependency Updates";
+                try
+                {
+                    await clipDownloader.RunUpdate();
+                }
+                catch
+                {
+                    // ignore exception - if the update fails, we can still try to download clips with the old version
+                }
+
+                isFirstDownload = false;
+            }
+
             queueStartCount += queue.Count;
             foreach (var clip in queue)
             {
                 downloadQueue.Enqueue(clip);
-                using (var header = await Http.GetHeader(clip.download_url))
-                {
-                    downloadSize += header.Content.Headers.ContentLength;
-                }
             }
             foreach (var path in paths)
             {
@@ -96,22 +126,27 @@ namespace TwitchClipGrabber
         {
             var current = downloadQueue.Peek();
             form1.progressBar.Value = progress++ * 100 / queueStartCount;
-            form1.progressLabel.Text = String.Format("Downloading Clips {0}/{1}\n{2}/{3}", progress, queueStartCount, BytesToReadable(completedSize), BytesToReadable(downloadSize));
-            var response = await Http.GetResponse(current.download_url, false);
-            if (response.IsSuccessStatusCode)
+            form1.progressLabel.Text = String.Format("Downloading Clips {0}/{1}", progress, queueStartCount);
+
+            var outputPath = pathsQueue.Dequeue();
+            if (File.Exists(outputPath))
             {
-                if (!File.Exists(pathsQueue.Peek()))
-                {
-                    using FileStream fs = File.Create(pathsQueue.Dequeue());
-                    await response.Content.CopyToAsync(fs);
-                }
-                else
-                {
-                    using FileStream fs = File.Create(Append(pathsQueue.Dequeue()));
-                    await response.Content.CopyToAsync(fs);
-                }
-                completedSize += response.Content.Headers.ContentLength;
+                outputPath = Append(outputPath);
             }
+
+            var response = await clipDownloader.RunVideoDownload(
+                current.url,
+                overrideOptions: new OptionSet()
+                {
+                    Output = outputPath
+                }
+            );
+            if (!response.Success)
+            {
+                failedDownloads.Add(String.Format("\"{0}\" by {1} (at {2})",
+                        current.title, current.creator_name, TimeSpan.FromSeconds((double)current.vod_offset)));
+            }
+
             if (downloadQueue.Count > 1)
             {
                 DequeueItem();
@@ -129,6 +164,18 @@ namespace TwitchClipGrabber
                     form1.progressBar.Value = 0;
                     form1.progressBar.Visible = false;
                     form1.progressLabel.Text = "Download Completed";
+
+                    if (failedDownloads.Count > 0)
+                    {
+                        string message = String.Format("Download failed for {0} clip{1}:",
+                                failedDownloads.Count, failedDownloads.Count == 1 ? "" : "s");
+                        foreach (string c in failedDownloads)
+                        {
+                            message += "\n" + c;
+                        }
+                        MessageBox.Show(message);
+                        failedDownloads.Clear();
+                    }
                 }
             }
         }
@@ -154,20 +201,12 @@ namespace TwitchClipGrabber
 
             int num = 0;
             int.TryParse(tokens.Last(), out num);
-            return Path.Combine(dir, tokens.First() + '(' + (++num + 1) + ')' + ext);
-        }
-
-        private static string BytesToReadable(long? bytes)
-        {
-            string prefixes = "\u200BkMGT";
-            float bytesF = (float)bytes;
-            int index = 0;
-            while (bytesF >= 1024f)
+            string newPath;
+            do
             {
-                bytesF /= 1024;
-                index++;
-            }
-            return String.Format("{0} {1}B", bytesF.ToString("F2", CultureInfo.InvariantCulture), prefixes[index]);
+                newPath = Path.Combine(dir, tokens.First() + '(' + (++num + 1) + ')' + ext);
+            } while (File.Exists(newPath));
+            return newPath;
         }
     }
 }
