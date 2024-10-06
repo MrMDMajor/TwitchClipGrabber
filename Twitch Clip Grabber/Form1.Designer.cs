@@ -29,482 +29,479 @@ namespace TwitchClipGrabber
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.submit = new System.Windows.Forms.Button();
-            this.username = new System.Windows.Forms.TextBox();
-            this.listView1 = new TwitchClipGrabber.CustomListView();
-            this.vodTitle = new System.Windows.Forms.ColumnHeader();
-            this.vodDateCreated = new System.Windows.Forms.ColumnHeader();
-            this.vodDuration = new System.Windows.Forms.ColumnHeader();
-            this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.settingsButton = new System.Windows.Forms.Button();
-            this.authorizeButton = new System.Windows.Forms.Button();
-            this.inputPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.username_label = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.downloadButton = new System.Windows.Forms.Button();
-            this.deselectAllButton = new System.Windows.Forms.Button();
-            this.selectAllButton = new System.Windows.Forms.Button();
-            this.playSelectedButton = new System.Windows.Forms.Button();
-            this.progressStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mainPanels = new System.Windows.Forms.TableLayoutPanel();
-            this.rightPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.listView2 = new TwitchClipGrabber.CustomListView();
-            this.clipTitle = new System.Windows.Forms.ColumnHeader();
-            this.clipCreator = new System.Windows.Forms.ColumnHeader();
-            this.clipDate = new System.Windows.Forms.ColumnHeader();
-            this.clipVodTimestamp = new System.Windows.Forms.ColumnHeader();
-            this.clipDuration = new System.Windows.Forms.ColumnHeader();
-            this.embedPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.videoEmbed = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.getClipsButton = new System.Windows.Forms.Button();
-            this.downloadTarget = new System.Windows.Forms.FolderBrowserDialog();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.mainLayout.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.inputPanel.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.progressStatusStrip.SuspendLayout();
-            this.mainPanels.SuspendLayout();
-            this.rightPanel.SuspendLayout();
-            this.embedPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.videoEmbed)).BeginInit();
-            this.SuspendLayout();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            button1 = new System.Windows.Forms.Button();
+            button2 = new System.Windows.Forms.Button();
+            submit = new System.Windows.Forms.Button();
+            username = new System.Windows.Forms.TextBox();
+            listView1 = new CustomListView();
+            vodTitle = new System.Windows.Forms.ColumnHeader();
+            vodDateCreated = new System.Windows.Forms.ColumnHeader();
+            vodDuration = new System.Windows.Forms.ColumnHeader();
+            mainLayout = new System.Windows.Forms.TableLayoutPanel();
+            tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            settingsButton = new System.Windows.Forms.Button();
+            authorizeButton = new System.Windows.Forms.Button();
+            inputPanel = new System.Windows.Forms.TableLayoutPanel();
+            username_label = new System.Windows.Forms.Label();
+            flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            downloadButton = new System.Windows.Forms.Button();
+            deselectAllButton = new System.Windows.Forms.Button();
+            selectAllButton = new System.Windows.Forms.Button();
+            playSelectedButton = new System.Windows.Forms.Button();
+            progressStatusStrip = new System.Windows.Forms.StatusStrip();
+            progressBar = new System.Windows.Forms.ToolStripProgressBar();
+            progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            mainPanels = new System.Windows.Forms.TableLayoutPanel();
+            rightPanel = new System.Windows.Forms.TableLayoutPanel();
+            listView2 = new CustomListView();
+            clipTitle = new System.Windows.Forms.ColumnHeader();
+            clipCreator = new System.Windows.Forms.ColumnHeader();
+            clipDate = new System.Windows.Forms.ColumnHeader();
+            clipVodTimestamp = new System.Windows.Forms.ColumnHeader();
+            clipDuration = new System.Windows.Forms.ColumnHeader();
+            embedPanel = new System.Windows.Forms.TableLayoutPanel();
+            videoEmbed = new Microsoft.Web.WebView2.WinForms.WebView2();
+            leftButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
+            getClipsButton = new System.Windows.Forms.Button();
+            downloadTarget = new System.Windows.Forms.FolderBrowserDialog();
+            tableLayoutPanel1.SuspendLayout();
+            mainLayout.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            inputPanel.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            progressStatusStrip.SuspendLayout();
+            mainPanels.SuspendLayout();
+            rightPanel.SuspendLayout();
+            embedPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)videoEmbed).BeginInit();
+            leftButtonPanel.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 100);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(button1, 0, 2);
+            tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 43);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 54);
-            this.button1.TabIndex = 0;
+            button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            button1.Location = new System.Drawing.Point(3, 43);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(94, 54);
+            button1.TabIndex = 0;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(20, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
+            button2.Location = new System.Drawing.Point(20, 20);
+            button2.Name = "button2";
+            button2.Size = new System.Drawing.Size(75, 23);
+            button2.TabIndex = 0;
             // 
             // submit
             // 
-            this.submit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.submit.Location = new System.Drawing.Point(454, 3);
-            this.submit.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(119, 30);
-            this.submit.TabIndex = 2;
-            this.submit.Text = "Submit";
-            this.submit.UseVisualStyleBackColor = true;
-            this.submit.Click += new System.EventHandler(this.submit_Click);
+            submit.Dock = System.Windows.Forms.DockStyle.Fill;
+            submit.Location = new System.Drawing.Point(484, 3);
+            submit.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            submit.Name = "submit";
+            submit.Size = new System.Drawing.Size(119, 30);
+            submit.TabIndex = 2;
+            submit.Text = "Submit";
+            submit.UseVisualStyleBackColor = true;
+            submit.Click += submit_Click;
             // 
             // username
             // 
-            this.username.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.username.Location = new System.Drawing.Point(73, 6);
-            this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(375, 23);
-            this.username.TabIndex = 0;
+            username.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            username.Location = new System.Drawing.Point(73, 6);
+            username.Name = "username";
+            username.Size = new System.Drawing.Size(405, 23);
+            username.TabIndex = 0;
             // 
             // listView1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.vodTitle,
-            this.vodDateCreated,
-            this.vodDuration});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(572, 673);
-            this.listView1.SortedColumnIndex = -1;
-            this.listView1.TabIndex = 8;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
-            this.listView1.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.listView_ColumnWidthChanged);
-            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.getClipsButton_Click);
+            listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { vodTitle, vodDateCreated, vodDuration });
+            listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            listView1.FullRowSelect = true;
+            listView1.Location = new System.Drawing.Point(0, 0);
+            listView1.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
+            listView1.MultiSelect = false;
+            listView1.Name = "listView1";
+            listView1.Size = new System.Drawing.Size(602, 673);
+            listView1.SortedColumnIndex = -1;
+            listView1.TabIndex = 8;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = System.Windows.Forms.View.Details;
+            listView1.ColumnClick += listView1_ColumnClick;
+            listView1.ColumnWidthChanged += listView_ColumnWidthChanged;
+            listView1.MouseDoubleClick += getClipsButton_Click;
             // 
             // vodTitle
             // 
-            this.vodTitle.Text = "Title";
-            this.vodTitle.Width = 350;
+            vodTitle.Text = "Title";
+            vodTitle.Width = 350;
             // 
             // vodDateCreated
             // 
-            this.vodDateCreated.Text = "Date Created";
-            this.vodDateCreated.Width = 100;
+            vodDateCreated.Text = "Date Created";
+            vodDateCreated.Width = 100;
             // 
             // vodDuration
             // 
-            this.vodDuration.Text = "Duration";
+            vodDuration.Text = "Duration";
             // 
             // mainLayout
             // 
-            this.mainLayout.ColumnCount = 2;
-            this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.mainLayout.Controls.Add(this.tableLayoutPanel2, 1, 0);
-            this.mainLayout.Controls.Add(this.inputPanel, 0, 0);
-            this.mainLayout.Controls.Add(this.flowLayoutPanel2, 1, 2);
-            this.mainLayout.Controls.Add(this.mainPanels, 0, 1);
-            this.mainLayout.Controls.Add(this.getClipsButton, 0, 2);
-            this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainLayout.Location = new System.Drawing.Point(0, 0);
-            this.mainLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.mainLayout.Name = "mainLayout";
-            this.mainLayout.RowCount = 3;
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.mainLayout.Size = new System.Drawing.Size(1274, 745);
-            this.mainLayout.TabIndex = 14;
+            mainLayout.ColumnCount = 2;
+            mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            mainLayout.Controls.Add(tableLayoutPanel2, 1, 0);
+            mainLayout.Controls.Add(inputPanel, 0, 0);
+            mainLayout.Controls.Add(flowLayoutPanel2, 1, 2);
+            mainLayout.Controls.Add(mainPanels, 0, 1);
+            mainLayout.Controls.Add(leftButtonPanel, 0, 2);
+            mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            mainLayout.Location = new System.Drawing.Point(0, 0);
+            mainLayout.Margin = new System.Windows.Forms.Padding(0);
+            mainLayout.Name = "mainLayout";
+            mainLayout.RowCount = 3;
+            mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            mainLayout.Size = new System.Drawing.Size(1341, 745);
+            mainLayout.TabIndex = 14;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.settingsButton, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.authorizeButton, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(573, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(701, 36);
-            this.tableLayoutPanel2.TabIndex = 2;
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel2.Controls.Add(settingsButton, 2, 0);
+            tableLayoutPanel2.Controls.Add(authorizeButton, 1, 0);
+            tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel2.Location = new System.Drawing.Point(603, 0);
+            tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(738, 36);
+            tableLayoutPanel2.TabIndex = 2;
             // 
             // settingsButton
             // 
-            this.settingsButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.settingsButton.Location = new System.Drawing.Point(614, 3);
-            this.settingsButton.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
-            this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(86, 30);
-            this.settingsButton.TabIndex = 1;
-            this.settingsButton.Text = "Settings";
-            this.settingsButton.UseVisualStyleBackColor = true;
-            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            settingsButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            settingsButton.Location = new System.Drawing.Point(651, 3);
+            settingsButton.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
+            settingsButton.Name = "settingsButton";
+            settingsButton.Size = new System.Drawing.Size(86, 30);
+            settingsButton.TabIndex = 1;
+            settingsButton.Text = "Settings";
+            settingsButton.UseVisualStyleBackColor = true;
+            settingsButton.Click += settingsButton_Click;
             // 
             // authorizeButton
             // 
-            this.authorizeButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.authorizeButton.Location = new System.Drawing.Point(526, 3);
-            this.authorizeButton.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
-            this.authorizeButton.Name = "authorizeButton";
-            this.authorizeButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.authorizeButton.Size = new System.Drawing.Size(86, 30);
-            this.authorizeButton.TabIndex = 0;
-            this.authorizeButton.Text = "Authenticate";
-            this.authorizeButton.UseVisualStyleBackColor = true;
-            this.authorizeButton.Click += new System.EventHandler(this.authorizeButton_Click);
+            authorizeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            authorizeButton.Location = new System.Drawing.Point(563, 3);
+            authorizeButton.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
+            authorizeButton.Name = "authorizeButton";
+            authorizeButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            authorizeButton.Size = new System.Drawing.Size(86, 30);
+            authorizeButton.TabIndex = 0;
+            authorizeButton.Text = "Authenticate";
+            authorizeButton.UseVisualStyleBackColor = true;
+            authorizeButton.Click += authorizeButton_Click;
             // 
             // inputPanel
             // 
-            this.inputPanel.ColumnCount = 3;
-            this.inputPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.inputPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.inputPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
-            this.inputPanel.Controls.Add(this.username, 1, 0);
-            this.inputPanel.Controls.Add(this.username_label, 0, 0);
-            this.inputPanel.Controls.Add(this.submit, 2, 0);
-            this.inputPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputPanel.Location = new System.Drawing.Point(0, 0);
-            this.inputPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.inputPanel.Name = "inputPanel";
-            this.inputPanel.RowCount = 1;
-            this.inputPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.inputPanel.Size = new System.Drawing.Size(573, 36);
-            this.inputPanel.TabIndex = 16;
+            inputPanel.ColumnCount = 3;
+            inputPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            inputPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            inputPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
+            inputPanel.Controls.Add(username, 1, 0);
+            inputPanel.Controls.Add(username_label, 0, 0);
+            inputPanel.Controls.Add(submit, 2, 0);
+            inputPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            inputPanel.Location = new System.Drawing.Point(0, 0);
+            inputPanel.Margin = new System.Windows.Forms.Padding(0);
+            inputPanel.Name = "inputPanel";
+            inputPanel.RowCount = 1;
+            inputPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            inputPanel.Size = new System.Drawing.Size(603, 36);
+            inputPanel.TabIndex = 16;
             // 
             // username_label
             // 
-            this.username_label.AutoSize = true;
-            this.username_label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.username_label.Location = new System.Drawing.Point(3, 0);
-            this.username_label.Name = "username_label";
-            this.username_label.Size = new System.Drawing.Size(64, 36);
-            this.username_label.TabIndex = 1;
-            this.username_label.Text = "Username";
-            this.username_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            username_label.AutoSize = true;
+            username_label.Dock = System.Windows.Forms.DockStyle.Fill;
+            username_label.Location = new System.Drawing.Point(3, 0);
+            username_label.Name = "username_label";
+            username_label.Size = new System.Drawing.Size(64, 36);
+            username_label.TabIndex = 1;
+            username_label.Text = "Username";
+            username_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.downloadButton);
-            this.flowLayoutPanel2.Controls.Add(this.deselectAllButton);
-            this.flowLayoutPanel2.Controls.Add(this.selectAllButton);
-            this.flowLayoutPanel2.Controls.Add(this.playSelectedButton);
-            this.flowLayoutPanel2.Controls.Add(this.progressStatusStrip);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(573, 709);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(701, 36);
-            this.flowLayoutPanel2.TabIndex = 14;
+            flowLayoutPanel2.Controls.Add(downloadButton);
+            flowLayoutPanel2.Controls.Add(deselectAllButton);
+            flowLayoutPanel2.Controls.Add(selectAllButton);
+            flowLayoutPanel2.Controls.Add(playSelectedButton);
+            flowLayoutPanel2.Controls.Add(progressStatusStrip);
+            flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            flowLayoutPanel2.Location = new System.Drawing.Point(603, 709);
+            flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new System.Drawing.Size(738, 36);
+            flowLayoutPanel2.TabIndex = 14;
             // 
             // downloadButton
             // 
-            this.downloadButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.downloadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.downloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.downloadButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.downloadButton.Location = new System.Drawing.Point(583, 3);
-            this.downloadButton.Name = "downloadButton";
-            this.downloadButton.Size = new System.Drawing.Size(115, 30);
-            this.downloadButton.TabIndex = 11;
-            this.downloadButton.Text = "Download";
-            this.downloadButton.UseVisualStyleBackColor = false;
-            this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
+            downloadButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            downloadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            downloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            downloadButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            downloadButton.Location = new System.Drawing.Point(620, 3);
+            downloadButton.Name = "downloadButton";
+            downloadButton.Size = new System.Drawing.Size(115, 30);
+            downloadButton.TabIndex = 11;
+            downloadButton.Text = "Download";
+            downloadButton.UseVisualStyleBackColor = false;
+            downloadButton.Click += downloadButton_Click;
             // 
             // deselectAllButton
             // 
-            this.deselectAllButton.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.deselectAllButton.Location = new System.Drawing.Point(487, 3);
-            this.deselectAllButton.Name = "deselectAllButton";
-            this.deselectAllButton.Size = new System.Drawing.Size(90, 30);
-            this.deselectAllButton.TabIndex = 13;
-            this.deselectAllButton.Text = "Uncheck All";
-            this.deselectAllButton.UseVisualStyleBackColor = false;
-            this.deselectAllButton.Click += new System.EventHandler(this.deselectAllButton_Click);
+            deselectAllButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            deselectAllButton.Location = new System.Drawing.Point(524, 3);
+            deselectAllButton.Name = "deselectAllButton";
+            deselectAllButton.Size = new System.Drawing.Size(90, 30);
+            deselectAllButton.TabIndex = 13;
+            deselectAllButton.Text = "Uncheck All";
+            deselectAllButton.UseVisualStyleBackColor = false;
+            deselectAllButton.Click += deselectAllButton_Click;
             // 
             // selectAllButton
             // 
-            this.selectAllButton.Location = new System.Drawing.Point(391, 3);
-            this.selectAllButton.Name = "selectAllButton";
-            this.selectAllButton.Size = new System.Drawing.Size(90, 30);
-            this.selectAllButton.TabIndex = 12;
-            this.selectAllButton.Text = "Check All";
-            this.selectAllButton.UseVisualStyleBackColor = true;
-            this.selectAllButton.Click += new System.EventHandler(this.selectAllButton_Click);
+            selectAllButton.Location = new System.Drawing.Point(428, 3);
+            selectAllButton.Name = "selectAllButton";
+            selectAllButton.Size = new System.Drawing.Size(90, 30);
+            selectAllButton.TabIndex = 12;
+            selectAllButton.Text = "Check All";
+            selectAllButton.UseVisualStyleBackColor = true;
+            selectAllButton.Click += selectAllButton_Click;
             // 
             // playSelectedButton
             // 
-            this.playSelectedButton.Location = new System.Drawing.Point(278, 3);
-            this.playSelectedButton.Name = "playSelectedButton";
-            this.playSelectedButton.Size = new System.Drawing.Size(107, 30);
-            this.playSelectedButton.TabIndex = 14;
-            this.playSelectedButton.Text = "Preview Selected";
-            this.playSelectedButton.UseVisualStyleBackColor = true;
-            this.playSelectedButton.Click += new System.EventHandler(this.preview_Click);
+            playSelectedButton.Location = new System.Drawing.Point(315, 3);
+            playSelectedButton.Name = "playSelectedButton";
+            playSelectedButton.Size = new System.Drawing.Size(107, 30);
+            playSelectedButton.TabIndex = 14;
+            playSelectedButton.Text = "Preview Selected";
+            playSelectedButton.UseVisualStyleBackColor = true;
+            playSelectedButton.Click += preview_Click;
             // 
             // progressStatusStrip
             // 
-            this.progressStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.progressBar,
-            this.progressLabel});
-            this.progressStatusStrip.Location = new System.Drawing.Point(125, 6);
-            this.progressStatusStrip.Name = "progressStatusStrip";
-            this.progressStatusStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.progressStatusStrip.Size = new System.Drawing.Size(150, 30);
-            this.progressStatusStrip.SizingGrip = false;
-            this.progressStatusStrip.TabIndex = 15;
-            this.progressStatusStrip.Text = "statusStrip1";
-            this.progressStatusStrip.Visible = false;
+            progressStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { progressBar, progressLabel });
+            progressStatusStrip.Location = new System.Drawing.Point(125, 6);
+            progressStatusStrip.Name = "progressStatusStrip";
+            progressStatusStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            progressStatusStrip.Size = new System.Drawing.Size(150, 30);
+            progressStatusStrip.SizingGrip = false;
+            progressStatusStrip.TabIndex = 15;
+            progressStatusStrip.Text = "statusStrip1";
+            progressStatusStrip.Visible = false;
             // 
             // progressBar
             // 
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(100, 24);
+            progressBar.Name = "progressBar";
+            progressBar.Size = new System.Drawing.Size(100, 24);
             // 
             // progressLabel
             // 
-            this.progressLabel.Name = "progressLabel";
-            this.progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.progressLabel.Size = new System.Drawing.Size(0, 25);
-            this.progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.progressLabel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-            this.progressLabel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            progressLabel.Name = "progressLabel";
+            progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            progressLabel.Size = new System.Drawing.Size(0, 25);
+            progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            progressLabel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            progressLabel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // mainPanels
             // 
-            this.mainPanels.ColumnCount = 2;
-            this.mainLayout.SetColumnSpan(this.mainPanels, 2);
-            this.mainPanels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.mainPanels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.mainPanels.Controls.Add(this.rightPanel, 0, 0);
-            this.mainPanels.Controls.Add(this.listView1, 0, 0);
-            this.mainPanels.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanels.Location = new System.Drawing.Point(0, 36);
-            this.mainPanels.Margin = new System.Windows.Forms.Padding(0);
-            this.mainPanels.Name = "mainPanels";
-            this.mainPanels.RowCount = 1;
-            this.mainPanels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainPanels.Size = new System.Drawing.Size(1274, 673);
-            this.mainPanels.TabIndex = 17;
-            this.mainPanels.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mainPanels_MouseDown);
-            this.mainPanels.MouseLeave += new System.EventHandler(this.mainPanels_MouseLeave);
-            this.mainPanels.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainPanels_MouseMove);
-            this.mainPanels.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mainPanels_MouseUp);
+            mainPanels.ColumnCount = 2;
+            mainLayout.SetColumnSpan(mainPanels, 2);
+            mainPanels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            mainPanels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            mainPanels.Controls.Add(rightPanel, 0, 0);
+            mainPanels.Controls.Add(listView1, 0, 0);
+            mainPanels.Dock = System.Windows.Forms.DockStyle.Fill;
+            mainPanels.Location = new System.Drawing.Point(0, 36);
+            mainPanels.Margin = new System.Windows.Forms.Padding(0);
+            mainPanels.Name = "mainPanels";
+            mainPanels.RowCount = 1;
+            mainPanels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            mainPanels.Size = new System.Drawing.Size(1341, 673);
+            mainPanels.TabIndex = 17;
+            mainPanels.MouseDown += mainPanels_MouseDown;
+            mainPanels.MouseLeave += mainPanels_MouseLeave;
+            mainPanels.MouseMove += mainPanels_MouseMove;
+            mainPanels.MouseUp += mainPanels_MouseUp;
             // 
             // rightPanel
             // 
-            this.rightPanel.ColumnCount = 1;
-            this.rightPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.rightPanel.Controls.Add(this.listView2, 0, 1);
-            this.rightPanel.Controls.Add(this.embedPanel, 0, 0);
-            this.rightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightPanel.Location = new System.Drawing.Point(576, 0);
-            this.rightPanel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.rightPanel.Name = "rightPanel";
-            this.rightPanel.RowCount = 2;
-            this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.rightPanel.Size = new System.Drawing.Size(698, 673);
-            this.rightPanel.TabIndex = 2;
-            this.rightPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rightPanel_MouseDown);
-            this.rightPanel.MouseLeave += new System.EventHandler(this.mainPanels_MouseLeave);
-            this.rightPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.rightPanel_MouseMove);
-            this.rightPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mainPanels_MouseUp);
+            rightPanel.ColumnCount = 1;
+            rightPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            rightPanel.Controls.Add(listView2, 0, 1);
+            rightPanel.Controls.Add(embedPanel, 0, 0);
+            rightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            rightPanel.Location = new System.Drawing.Point(606, 0);
+            rightPanel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            rightPanel.Name = "rightPanel";
+            rightPanel.RowCount = 2;
+            rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            rightPanel.Size = new System.Drawing.Size(735, 673);
+            rightPanel.TabIndex = 2;
+            rightPanel.MouseDown += rightPanel_MouseDown;
+            rightPanel.MouseLeave += mainPanels_MouseLeave;
+            rightPanel.MouseMove += rightPanel_MouseMove;
+            rightPanel.MouseUp += mainPanels_MouseUp;
             // 
             // listView2
             // 
-            this.listView2.CheckBoxes = true;
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.clipTitle,
-            this.clipCreator,
-            this.clipDate,
-            this.clipVodTimestamp,
-            this.clipDuration});
-            this.rightPanel.SetColumnSpan(this.listView2, 3);
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.FullRowSelect = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(0, 406);
-            this.listView2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.listView2.MultiSelect = false;
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(698, 267);
-            this.listView2.SortedColumnIndex = -1;
-            this.listView2.TabIndex = 9;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView2_ColumnClick);
-            this.listView2.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.listView_ColumnWidthChanged);
-            this.listView2.DoubleClick += new System.EventHandler(this.preview_Click);
+            listView2.CheckBoxes = true;
+            listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { clipTitle, clipCreator, clipDate, clipVodTimestamp, clipDuration });
+            rightPanel.SetColumnSpan(listView2, 3);
+            listView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            listView2.FullRowSelect = true;
+            listView2.Location = new System.Drawing.Point(0, 406);
+            listView2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            listView2.MultiSelect = false;
+            listView2.Name = "listView2";
+            listView2.Size = new System.Drawing.Size(735, 267);
+            listView2.SortedColumnIndex = -1;
+            listView2.TabIndex = 9;
+            listView2.UseCompatibleStateImageBehavior = false;
+            listView2.View = System.Windows.Forms.View.Details;
+            listView2.ColumnClick += listView2_ColumnClick;
+            listView2.ColumnWidthChanged += listView_ColumnWidthChanged;
+            listView2.DoubleClick += preview_Click;
             // 
             // clipTitle
             // 
-            this.clipTitle.Text = "Title";
-            this.clipTitle.Width = 290;
+            clipTitle.Text = "Title";
+            clipTitle.Width = 290;
             // 
             // clipCreator
             // 
-            this.clipCreator.Text = "Creator";
-            this.clipCreator.Width = 120;
+            clipCreator.Text = "Creator";
+            clipCreator.Width = 120;
             // 
             // clipDate
             // 
-            this.clipDate.Text = "VOD Date";
-            this.clipDate.Width = 70;
+            clipDate.Text = "VOD Date";
+            clipDate.Width = 70;
             // 
             // clipVodTimestamp
             // 
-            this.clipVodTimestamp.Text = "VOD Timestamp";
-            this.clipVodTimestamp.Width = 75;
+            clipVodTimestamp.Text = "VOD Timestamp";
+            clipVodTimestamp.Width = 75;
             // 
             // clipDuration
             // 
-            this.clipDuration.Text = "Duration";
+            clipDuration.Text = "Duration";
             // 
             // embedPanel
             // 
-            this.embedPanel.ColumnCount = 1;
-            this.embedPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.embedPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.embedPanel.Controls.Add(this.videoEmbed, 0, 0);
-            this.embedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.embedPanel.Location = new System.Drawing.Point(0, 0);
-            this.embedPanel.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.embedPanel.Name = "embedPanel";
-            this.embedPanel.RowCount = 1;
-            this.embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 403F));
-            this.embedPanel.Size = new System.Drawing.Size(693, 403);
-            this.embedPanel.TabIndex = 18;
-            this.embedPanel.Resize += new System.EventHandler(this.embedPanel_Resize);
+            embedPanel.ColumnCount = 1;
+            embedPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            embedPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            embedPanel.Controls.Add(videoEmbed, 0, 0);
+            embedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            embedPanel.Location = new System.Drawing.Point(0, 0);
+            embedPanel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            embedPanel.Name = "embedPanel";
+            embedPanel.RowCount = 1;
+            embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            embedPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 403F));
+            embedPanel.Size = new System.Drawing.Size(732, 403);
+            embedPanel.TabIndex = 18;
+            embedPanel.Resize += embedPanel_Resize;
             // 
             // videoEmbed
             // 
-            this.videoEmbed.AllowExternalDrop = true;
-            this.videoEmbed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.videoEmbed.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.videoEmbed.CreationProperties = null;
-            this.videoEmbed.DefaultBackgroundColor = System.Drawing.Color.Black;
-            this.videoEmbed.Location = new System.Drawing.Point(2, 0);
-            this.videoEmbed.Margin = new System.Windows.Forms.Padding(0);
-            this.videoEmbed.Name = "videoEmbed";
-            this.videoEmbed.Size = new System.Drawing.Size(688, 403);
-            this.videoEmbed.TabIndex = 10;
-            this.videoEmbed.ZoomFactor = 1D;
+            videoEmbed.AllowExternalDrop = true;
+            videoEmbed.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
+            videoEmbed.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            videoEmbed.CreationProperties = null;
+            videoEmbed.DefaultBackgroundColor = System.Drawing.Color.Black;
+            videoEmbed.Location = new System.Drawing.Point(22, 0);
+            videoEmbed.Margin = new System.Windows.Forms.Padding(0);
+            videoEmbed.Name = "videoEmbed";
+            videoEmbed.Size = new System.Drawing.Size(688, 403);
+            videoEmbed.TabIndex = 10;
+            videoEmbed.ZoomFactor = 1D;
+            // 
+            // leftButtonPanel
+            // 
+            leftButtonPanel.Controls.Add(getClipsButton);
+            leftButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            leftButtonPanel.Location = new System.Drawing.Point(0, 709);
+            leftButtonPanel.Margin = new System.Windows.Forms.Padding(0);
+            leftButtonPanel.Name = "leftButtonPanel";
+            leftButtonPanel.Size = new System.Drawing.Size(603, 36);
+            leftButtonPanel.TabIndex = 18;
             // 
             // getClipsButton
             // 
-            this.getClipsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.getClipsButton.Location = new System.Drawing.Point(3, 712);
-            this.getClipsButton.Name = "getClipsButton";
-            this.getClipsButton.Size = new System.Drawing.Size(94, 30);
-            this.getClipsButton.TabIndex = 17;
-            this.getClipsButton.Text = "Get Clips";
-            this.getClipsButton.UseVisualStyleBackColor = true;
-            this.getClipsButton.Click += new System.EventHandler(this.getClipsButton_Click);
+            getClipsButton.Location = new System.Drawing.Point(3, 3);
+            getClipsButton.Name = "getClipsButton";
+            getClipsButton.Size = new System.Drawing.Size(94, 30);
+            getClipsButton.TabIndex = 18;
+            getClipsButton.Text = "Get Clips";
+            getClipsButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AcceptButton = this.submit;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1274, 745);
-            this.Controls.Add(this.mainLayout);
-            this.Name = "Form1";
-            this.Text = "Twitch Clip Grabber";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Shown += new System.EventHandler(this.CheckToken);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.mainLayout.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.inputPanel.ResumeLayout(false);
-            this.inputPanel.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.progressStatusStrip.ResumeLayout(false);
-            this.progressStatusStrip.PerformLayout();
-            this.mainPanels.ResumeLayout(false);
-            this.rightPanel.ResumeLayout(false);
-            this.embedPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.videoEmbed)).EndInit();
-            this.ResumeLayout(false);
-
+            AcceptButton = submit;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1341, 745);
+            Controls.Add(mainLayout);
+            Name = "Form1";
+            Text = "Twitch Clip Grabber";
+            FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
+            Shown += CheckToken;
+            tableLayoutPanel1.ResumeLayout(false);
+            mainLayout.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            inputPanel.ResumeLayout(false);
+            inputPanel.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
+            progressStatusStrip.ResumeLayout(false);
+            progressStatusStrip.PerformLayout();
+            mainPanels.ResumeLayout(false);
+            rightPanel.ResumeLayout(false);
+            embedPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)videoEmbed).EndInit();
+            leftButtonPanel.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -529,7 +526,6 @@ namespace TwitchClipGrabber
         private System.Windows.Forms.Button selectAllButton;
         private System.Windows.Forms.Button downloadButton;
         private System.Windows.Forms.TableLayoutPanel inputPanel;
-        private System.Windows.Forms.Button getClipsButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel mainPanels;
         private System.Windows.Forms.TableLayoutPanel embedPanel;
@@ -543,6 +539,8 @@ namespace TwitchClipGrabber
         private System.Windows.Forms.Button settingsButton;
         private System.Windows.Forms.Button authorizeButton;
         private System.Windows.Forms.Label username_label;
+        private System.Windows.Forms.FlowLayoutPanel leftButtonPanel;
+        private System.Windows.Forms.Button getClipsButton;
     }
 }
 

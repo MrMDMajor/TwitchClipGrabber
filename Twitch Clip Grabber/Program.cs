@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,9 +28,9 @@ namespace TwitchClipGrabber
                 _isDownloading = value;
             }
         }
-        private static int progress = 0;
+        private static int currentFileIndex = 0;
         private static int queueStartCount = 0;
-        private static Form1 form1;
+        public static Form1 mainForm;
 
         /// <summary>
         ///  The main entry point for the application.
@@ -70,12 +69,10 @@ namespace TwitchClipGrabber
 
         public static async Task AddToQueue(Queue<Clip> queue, Queue<string> paths)
         {
-            form1 = Application.OpenForms["Form1"] as Form1;
-
             if (isFirstDownload)
             {
-                form1.progressBar.Value = 0;
-                form1.progressLabel.Text = "Downloading Dependencies";
+                mainForm.progressBar.Value = 0;
+                mainForm.progressLabel.Text = "Downloading Dependencies";
                 try
                 {
                     await Utils.DownloadBinaries();
@@ -86,7 +83,7 @@ namespace TwitchClipGrabber
                     return;
                 }
 
-                form1.progressLabel.Text = "Checking for Dependency Updates";
+                mainForm.progressLabel.Text = "Checking for Dependency Updates";
                 try
                 {
                     await clipDownloader.RunUpdate();
@@ -111,7 +108,7 @@ namespace TwitchClipGrabber
             if (!isDownloading)
             {
                 isDownloading = true;
-                form1.busyInt++;
+                mainForm.busyInt++;
                 await DownloadNext();
             }
         }
@@ -125,9 +122,22 @@ namespace TwitchClipGrabber
         private static async Task DownloadNext()
         {
             var current = downloadQueue.Peek();
-            form1.progressBar.Value = progress++ * 100 / queueStartCount;
-            form1.progressLabel.Text = String.Format("Downloading Clips {0}/{1}", progress, queueStartCount);
+            var totalSize = 0f;
+            var sizeUnit = "";
+            var progress = new Progress<DownloadProgress>(p => {
+                if (totalSize == 0f)
+                {
+                    (totalSize, sizeUnit) = ParseDownloadSizeFromString(p.TotalDownloadSize);
+                }
+                else
+                {
+                    var progressValue = p.Progress > 0 ? (int)(p.Progress * 100) : mainForm.progressBar.Value;
+                    mainForm.progressLabel.Text = String.Format("Downloading Clips {0}/{1}\n{2}/{3}", currentFileIndex, queueStartCount, (totalSize * progressValue / 100).ToString("F2"), totalSize + sizeUnit);
+                    mainForm.progressBar.Value = progressValue;
+                }
+            });
 
+            currentFileIndex++;
             var outputPath = pathsQueue.Dequeue();
             if (File.Exists(outputPath))
             {
@@ -136,34 +146,29 @@ namespace TwitchClipGrabber
 
             var response = await clipDownloader.RunVideoDownload(
                 current.url,
+                progress: progress,
                 overrideOptions: new OptionSet()
                 {
                     Output = outputPath
                 }
             );
-            if (!response.Success)
-            {
-                failedDownloads.Add(String.Format("\"{0}\" by {1} (at {2})",
-                        current.title, current.creator_name, TimeSpan.FromSeconds((double)current.vod_offset)));
-            }
+
 
             if (downloadQueue.Count > 1)
             {
                 DequeueItem();
             }
-            else
+            else if (downloadQueue.Count == 1)
             {
                 downloadQueue.Dequeue();
                 isDownloading = false;
-                progress = 0;
                 queueStartCount = 0;
-                form1.busyInt--;
-                if (form1.busyInt == 0)
+                mainForm.busyInt--;
+                if (mainForm.busyInt == 0)
                 {
-                    //form1.progressStatusStrip.Visible = false;
-                    form1.progressBar.Value = 0;
-                    form1.progressBar.Visible = false;
-                    form1.progressLabel.Text = "Download Completed";
+                    mainForm.progressBar.Value = 0;
+                    mainForm.progressBar.Visible = false;
+                    mainForm.progressLabel.Text = "Download Completed";
 
                     if (failedDownloads.Count > 0)
                     {
@@ -207,6 +212,22 @@ namespace TwitchClipGrabber
                 newPath = Path.Combine(dir, tokens.First() + '(' + (++num + 1) + ')' + ext);
             } while (File.Exists(newPath));
             return newPath;
+        }
+
+        private static (float, string) ParseDownloadSizeFromString(string input)
+        {
+            if (input != null)
+            {
+                var sizeString = new string(input.TakeWhile(c => char.IsDigit(c) || c == '.').ToArray());
+                var unit = new string(input.SkipWhile(c => char.IsDigit(c) || c == '.').ToArray());
+
+                if (float.TryParse(sizeString, out float size))
+                {
+                    return (size, unit.Trim());
+                }
+            }
+
+            return (0f, "");
         }
     }
 }

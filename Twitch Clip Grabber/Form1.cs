@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Linq;
-using Microsoft.Web.WebView2.WinForms;
-using System.Globalization;
-using System.Windows.Forms.VisualStyles;
 
 namespace TwitchClipGrabber
 {
@@ -60,6 +55,7 @@ namespace TwitchClipGrabber
         {
             InitializeComponent();
             this.WindowState = (FormWindowState)Properties.Settings.Default.WindowState;
+            Program.mainForm = this;
         }
 
         private void Form1_Load(object sender, EventArgs e)
