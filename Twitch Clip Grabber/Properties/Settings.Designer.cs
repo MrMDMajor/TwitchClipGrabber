@@ -180,7 +180,7 @@ namespace TwitchClipGrabber.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1080p")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1080")]
         public string DownloadQuality {
             get {
                 return ((string)(this["DownloadQuality"]));
