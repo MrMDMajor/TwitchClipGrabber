@@ -4,7 +4,7 @@ Easy Windows tool for downloading Twitch clips
 ![Text](https://i.imgur.com/sHKFVRR.png)
 
 -----------------------------------------------------
-<b>.NET 5.0 is required, go to https://dotnet.microsoft.com/en-us/download/dotnet/5.0 and install .NET Desktop Runtime</b>
+<b>.NET 8 is required, go to https://dotnet.microsoft.com/en-us/download/dotnet/8.0 and install latest .NET Desktop Runtime</b>
 
 To Build
 ---
