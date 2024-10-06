@@ -149,7 +149,8 @@ namespace TwitchClipGrabber
                 progress: progress,
                 overrideOptions: new OptionSet()
                 {
-                    Output = outputPath
+                    Output = outputPath,
+                    Format = Properties.Settings.Default.DownloadQuality
                 }
             );
 

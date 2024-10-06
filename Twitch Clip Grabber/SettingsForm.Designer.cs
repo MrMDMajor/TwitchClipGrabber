@@ -30,514 +30,519 @@ namespace TwitchClipGrabber
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            this.formatText = new System.Windows.Forms.TextBox();
-            this.formatLabel = new System.Windows.Forms.Label();
-            this.helpText = new System.Windows.Forms.TextBox();
-            this.helpButton = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.helpFlow = new System.Windows.Forms.FlowLayoutPanel();
-            this.helpText2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.exampleLabel = new System.Windows.Forms.Label();
-            this.exampleText = new System.Windows.Forms.TextBox();
-            this.fieldsPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.vodFieldsSourceBox = new System.Windows.Forms.ListBox();
-            this.clipFieldsSourceBox = new System.Windows.Forms.ListBox();
-            this.clipFieldsAddButton = new System.Windows.Forms.Button();
-            this.vodFieldsAddButton = new System.Windows.Forms.Button();
-            this.clipFieldsDownButton = new System.Windows.Forms.Button();
-            this.vodFieldsDownButton = new System.Windows.Forms.Button();
-            this.clipFieldsUpButton = new System.Windows.Forms.Button();
-            this.vodClipsLabel = new System.Windows.Forms.Label();
-            this.clipFieldsLabel = new System.Windows.Forms.Label();
-            this.clipFieldsSelected = new System.Windows.Forms.ListBox();
-            this.vodFieldsSelected = new System.Windows.Forms.ListBox();
-            this.vodFieldsUpButton = new System.Windows.Forms.Button();
-            this.vodFieldsRemoveButton = new System.Windows.Forms.Button();
-            this.clipFieldsRemoveButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.helpFlow.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.fieldsPanel.SuspendLayout();
-            this.SuspendLayout();
+            formatText = new System.Windows.Forms.TextBox();
+            formatLabel = new System.Windows.Forms.Label();
+            helpText = new System.Windows.Forms.TextBox();
+            helpButton = new System.Windows.Forms.Button();
+            flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            downloadQuality = new System.Windows.Forms.ComboBox();
+            label5 = new System.Windows.Forms.Label();
+            helpFlow = new System.Windows.Forms.FlowLayoutPanel();
+            helpText2 = new System.Windows.Forms.TextBox();
+            textBox1 = new System.Windows.Forms.TextBox();
+            tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            exampleLabel = new System.Windows.Forms.Label();
+            exampleText = new System.Windows.Forms.TextBox();
+            fieldsPanel = new System.Windows.Forms.TableLayoutPanel();
+            label4 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            vodFieldsSourceBox = new System.Windows.Forms.ListBox();
+            clipFieldsSourceBox = new System.Windows.Forms.ListBox();
+            clipFieldsAddButton = new System.Windows.Forms.Button();
+            vodFieldsAddButton = new System.Windows.Forms.Button();
+            clipFieldsDownButton = new System.Windows.Forms.Button();
+            vodFieldsDownButton = new System.Windows.Forms.Button();
+            clipFieldsUpButton = new System.Windows.Forms.Button();
+            vodClipsLabel = new System.Windows.Forms.Label();
+            clipFieldsLabel = new System.Windows.Forms.Label();
+            clipFieldsSelected = new System.Windows.Forms.ListBox();
+            vodFieldsSelected = new System.Windows.Forms.ListBox();
+            vodFieldsUpButton = new System.Windows.Forms.Button();
+            vodFieldsRemoveButton = new System.Windows.Forms.Button();
+            clipFieldsRemoveButton = new System.Windows.Forms.Button();
+            saveButton = new System.Windows.Forms.Button();
+            flowLayoutPanel1.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            helpFlow.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            fieldsPanel.SuspendLayout();
+            SuspendLayout();
             // 
             // formatText
             // 
-            this.formatText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.formatText.Location = new System.Drawing.Point(136, 4);
-            this.formatText.Name = "formatText";
-            this.formatText.Size = new System.Drawing.Size(390, 23);
-            this.formatText.TabIndex = 0;
-            this.formatText.TextChanged += new System.EventHandler(this.formatText_TextChanged);
+            formatText.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            formatText.Location = new System.Drawing.Point(115, 4);
+            formatText.Name = "formatText";
+            formatText.Size = new System.Drawing.Size(286, 23);
+            formatText.TabIndex = 0;
+            formatText.TextChanged += formatText_TextChanged;
             // 
             // formatLabel
             // 
-            this.formatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.formatLabel.Location = new System.Drawing.Point(3, 8);
-            this.formatLabel.Name = "formatLabel";
-            this.formatLabel.Size = new System.Drawing.Size(127, 15);
-            this.formatLabel.TabIndex = 1;
-            this.formatLabel.Text = "Download File Format";
-            this.formatLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            formatLabel.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            formatLabel.Location = new System.Drawing.Point(3, 8);
+            formatLabel.Name = "formatLabel";
+            formatLabel.Size = new System.Drawing.Size(106, 15);
+            formatLabel.TabIndex = 1;
+            formatLabel.Text = "Download File Format";
+            formatLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // helpText
             // 
-            this.helpText.BackColor = System.Drawing.SystemColors.Control;
-            this.helpText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.helpText.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.helpText.Location = new System.Drawing.Point(3, 3);
-            this.helpText.Multiline = true;
-            this.helpText.Name = "helpText";
-            this.helpText.ReadOnly = true;
-            this.helpText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.helpText.Size = new System.Drawing.Size(359, 137);
-            this.helpText.TabIndex = 2;
-            this.helpText.Text = resources.GetString("helpText.Text");
+            helpText.BackColor = System.Drawing.SystemColors.Control;
+            helpText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            helpText.Font = new System.Drawing.Font("Segoe UI", 7F);
+            helpText.Location = new System.Drawing.Point(3, 3);
+            helpText.Multiline = true;
+            helpText.Name = "helpText";
+            helpText.ReadOnly = true;
+            helpText.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            helpText.Size = new System.Drawing.Size(359, 137);
+            helpText.TabIndex = 2;
+            helpText.Text = resources.GetString("helpText.Text");
             // 
             // helpButton
             // 
-            this.helpButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helpButton.Location = new System.Drawing.Point(532, 3);
-            this.helpButton.Name = "helpButton";
-            this.helpButton.Size = new System.Drawing.Size(23, 26);
-            this.helpButton.TabIndex = 3;
-            this.helpButton.Text = "?";
-            this.helpButton.UseVisualStyleBackColor = true;
-            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
+            helpButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            helpButton.Location = new System.Drawing.Point(407, 3);
+            helpButton.Name = "helpButton";
+            helpButton.Size = new System.Drawing.Size(25, 26);
+            helpButton.TabIndex = 3;
+            helpButton.Text = "?";
+            helpButton.UseVisualStyleBackColor = true;
+            helpButton.Click += helpButton_Click;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel1);
-            this.flowLayoutPanel1.Controls.Add(this.helpFlow);
-            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel2);
-            this.flowLayoutPanel1.Controls.Add(this.fieldsPanel);
-            this.flowLayoutPanel1.Controls.Add(this.saveButton);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(928, 509);
-            this.flowLayoutPanel1.TabIndex = 4;
+            flowLayoutPanel1.Controls.Add(tableLayoutPanel1);
+            flowLayoutPanel1.Controls.Add(helpFlow);
+            flowLayoutPanel1.Controls.Add(tableLayoutPanel2);
+            flowLayoutPanel1.Controls.Add(fieldsPanel);
+            flowLayoutPanel1.Controls.Add(saveButton);
+            flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new System.Drawing.Size(928, 546);
+            flowLayoutPanel1.TabIndex = 4;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.Controls.Add(this.helpButton, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.formatText, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.formatLabel, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(558, 32);
-            this.tableLayoutPanel1.TabIndex = 8;
+            tableLayoutPanel1.ColumnCount = 5;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            tableLayoutPanel1.Controls.Add(helpButton, 2, 0);
+            tableLayoutPanel1.Controls.Add(downloadQuality, 4, 0);
+            tableLayoutPanel1.Controls.Add(formatText, 1, 0);
+            tableLayoutPanel1.Controls.Add(formatLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(label5, 3, 0);
+            tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(623, 32);
+            tableLayoutPanel1.TabIndex = 8;
+            // 
+            // downloadQuality
+            // 
+            downloadQuality.Dock = System.Windows.Forms.DockStyle.Fill;
+            downloadQuality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            downloadQuality.FormattingEnabled = true;
+            downloadQuality.Items.AddRange(new object[] { "1080p", "720p", "480p", "360p" });
+            downloadQuality.Location = new System.Drawing.Point(550, 3);
+            downloadQuality.Name = "downloadQuality";
+            downloadQuality.Size = new System.Drawing.Size(70, 23);
+            downloadQuality.TabIndex = 12;
+            downloadQuality.SelectedIndexChanged += downloadQuality_SelectedIndexChanged;
+            // 
+            // label5
+            // 
+            label5.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(438, 8);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(106, 15);
+            label5.TabIndex = 13;
+            label5.Text = "Download Quality";
+            label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // helpFlow
             // 
-            this.helpFlow.Controls.Add(this.helpText);
-            this.helpFlow.Controls.Add(this.helpText2);
-            this.helpFlow.Controls.Add(this.textBox1);
-            this.helpFlow.Location = new System.Drawing.Point(3, 41);
-            this.helpFlow.Name = "helpFlow";
-            this.helpFlow.Size = new System.Drawing.Size(865, 145);
-            this.helpFlow.TabIndex = 5;
-            this.helpFlow.Visible = false;
+            helpFlow.Controls.Add(helpText);
+            helpFlow.Controls.Add(helpText2);
+            helpFlow.Controls.Add(textBox1);
+            helpFlow.Location = new System.Drawing.Point(3, 41);
+            helpFlow.Name = "helpFlow";
+            helpFlow.Size = new System.Drawing.Size(865, 145);
+            helpFlow.TabIndex = 5;
+            helpFlow.Visible = false;
             // 
             // helpText2
             // 
-            this.helpText2.BackColor = System.Drawing.SystemColors.Control;
-            this.helpText2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.helpText2.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.helpText2.Location = new System.Drawing.Point(368, 3);
-            this.helpText2.Multiline = true;
-            this.helpText2.Name = "helpText2";
-            this.helpText2.Size = new System.Drawing.Size(158, 137);
-            this.helpText2.TabIndex = 4;
-            this.helpText2.Text = resources.GetString("helpText2.Text");
+            helpText2.BackColor = System.Drawing.SystemColors.Control;
+            helpText2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            helpText2.Font = new System.Drawing.Font("Segoe UI", 7F);
+            helpText2.Location = new System.Drawing.Point(368, 3);
+            helpText2.Multiline = true;
+            helpText2.Name = "helpText2";
+            helpText2.Size = new System.Drawing.Size(158, 137);
+            helpText2.TabIndex = 4;
+            helpText2.Text = resources.GetString("helpText2.Text");
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(532, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 137);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
+            textBox1.BackColor = System.Drawing.SystemColors.Control;
+            textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            textBox1.Font = new System.Drawing.Font("Segoe UI", 7F);
+            textBox1.Location = new System.Drawing.Point(532, 3);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new System.Drawing.Size(252, 137);
+            textBox1.TabIndex = 5;
+            textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.206799F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.7932F));
-            this.tableLayoutPanel2.Controls.Add(this.exampleLabel, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.exampleText, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 192);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(706, 36);
-            this.tableLayoutPanel2.TabIndex = 9;
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.206799F));
+            tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.7932F));
+            tableLayoutPanel2.Controls.Add(exampleLabel, 0, 0);
+            tableLayoutPanel2.Controls.Add(exampleText, 1, 0);
+            tableLayoutPanel2.Location = new System.Drawing.Point(3, 192);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(706, 36);
+            tableLayoutPanel2.TabIndex = 9;
             // 
             // exampleLabel
             // 
-            this.exampleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.exampleLabel.Location = new System.Drawing.Point(3, 10);
-            this.exampleLabel.Name = "exampleLabel";
-            this.exampleLabel.Size = new System.Drawing.Size(59, 15);
-            this.exampleLabel.TabIndex = 6;
-            this.exampleLabel.Text = "Example:";
-            this.exampleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            exampleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            exampleLabel.Location = new System.Drawing.Point(3, 10);
+            exampleLabel.Name = "exampleLabel";
+            exampleLabel.Size = new System.Drawing.Size(59, 15);
+            exampleLabel.TabIndex = 6;
+            exampleLabel.Text = "Example:";
+            exampleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // exampleText
             // 
-            this.exampleText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.exampleText.BackColor = System.Drawing.SystemColors.Control;
-            this.exampleText.Location = new System.Drawing.Point(68, 6);
-            this.exampleText.Name = "exampleText";
-            this.exampleText.ReadOnly = true;
-            this.exampleText.Size = new System.Drawing.Size(635, 23);
-            this.exampleText.TabIndex = 3;
+            exampleText.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            exampleText.BackColor = System.Drawing.SystemColors.Control;
+            exampleText.Location = new System.Drawing.Point(68, 6);
+            exampleText.Name = "exampleText";
+            exampleText.ReadOnly = true;
+            exampleText.Size = new System.Drawing.Size(635, 23);
+            exampleText.TabIndex = 3;
             // 
             // fieldsPanel
             // 
-            this.fieldsPanel.ColumnCount = 8;
-            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.fieldsPanel.Controls.Add(this.label4, 6, 1);
-            this.fieldsPanel.Controls.Add(this.label3, 4, 0);
-            this.fieldsPanel.Controls.Add(this.label2, 0, 0);
-            this.fieldsPanel.Controls.Add(this.label1, 2, 1);
-            this.fieldsPanel.Controls.Add(this.vodFieldsSourceBox, 0, 2);
-            this.fieldsPanel.Controls.Add(this.clipFieldsSourceBox, 4, 2);
-            this.fieldsPanel.Controls.Add(this.clipFieldsAddButton, 5, 2);
-            this.fieldsPanel.Controls.Add(this.vodFieldsAddButton, 1, 2);
-            this.fieldsPanel.Controls.Add(this.clipFieldsDownButton, 7, 4);
-            this.fieldsPanel.Controls.Add(this.vodFieldsDownButton, 3, 4);
-            this.fieldsPanel.Controls.Add(this.clipFieldsUpButton, 6, 4);
-            this.fieldsPanel.Controls.Add(this.vodClipsLabel, 0, 1);
-            this.fieldsPanel.Controls.Add(this.clipFieldsLabel, 4, 1);
-            this.fieldsPanel.Controls.Add(this.clipFieldsSelected, 6, 2);
-            this.fieldsPanel.Controls.Add(this.vodFieldsSelected, 2, 2);
-            this.fieldsPanel.Controls.Add(this.vodFieldsUpButton, 2, 4);
-            this.fieldsPanel.Controls.Add(this.vodFieldsRemoveButton, 1, 3);
-            this.fieldsPanel.Controls.Add(this.clipFieldsRemoveButton, 5, 3);
-            this.fieldsPanel.Location = new System.Drawing.Point(8, 231);
-            this.fieldsPanel.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.fieldsPanel.Name = "fieldsPanel";
-            this.fieldsPanel.RowCount = 5;
-            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.fieldsPanel.Size = new System.Drawing.Size(553, 242);
-            this.fieldsPanel.TabIndex = 11;
-            // 
-            // vodFieldsSourceBox
-            // 
-            this.vodFieldsSourceBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vodFieldsSourceBox.FormattingEnabled = true;
-            this.vodFieldsSourceBox.IntegralHeight = false;
-            this.vodFieldsSourceBox.ItemHeight = 15;
-            this.vodFieldsSourceBox.Items.AddRange(new object[] {
-            "Broadcaster",
-            "Date Created",
-            "Duration",
-            "Title",
-            "URL",
-            "Views"});
-            this.vodFieldsSourceBox.Location = new System.Drawing.Point(0, 40);
-            this.vodFieldsSourceBox.Margin = new System.Windows.Forms.Padding(0);
-            this.vodFieldsSourceBox.Name = "vodFieldsSourceBox";
-            this.fieldsPanel.SetRowSpan(this.vodFieldsSourceBox, 2);
-            this.vodFieldsSourceBox.Size = new System.Drawing.Size(128, 176);
-            this.vodFieldsSourceBox.Sorted = true;
-            this.vodFieldsSourceBox.TabIndex = 0;
-            // 
-            // clipFieldsSourceBox
-            // 
-            this.clipFieldsSourceBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clipFieldsSourceBox.FormattingEnabled = true;
-            this.clipFieldsSourceBox.IntegralHeight = false;
-            this.clipFieldsSourceBox.ItemHeight = 15;
-            this.clipFieldsSourceBox.Items.AddRange(new object[] {
-            "Broadcaster",
-            "Creator",
-            "Date Created",
-            "Duration",
-            "ID",
-            "Title",
-            "URL",
-            "Views",
-            "VOD Date",
-            "VOD Timestamp"});
-            this.clipFieldsSourceBox.Location = new System.Drawing.Point(279, 40);
-            this.clipFieldsSourceBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.clipFieldsSourceBox.Name = "clipFieldsSourceBox";
-            this.fieldsPanel.SetRowSpan(this.clipFieldsSourceBox, 2);
-            this.clipFieldsSourceBox.Size = new System.Drawing.Size(125, 176);
-            this.clipFieldsSourceBox.Sorted = true;
-            this.clipFieldsSourceBox.TabIndex = 2;
-            // 
-            // clipFieldsAddButton
-            // 
-            this.clipFieldsAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.clipFieldsAddButton.Location = new System.Drawing.Point(404, 105);
-            this.clipFieldsAddButton.Margin = new System.Windows.Forms.Padding(0);
-            this.clipFieldsAddButton.Name = "clipFieldsAddButton";
-            this.clipFieldsAddButton.Size = new System.Drawing.Size(20, 23);
-            this.clipFieldsAddButton.TabIndex = 5;
-            this.clipFieldsAddButton.Text = ">";
-            this.clipFieldsAddButton.UseVisualStyleBackColor = true;
-            this.clipFieldsAddButton.Click += new System.EventHandler(this.fieldsAddButton_Click);
-            // 
-            // vodFieldsAddButton
-            // 
-            this.vodFieldsAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.vodFieldsAddButton.Location = new System.Drawing.Point(128, 105);
-            this.vodFieldsAddButton.Margin = new System.Windows.Forms.Padding(0);
-            this.vodFieldsAddButton.Name = "vodFieldsAddButton";
-            this.vodFieldsAddButton.Size = new System.Drawing.Size(20, 23);
-            this.vodFieldsAddButton.TabIndex = 4;
-            this.vodFieldsAddButton.Text = ">";
-            this.vodFieldsAddButton.UseVisualStyleBackColor = true;
-            this.vodFieldsAddButton.Click += new System.EventHandler(this.fieldsAddButton_Click);
-            // 
-            // clipFieldsDownButton
-            // 
-            this.clipFieldsDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.clipFieldsDownButton.Location = new System.Drawing.Point(488, 216);
-            this.clipFieldsDownButton.Margin = new System.Windows.Forms.Padding(0);
-            this.clipFieldsDownButton.Name = "clipFieldsDownButton";
-            this.clipFieldsDownButton.Size = new System.Drawing.Size(25, 26);
-            this.clipFieldsDownButton.TabIndex = 3;
-            this.clipFieldsDownButton.Text = "∨";
-            this.clipFieldsDownButton.UseVisualStyleBackColor = true;
-            this.clipFieldsDownButton.Click += new System.EventHandler(this.fieldsDownButton_Click);
-            // 
-            // vodFieldsDownButton
-            // 
-            this.vodFieldsDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.vodFieldsDownButton.Location = new System.Drawing.Point(212, 216);
-            this.vodFieldsDownButton.Margin = new System.Windows.Forms.Padding(0);
-            this.vodFieldsDownButton.Name = "vodFieldsDownButton";
-            this.vodFieldsDownButton.Size = new System.Drawing.Size(25, 26);
-            this.vodFieldsDownButton.TabIndex = 5;
-            this.vodFieldsDownButton.Text = "∨";
-            this.vodFieldsDownButton.UseVisualStyleBackColor = true;
-            this.vodFieldsDownButton.Click += new System.EventHandler(this.fieldsDownButton_Click);
-            // 
-            // clipFieldsUpButton
-            // 
-            this.clipFieldsUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.clipFieldsUpButton.Location = new System.Drawing.Point(463, 216);
-            this.clipFieldsUpButton.Margin = new System.Windows.Forms.Padding(0);
-            this.clipFieldsUpButton.Name = "clipFieldsUpButton";
-            this.clipFieldsUpButton.Size = new System.Drawing.Size(25, 26);
-            this.clipFieldsUpButton.TabIndex = 4;
-            this.clipFieldsUpButton.Text = "∧";
-            this.clipFieldsUpButton.UseVisualStyleBackColor = true;
-            this.clipFieldsUpButton.Click += new System.EventHandler(this.fieldsUpButton_Click);
-            // 
-            // vodClipsLabel
-            // 
-            this.vodClipsLabel.AutoSize = true;
-            this.vodClipsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vodClipsLabel.Location = new System.Drawing.Point(0, 20);
-            this.vodClipsLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.vodClipsLabel.Name = "vodClipsLabel";
-            this.vodClipsLabel.Size = new System.Drawing.Size(128, 20);
-            this.vodClipsLabel.TabIndex = 6;
-            this.vodClipsLabel.Text = "Hidden Fields";
-            this.vodClipsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // clipFieldsLabel
-            // 
-            this.clipFieldsLabel.AutoSize = true;
-            this.clipFieldsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clipFieldsLabel.Location = new System.Drawing.Point(279, 20);
-            this.clipFieldsLabel.Name = "clipFieldsLabel";
-            this.clipFieldsLabel.Size = new System.Drawing.Size(122, 20);
-            this.clipFieldsLabel.TabIndex = 7;
-            this.clipFieldsLabel.Text = "Hidden Fields";
-            this.clipFieldsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // clipFieldsSelected
-            // 
-            this.fieldsPanel.SetColumnSpan(this.clipFieldsSelected, 2);
-            this.clipFieldsSelected.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clipFieldsSelected.FormattingEnabled = true;
-            this.clipFieldsSelected.IntegralHeight = false;
-            this.clipFieldsSelected.ItemHeight = 15;
-            this.clipFieldsSelected.Location = new System.Drawing.Point(424, 40);
-            this.clipFieldsSelected.Margin = new System.Windows.Forms.Padding(0);
-            this.clipFieldsSelected.Name = "clipFieldsSelected";
-            this.fieldsPanel.SetRowSpan(this.clipFieldsSelected, 2);
-            this.clipFieldsSelected.Size = new System.Drawing.Size(129, 176);
-            this.clipFieldsSelected.TabIndex = 3;
-            // 
-            // vodFieldsSelected
-            // 
-            this.fieldsPanel.SetColumnSpan(this.vodFieldsSelected, 2);
-            this.vodFieldsSelected.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vodFieldsSelected.FormattingEnabled = true;
-            this.vodFieldsSelected.IntegralHeight = false;
-            this.vodFieldsSelected.ItemHeight = 15;
-            this.vodFieldsSelected.Location = new System.Drawing.Point(148, 40);
-            this.vodFieldsSelected.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.vodFieldsSelected.Name = "vodFieldsSelected";
-            this.fieldsPanel.SetRowSpan(this.vodFieldsSelected, 2);
-            this.vodFieldsSelected.Size = new System.Drawing.Size(125, 176);
-            this.vodFieldsSelected.TabIndex = 1;
-            // 
-            // vodFieldsUpButton
-            // 
-            this.vodFieldsUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.vodFieldsUpButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.vodFieldsUpButton.Location = new System.Drawing.Point(187, 216);
-            this.vodFieldsUpButton.Margin = new System.Windows.Forms.Padding(0);
-            this.vodFieldsUpButton.Name = "vodFieldsUpButton";
-            this.vodFieldsUpButton.Size = new System.Drawing.Size(25, 26);
-            this.vodFieldsUpButton.TabIndex = 2;
-            this.vodFieldsUpButton.Text = "∧";
-            this.vodFieldsUpButton.UseVisualStyleBackColor = true;
-            this.vodFieldsUpButton.Click += new System.EventHandler(this.fieldsUpButton_Click);
-            // 
-            // vodFieldsRemoveButton
-            // 
-            this.vodFieldsRemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.vodFieldsRemoveButton.Location = new System.Drawing.Point(128, 128);
-            this.vodFieldsRemoveButton.Margin = new System.Windows.Forms.Padding(0);
-            this.vodFieldsRemoveButton.Name = "vodFieldsRemoveButton";
-            this.vodFieldsRemoveButton.Size = new System.Drawing.Size(20, 23);
-            this.vodFieldsRemoveButton.TabIndex = 8;
-            this.vodFieldsRemoveButton.Text = "<";
-            this.vodFieldsRemoveButton.UseVisualStyleBackColor = true;
-            this.vodFieldsRemoveButton.Click += new System.EventHandler(this.fieldsRemoveButton_Click);
-            // 
-            // clipFieldsRemoveButton
-            // 
-            this.clipFieldsRemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.clipFieldsRemoveButton.Location = new System.Drawing.Point(404, 128);
-            this.clipFieldsRemoveButton.Margin = new System.Windows.Forms.Padding(0);
-            this.clipFieldsRemoveButton.Name = "clipFieldsRemoveButton";
-            this.clipFieldsRemoveButton.Size = new System.Drawing.Size(20, 23);
-            this.clipFieldsRemoveButton.TabIndex = 9;
-            this.clipFieldsRemoveButton.Text = "<";
-            this.clipFieldsRemoveButton.UseVisualStyleBackColor = true;
-            this.clipFieldsRemoveButton.Click += new System.EventHandler(this.fieldsRemoveButton_Click);
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(8, 476);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(100, 23);
-            this.saveButton.TabIndex = 10;
-            this.saveButton.Text = "Save Changes";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.fieldsPanel.SetColumnSpan(this.label1, 2);
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(148, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Displayed Fields";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.fieldsPanel.SetColumnSpan(this.label2, 4);
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(276, 20);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "VOD";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.fieldsPanel.SetColumnSpan(this.label3, 4);
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(279, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(271, 20);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Clip";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            fieldsPanel.ColumnCount = 9;
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            fieldsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            fieldsPanel.Controls.Add(label4, 7, 1);
+            fieldsPanel.Controls.Add(label3, 5, 0);
+            fieldsPanel.Controls.Add(label2, 0, 0);
+            fieldsPanel.Controls.Add(label1, 2, 1);
+            fieldsPanel.Controls.Add(vodFieldsSourceBox, 0, 2);
+            fieldsPanel.Controls.Add(clipFieldsSourceBox, 5, 2);
+            fieldsPanel.Controls.Add(clipFieldsAddButton, 6, 2);
+            fieldsPanel.Controls.Add(vodFieldsAddButton, 1, 2);
+            fieldsPanel.Controls.Add(clipFieldsDownButton, 8, 4);
+            fieldsPanel.Controls.Add(vodFieldsDownButton, 3, 4);
+            fieldsPanel.Controls.Add(clipFieldsUpButton, 7, 4);
+            fieldsPanel.Controls.Add(vodClipsLabel, 0, 1);
+            fieldsPanel.Controls.Add(clipFieldsLabel, 5, 1);
+            fieldsPanel.Controls.Add(clipFieldsSelected, 7, 2);
+            fieldsPanel.Controls.Add(vodFieldsSelected, 2, 2);
+            fieldsPanel.Controls.Add(vodFieldsUpButton, 2, 4);
+            fieldsPanel.Controls.Add(vodFieldsRemoveButton, 1, 3);
+            fieldsPanel.Controls.Add(clipFieldsRemoveButton, 6, 3);
+            fieldsPanel.Location = new System.Drawing.Point(8, 231);
+            fieldsPanel.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            fieldsPanel.Name = "fieldsPanel";
+            fieldsPanel.RowCount = 5;
+            fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            fieldsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            fieldsPanel.Size = new System.Drawing.Size(593, 242);
+            fieldsPanel.TabIndex = 11;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.fieldsPanel.SetColumnSpan(this.label4, 2);
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(427, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 20);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Displayed Fields";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label4.AutoSize = true;
+            fieldsPanel.SetColumnSpan(label4, 2);
+            label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            label4.Location = new System.Drawing.Point(467, 20);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(123, 20);
+            label4.TabIndex = 13;
+            label4.Text = "Displayed Fields";
+            label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            fieldsPanel.SetColumnSpan(label3, 4);
+            label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            label3.Location = new System.Drawing.Point(322, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(268, 20);
+            label3.TabIndex = 12;
+            label3.Text = "Clip";
+            label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            fieldsPanel.SetColumnSpan(label2, 4);
+            label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            label2.Location = new System.Drawing.Point(0, 0);
+            label2.Margin = new System.Windows.Forms.Padding(0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(269, 20);
+            label2.TabIndex = 11;
+            label2.Text = "VOD";
+            label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            fieldsPanel.SetColumnSpan(label1, 2);
+            label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            label1.Location = new System.Drawing.Point(145, 20);
+            label1.Margin = new System.Windows.Forms.Padding(0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(124, 20);
+            label1.TabIndex = 10;
+            label1.Text = "Displayed Fields";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // vodFieldsSourceBox
+            // 
+            vodFieldsSourceBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            vodFieldsSourceBox.FormattingEnabled = true;
+            vodFieldsSourceBox.IntegralHeight = false;
+            vodFieldsSourceBox.ItemHeight = 15;
+            vodFieldsSourceBox.Items.AddRange(new object[] { "Broadcaster", "Date Created", "Duration", "Title", "URL", "Views" });
+            vodFieldsSourceBox.Location = new System.Drawing.Point(0, 40);
+            vodFieldsSourceBox.Margin = new System.Windows.Forms.Padding(0);
+            vodFieldsSourceBox.Name = "vodFieldsSourceBox";
+            fieldsPanel.SetRowSpan(vodFieldsSourceBox, 2);
+            vodFieldsSourceBox.Size = new System.Drawing.Size(125, 176);
+            vodFieldsSourceBox.Sorted = true;
+            vodFieldsSourceBox.TabIndex = 0;
+            // 
+            // clipFieldsSourceBox
+            // 
+            clipFieldsSourceBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            clipFieldsSourceBox.FormattingEnabled = true;
+            clipFieldsSourceBox.IntegralHeight = false;
+            clipFieldsSourceBox.ItemHeight = 15;
+            clipFieldsSourceBox.Items.AddRange(new object[] { "Broadcaster", "Creator", "Date Created", "Duration", "ID", "Title", "URL", "Views", "VOD Date", "VOD Timestamp" });
+            clipFieldsSourceBox.Location = new System.Drawing.Point(322, 40);
+            clipFieldsSourceBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            clipFieldsSourceBox.Name = "clipFieldsSourceBox";
+            fieldsPanel.SetRowSpan(clipFieldsSourceBox, 2);
+            clipFieldsSourceBox.Size = new System.Drawing.Size(122, 176);
+            clipFieldsSourceBox.Sorted = true;
+            clipFieldsSourceBox.TabIndex = 2;
+            // 
+            // clipFieldsAddButton
+            // 
+            clipFieldsAddButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            clipFieldsAddButton.Location = new System.Drawing.Point(444, 105);
+            clipFieldsAddButton.Margin = new System.Windows.Forms.Padding(0);
+            clipFieldsAddButton.Name = "clipFieldsAddButton";
+            clipFieldsAddButton.Size = new System.Drawing.Size(20, 23);
+            clipFieldsAddButton.TabIndex = 5;
+            clipFieldsAddButton.Text = ">";
+            clipFieldsAddButton.UseVisualStyleBackColor = true;
+            clipFieldsAddButton.Click += fieldsAddButton_Click;
+            // 
+            // vodFieldsAddButton
+            // 
+            vodFieldsAddButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            vodFieldsAddButton.Location = new System.Drawing.Point(125, 105);
+            vodFieldsAddButton.Margin = new System.Windows.Forms.Padding(0);
+            vodFieldsAddButton.Name = "vodFieldsAddButton";
+            vodFieldsAddButton.Size = new System.Drawing.Size(20, 23);
+            vodFieldsAddButton.TabIndex = 4;
+            vodFieldsAddButton.Text = ">";
+            vodFieldsAddButton.UseVisualStyleBackColor = true;
+            vodFieldsAddButton.Click += fieldsAddButton_Click;
+            // 
+            // clipFieldsDownButton
+            // 
+            clipFieldsDownButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            clipFieldsDownButton.Location = new System.Drawing.Point(526, 216);
+            clipFieldsDownButton.Margin = new System.Windows.Forms.Padding(0);
+            clipFieldsDownButton.Name = "clipFieldsDownButton";
+            clipFieldsDownButton.Size = new System.Drawing.Size(25, 26);
+            clipFieldsDownButton.TabIndex = 3;
+            clipFieldsDownButton.Text = "∨";
+            clipFieldsDownButton.UseVisualStyleBackColor = true;
+            clipFieldsDownButton.Click += fieldsDownButton_Click;
+            // 
+            // vodFieldsDownButton
+            // 
+            vodFieldsDownButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            vodFieldsDownButton.Location = new System.Drawing.Point(207, 216);
+            vodFieldsDownButton.Margin = new System.Windows.Forms.Padding(0);
+            vodFieldsDownButton.Name = "vodFieldsDownButton";
+            vodFieldsDownButton.Size = new System.Drawing.Size(25, 26);
+            vodFieldsDownButton.TabIndex = 5;
+            vodFieldsDownButton.Text = "∨";
+            vodFieldsDownButton.UseVisualStyleBackColor = true;
+            vodFieldsDownButton.Click += fieldsDownButton_Click;
+            // 
+            // clipFieldsUpButton
+            // 
+            clipFieldsUpButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            clipFieldsUpButton.Location = new System.Drawing.Point(501, 216);
+            clipFieldsUpButton.Margin = new System.Windows.Forms.Padding(0);
+            clipFieldsUpButton.Name = "clipFieldsUpButton";
+            clipFieldsUpButton.Size = new System.Drawing.Size(25, 26);
+            clipFieldsUpButton.TabIndex = 4;
+            clipFieldsUpButton.Text = "∧";
+            clipFieldsUpButton.UseVisualStyleBackColor = true;
+            clipFieldsUpButton.Click += fieldsUpButton_Click;
+            // 
+            // vodClipsLabel
+            // 
+            vodClipsLabel.AutoSize = true;
+            vodClipsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            vodClipsLabel.Location = new System.Drawing.Point(0, 20);
+            vodClipsLabel.Margin = new System.Windows.Forms.Padding(0);
+            vodClipsLabel.Name = "vodClipsLabel";
+            vodClipsLabel.Size = new System.Drawing.Size(125, 20);
+            vodClipsLabel.TabIndex = 6;
+            vodClipsLabel.Text = "Hidden Fields";
+            vodClipsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // clipFieldsLabel
+            // 
+            clipFieldsLabel.AutoSize = true;
+            clipFieldsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            clipFieldsLabel.Location = new System.Drawing.Point(322, 20);
+            clipFieldsLabel.Name = "clipFieldsLabel";
+            clipFieldsLabel.Size = new System.Drawing.Size(119, 20);
+            clipFieldsLabel.TabIndex = 7;
+            clipFieldsLabel.Text = "Hidden Fields";
+            clipFieldsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // clipFieldsSelected
+            // 
+            fieldsPanel.SetColumnSpan(clipFieldsSelected, 2);
+            clipFieldsSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            clipFieldsSelected.FormattingEnabled = true;
+            clipFieldsSelected.IntegralHeight = false;
+            clipFieldsSelected.ItemHeight = 15;
+            clipFieldsSelected.Location = new System.Drawing.Point(464, 40);
+            clipFieldsSelected.Margin = new System.Windows.Forms.Padding(0);
+            clipFieldsSelected.Name = "clipFieldsSelected";
+            fieldsPanel.SetRowSpan(clipFieldsSelected, 2);
+            clipFieldsSelected.Size = new System.Drawing.Size(129, 176);
+            clipFieldsSelected.TabIndex = 3;
+            // 
+            // vodFieldsSelected
+            // 
+            fieldsPanel.SetColumnSpan(vodFieldsSelected, 2);
+            vodFieldsSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            vodFieldsSelected.FormattingEnabled = true;
+            vodFieldsSelected.IntegralHeight = false;
+            vodFieldsSelected.ItemHeight = 15;
+            vodFieldsSelected.Location = new System.Drawing.Point(145, 40);
+            vodFieldsSelected.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            vodFieldsSelected.Name = "vodFieldsSelected";
+            fieldsPanel.SetRowSpan(vodFieldsSelected, 2);
+            vodFieldsSelected.Size = new System.Drawing.Size(121, 176);
+            vodFieldsSelected.TabIndex = 1;
+            // 
+            // vodFieldsUpButton
+            // 
+            vodFieldsUpButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            vodFieldsUpButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            vodFieldsUpButton.Location = new System.Drawing.Point(182, 216);
+            vodFieldsUpButton.Margin = new System.Windows.Forms.Padding(0);
+            vodFieldsUpButton.Name = "vodFieldsUpButton";
+            vodFieldsUpButton.Size = new System.Drawing.Size(25, 26);
+            vodFieldsUpButton.TabIndex = 2;
+            vodFieldsUpButton.Text = "∧";
+            vodFieldsUpButton.UseVisualStyleBackColor = true;
+            vodFieldsUpButton.Click += fieldsUpButton_Click;
+            // 
+            // vodFieldsRemoveButton
+            // 
+            vodFieldsRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            vodFieldsRemoveButton.Location = new System.Drawing.Point(125, 128);
+            vodFieldsRemoveButton.Margin = new System.Windows.Forms.Padding(0);
+            vodFieldsRemoveButton.Name = "vodFieldsRemoveButton";
+            vodFieldsRemoveButton.Size = new System.Drawing.Size(20, 23);
+            vodFieldsRemoveButton.TabIndex = 8;
+            vodFieldsRemoveButton.Text = "<";
+            vodFieldsRemoveButton.UseVisualStyleBackColor = true;
+            vodFieldsRemoveButton.Click += fieldsRemoveButton_Click;
+            // 
+            // clipFieldsRemoveButton
+            // 
+            clipFieldsRemoveButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            clipFieldsRemoveButton.Location = new System.Drawing.Point(444, 128);
+            clipFieldsRemoveButton.Margin = new System.Windows.Forms.Padding(0);
+            clipFieldsRemoveButton.Name = "clipFieldsRemoveButton";
+            clipFieldsRemoveButton.Size = new System.Drawing.Size(20, 23);
+            clipFieldsRemoveButton.TabIndex = 9;
+            clipFieldsRemoveButton.Text = "<";
+            clipFieldsRemoveButton.UseVisualStyleBackColor = true;
+            clipFieldsRemoveButton.Click += fieldsRemoveButton_Click;
+            // 
+            // saveButton
+            // 
+            saveButton.Location = new System.Drawing.Point(8, 476);
+            saveButton.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new System.Drawing.Size(100, 23);
+            saveButton.TabIndex = 10;
+            saveButton.Text = "Save Changes";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // SettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 509);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Name = "SettingsForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SettingsForm";
-            this.Load += new System.EventHandler(this.SettingsForm_Load);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.helpFlow.ResumeLayout(false);
-            this.helpFlow.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.fieldsPanel.ResumeLayout(false);
-            this.fieldsPanel.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(928, 546);
+            Controls.Add(flowLayoutPanel1);
+            Name = "SettingsForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "SettingsForm";
+            Load += SettingsForm_Load;
+            flowLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            helpFlow.ResumeLayout(false);
+            helpFlow.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
+            fieldsPanel.ResumeLayout(false);
+            fieldsPanel.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -574,5 +579,7 @@ namespace TwitchClipGrabber
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox downloadQuality;
+        private System.Windows.Forms.Label label5;
     }
 }

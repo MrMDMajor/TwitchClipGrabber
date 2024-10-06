@@ -50,5 +50,8 @@
     <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="DownloadQuality" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1080p</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

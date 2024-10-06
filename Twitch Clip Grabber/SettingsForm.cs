@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,6 +16,16 @@ namespace TwitchClipGrabber
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             this.formatText.Text = Properties.Settings.Default.FilenameFormat;
+            downloadQuality.DataSource = new BindingSource(new Dictionary<string, string>()
+            {
+                { "1080p", "1080" },
+                { "720p", "720" },
+                { "480p", "480" },
+                { "360p", "360" }
+            }, null);
+            downloadQuality.DisplayMember = "Key";
+            downloadQuality.ValueMember = "Value";
+            downloadQuality.SelectedValue = Properties.Settings.Default.DownloadQuality;
             vodFieldsSourceBox.Items.Clear();
             clipFieldsSourceBox.Items.Clear();
 
@@ -57,6 +68,7 @@ namespace TwitchClipGrabber
         private void saveButton_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.FilenameFormat = formatText.Text;
+            Properties.Settings.Default.DownloadQuality = downloadQuality.SelectedValue.ToString();
             Properties.Settings.Default.VODFields.Clear();
             Properties.Settings.Default.ClipFields.Clear();
             Properties.Settings.Default.VODFields.AddRange(vodFieldsSelected.Items.Cast<string>().ToArray());
@@ -137,6 +149,11 @@ namespace TwitchClipGrabber
                 selected.Items.Insert(index + 1, selectedItem);
                 selected.SelectedItem = selectedItem;
             }
+        }
+
+        private void downloadQuality_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine(downloadQuality.SelectedValue);
         }
     }
 }
