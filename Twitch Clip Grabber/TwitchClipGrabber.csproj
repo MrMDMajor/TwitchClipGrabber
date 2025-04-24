@@ -9,7 +9,7 @@
     <ApplicationIcon />
     <StartupObject>TwitchClipGrabber.Program</StartupObject>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <Version>0.3.0</Version>
+    <Version>0.3.1</Version>
     <OutputPath>bin\$(Configuration)\TwitchClipGrabber</OutputPath>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <Authors>MDMajor</Authors>
@@ -30,9 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1293.44" />
-    <PackageReference Include="YoutubeDLSharp" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3179.45" />
+    <PackageReference Include="YoutubeDLSharp" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
